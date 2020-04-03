@@ -307,12 +307,13 @@ h6 a {
 
 h1 {
   font-family: "Source Sans Pro", Helvetica, sans-serif;
-  font-size: 5rem;
   font-weight: 700;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.03em;
   line-height: 1.1;
   margin: 0 0 1.5rem 0;
   text-transform: none;
+  color: #2e2e2e;
+  font-size: 82px;
 }
 
 h2 {
@@ -2642,7 +2643,7 @@ ul.alt > li:last-child {
 
 ul.items {
   list-style: none;
-  padding: 0 5rem;
+  padding: 1em 5rem;
 }
 
 ul.items > li {
@@ -3179,6 +3180,11 @@ a.arrow:before {
 }
 
 @media screen and (max-width: 1152px) {
+  ul.items {
+    list-style: none;
+    padding: 3em 3rem 1.5em 3em;
+  }
+
   .gallery a img {
     height: 20rem;
   }
