@@ -1,12 +1,6 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600,700,300i,600i,700i|Raleway:600,800");
 
-/*
-	Paradigm Shift by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
-
 html,
 body,
 div,
@@ -3025,18 +3019,32 @@ a.arrow:before {
   display: block;
   height: 25vw;
   min-height: 18rem;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   width: 100%;
 }
 
 .gallery a.landscape {
   width: 100%;
+  /* background-color: #7ecaf6; */
 }
+
+/* .gallery a.landscape:before {
+  content: "hey";
+  font-size: 100px;
+} */
 
 .gallery a.landscape img {
   height: 30vw;
+  /* opacity: 0; */
 }
+
+/* .gallery a.landscape img:hover {
+  opacity: 1;
+  transition: opacity 0.4s ease-in-out;
+  -moz-transition: opacity 0.4s ease-in-out;
+  -webkit-transition: opacity 0.4s ease-in-out;
+} */
 
 .gallery a.portrait img {
   height: 30vw;
