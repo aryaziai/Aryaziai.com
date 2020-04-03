@@ -2047,6 +2047,7 @@ button.primary,
   background-color: #49fcd4;
   box-shadow: none;
   color: #000000 !important;
+  padding: 0 4.25rem;
 }
 
 input[type="submit"].primary:hover,
@@ -3038,6 +3039,7 @@ a.arrow:before {
 .gallery a.landscape img {
   height: 30vw;
   /* opacity: 0; */
+  padding: 0em 1em 0em 1em;
 }
 
 /* .gallery a.landscape img:hover {
