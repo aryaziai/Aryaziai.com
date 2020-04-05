@@ -3011,7 +3011,7 @@ a.arrow:before {
 .gallery a {
   border-bottom: 0;
   display: block;
-  margin: 1.25rem 0 0 1.25rem;
+  margin: 0.4rem 0 0 1.25rem;
   outline: 0;
   position: relative;
   width: calc(50% - 1.25rem);
@@ -3031,23 +3031,10 @@ a.arrow:before {
   /* background-color: #7ecaf6; */
 }
 
-/* .gallery a.landscape:before {
-  content: "hey";
-  font-size: 100px;
-} */
-
 .gallery a.landscape img {
   height: 30vw;
-  /* opacity: 0; */
-  padding: 0em 1em 0em 1em;
+  padding: 0em 7em 0em 7em;
 }
-
-/* .gallery a.landscape img:hover {
-  opacity: 1;
-  transition: opacity 0.4s ease-in-out;
-  -moz-transition: opacity 0.4s ease-in-out;
-  -webkit-transition: opacity 0.4s ease-in-out;
-} */
 
 .gallery a.portrait img {
   height: 30vw;
@@ -3953,8 +3940,23 @@ body.is-ie #wrapper > section > .content > section {
   width: 100vw;
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1152px) {
+  /* mobile css */
+  .hidemobile {
+    display: none;
+  }
+  .gallery a.landscape img {
+    height: 30vw;
+    padding: 0em 3em 0em 3em;
+  }
+}
+
+@media screen and (min-width: 1153px) {
+  /* desktop css */
   body.is-ie #wrapper section > footer {
     padding: 4rem;
+  }
+  .hidedesktop {
+    display: none;
   }
 }
