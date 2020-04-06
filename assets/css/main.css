@@ -3865,7 +3865,7 @@ body.is-mobile #wrapper > section.intro > header {
 }
 
 #wrapper:before {
-  transition: opacity 1s ease;
+  transition: opacity 1.3s ease;
 }
 
 body.is-preload #wrapper:before {
@@ -3873,7 +3873,7 @@ body.is-preload #wrapper:before {
 }
 
 #wrapper > section.intro {
-  transition: opacity 1s ease;
+  transition: opacity 1.3s ease;
   opacity: 1;
 }
 
@@ -3899,7 +3899,7 @@ body.is-preload #wrapper > section.intro > .content {
 
 @media screen and (max-width: 1280px) {
   #wrapper > section.intro > header > * {
-    transition: transform 1s ease, opacity 1s ease;
+    transition: transform 1s ease, opacity 1.3s ease;
   }
 
   body.is-preload #wrapper > section.intro > header {
@@ -3946,7 +3946,7 @@ body.is-ie #wrapper > section > .content > section {
     display: none;
   }
   .gallery a.landscape img {
-    height: 30vw;
+    height: 40vw;
     padding: 0em 3em 0em 3em;
   }
 }
