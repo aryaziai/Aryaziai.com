@@ -3949,6 +3949,12 @@ body.is-ie #wrapper > section > .content > section {
     height: 40vw;
     padding: 0em 3em 0em 3em;
   }
+  .dashblink {
+    font-size: 100%;
+    font-weight: 200;
+    animation: blinkingText 1.4s infinite;
+    text-decoration: blink;
+  }
 }
 
 @media screen and (min-width: 1153px) {
@@ -3956,7 +3962,81 @@ body.is-ie #wrapper > section > .content > section {
   body.is-ie #wrapper section > footer {
     padding: 4rem;
   }
+
   .hidedesktop {
     display: none;
+  }
+}
+
+/* Global CSS Rules */
+/* .blinktext {
+  animation-name: blinktext;
+  -webkit-animation-name: blinktext; 
+
+  animation-duration: 1.1s;
+  -webkit-animation-duration: 1.1s;
+
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite; 
+
+  font-weight: 100;
+  font-size: 150%;
+  color: #000;
+} */
+
+/* @-webkit-keyframes blinktext {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes blinktext {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+} */
+
+.intro a {
+  font-family: "Raleway", Helvetica, sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.175em;
+  line-height: 2.5;
+  text-transform: uppercase;
+}
+
+.intro p {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: 0.15em solid #43d9b7; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.15em; /* Adjust as needed */
+  animation: blinktext 5.6s steps(60, end), blink-caret 0.75s step-end infinite;
+  margin-right: 0px;
+  /* animation-delay: 2s; */
+  padding-right: 1px;
+}
+
+@keyframes blinktext {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #43d9b7;
   }
 }
