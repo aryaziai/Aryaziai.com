@@ -4017,6 +4017,8 @@ body.is-ie #wrapper > section > .content > section {
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
   letter-spacing: 0.15em; /* Adjust as needed */
   animation: blinktext 5.6s steps(60, end), blink-caret 0.75s step-end infinite;
+  -webkit-animation: blinktext 5.6s steps(60, end),
+    blink-caret 0.75s step-end infinite;
   margin-right: 0px;
   animation-delay: 1s !important;
   padding-right: 1px;
