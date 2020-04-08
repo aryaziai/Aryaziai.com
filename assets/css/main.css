@@ -312,7 +312,7 @@ h1 {
   line-height: 1.1;
   margin: 0 0 1.5rem 0;
   text-transform: none;
-  color: #2e2e2e;
+  color: #222;
   font-size: 82px;
 }
 
@@ -2695,6 +2695,8 @@ ul.actions {
   list-style: none;
   margin-left: -1rem;
   padding-left: 0;
+  padding-top: 4px;
+  margin-bottom: 5px;
 }
 
 ul.actions li {
@@ -2917,6 +2919,7 @@ a.arrow {
   height: 4rem;
   position: relative;
   width: 6rem;
+  margin-top: 26px;
 }
 
 a.arrow .label {
@@ -3969,38 +3972,6 @@ body.is-ie #wrapper > section > .content > section {
 }
 
 /* Global CSS Rules */
-/* .blinktext {
-  animation-name: blinktext;
-  -webkit-animation-name: blinktext; 
-
-  animation-duration: 1.1s;
-  -webkit-animation-duration: 1.1s;
-
-  animation-iteration-count: infinite;
-  -webkit-animation-iteration-count: infinite; 
-
-  font-weight: 100;
-  font-size: 150%;
-  color: #000;
-} */
-
-/* @-webkit-keyframes blinktext {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes blinktext {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-} */
 
 .intro a {
   font-family: "Raleway", Helvetica, sans-serif;
@@ -4016,12 +3987,13 @@ body.is-ie #wrapper > section > .content > section {
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
   letter-spacing: 0.15em; /* Adjust as needed */
-  animation: blinktext 5.6s steps(60, end), blink-caret 0.75s step-end infinite;
+  animation: blinktext 5.2s steps(60, end), blink-caret 0.75s step-end infinite;
   -webkit-animation: blinktext 5.6s steps(60, end),
     blink-caret 0.75s step-end infinite;
   margin-right: 0px;
-  animation-delay: 1s !important;
-  padding-right: 1px;
+  animation-delay: 0.08s !important;
+  padding-right: 2.5px;
+  max-width: 17.6rem !important;
 }
 
 @keyframes blinktext {
