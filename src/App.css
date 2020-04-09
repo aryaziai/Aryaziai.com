@@ -3953,7 +3953,7 @@ body.is-ie #wrapper > section > .content > section {
     background: transparent !important;
   }
 
-  .image.fill {
+  .image.fill:before {
     content: "";
     display: block;
     position: fixed;
@@ -3967,6 +3967,7 @@ body.is-ie #wrapper > section > .content > section {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    overflow: hidden;
   }
 
   .hidemobile {
