@@ -1,5 +1,4 @@
 import React from "react";
-
 import About from "./components/About.js";
 import Resume from "./components/Resume.js";
 import Education from "./components/Education.js";

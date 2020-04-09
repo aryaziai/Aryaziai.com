@@ -4022,6 +4022,10 @@ body.is-ie #wrapper > section > .content > section {
   max-width: 17.6rem !important;
 }
 
+#wrapper > section > header {
+  background-attachment: fixed !important;
+}
+
 @keyframes blinktext {
   from {
     width: 0;
