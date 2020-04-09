@@ -1,7 +1,17 @@
 import React, { Component } from "react";
 import "./App.css";
+import Resume from "./components/Resume.js";
+import Education from "./components/Education.js";
+import GetTouch from "./components/GetTouch.js";
+import Skills from "./components/Skills.js";
 
 export default class App extends Component {
+  componentDidMount() {
+    fetch("https://fetch-backend-api.herokuapp.com");
+    fetch("https://movie-reviewer-rb.herokuapp.com/");
+    fetch("https://js-paint-backend.herokuapp.com/");
+  }
+
   render() {
     return (
       <div>
@@ -64,48 +74,7 @@ export default class App extends Component {
               </div>
             </section>
             {/* Section */}
-            <section>
-              <header>
-                <h2>Skills</h2>
-                <p>
-                  Javascript
-                  <br />
-                  ReactJS <br />
-                  React Native <br />
-                  Ruby on Rails <br />
-                  REST API <br />
-                  Wordpress <br />
-                  HTML5 <br />
-                  Figma <br />
-                  CSS <br />
-                  SQL <br />
-                  Git
-                </p>
-              </header>
-              <div className="content">
-                <p>
-                  <strong>Passion for creating</strong> responsive and
-                  lightweight sites. this is filler text. this is filler text.
-                  this is filler text.
-                </p>
-                <ul className="feature-icons">
-                  <li className="icon solid fa-laptop">Responsive Design</li>
-                  <li className="icon solid fa-bolt">Fast Load Times</li>
-                  <li className="icon solid fa-code">Clean Code</li>
-                  <li className="icon solid fa-lightbulb">
-                    Intuitive Experience
-                  </li>
-                  <li className="icon solid fa-users">Collaborative</li>
-                  <li className="icon solid fa-th">Pixel-Perfect</li>
-                </ul>
-                <p>
-                  Vehicula ultrices sed ultricies condimentum. Magna sed etiam
-                  consequat, et lorem adipiscing sed nulla. Volutpat nisl et
-                  tempus et dolor libero, feugiat magna tempus, sed et lorem
-                  adipiscing.
-                </p>
-              </div>
-            </section>
+            <Skills />
             {/* Section */}
             <section>
               <header>
@@ -308,185 +277,9 @@ export default class App extends Component {
                 </section>
               </div>
             </section>
-            <section>
-              <header>
-                <h2>Education</h2>
-              </header>
-              <div className="content">
-                <span className="smallspace" />
-                <i>Class of 2020 </i>
-                <br />
-                <b>Flatiron School, San Francisco</b>
-                <br />
-                Software Engineer
-                <p />
-                <p>
-                  <i>Class of 2014</i> <br />
-                  <b>University of California, Los Angeles</b>
-                  <br />
-                  Bachelor of Arts, <br />
-                  Cultural Anthropology
-                </p>
-              </div>
-            </section>
-            <section>
-              <header>
-                <h2>Resumé</h2>
-              </header>
-              <div className="content">
-                <p>
-                  <strong>Check out</strong> my software engineering resumé to
-                  see my
-                  <br />
-                  most recent work experience &amp; projects.
-                  {/* ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim
-            lorem ullamcorper dolore. */}
-                </p>
-                <ul className="actions">
-                  <li>
-                    <a
-                      href="/Arya_Ziai_Resume.pdf"
-                      alt="hello"
-                      target="_blank"
-                      className="button primary large"
-                    >
-                      View
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="/Arya_Ziai_Resume.pdf"
-                      className="button large"
-                      download="Arya Ziai Resume"
-                    >
-                      Download
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </section>
-            <section>
-              <header>
-                <h2>Get in touch</h2>
-              </header>
-              <ul className="items">
-                <li>
-                  <h3>Email</h3>
-                  <a
-                    href="mailto:arya@aryaziai.com?Subject=Hey%20there!"
-                    target="_top"
-                  >
-                    arya@aryaziai.com
-                  </a>
-                </li>
-                <li>
-                  <h3>Phone</h3>
-                  <a href="tel:+4157548665">415.754.8665</a>
-                </li>
-                <li>
-                  <h3>Location</h3>
-                  <span>SF Bay Area</span>
-                </li>
-                <li>
-                  <h3>Links</h3>
-                  <ul className="icons">
-                    <li>
-                      <a
-                        href="https://github.com/aryaziai"
-                        target="_blank"
-                        className="icon brands fa-github"
-                      >
-                        <span className="label">GitHub</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="https://twitter.com/aryaziai"
-                        target="_blank"
-                        className="icon brands fa-twitter"
-                      >
-                        <span className="label">Twitter</span>
-                      </a>
-                    </li>
-                    {/* <li>
-                <a href="#" class="icon brands fa-facebook-f"
-                  ><span class="label">Facebook</span></a
-                >
-              </li>
-              <li>
-                <a href="#" class="icon brands fa-instagram"
-                  ><span class="label">Instagram</span></a
-                >
-              </li> */}
-                    <li>
-                      <a
-                        href="https://www.linkedin.com/in/aryaziai/"
-                        target="_blank"
-                        className="icon brands fa-linkedin-in"
-                      >
-                        <span className="label">LinkedIn</span>
-                      </a>
-                    </li>
-                    {/* <li>
-                <a href="#" class="icon brands fa-codepen"
-                  ><span class="label">Codepen</span></a
-                >
-              </li> */}
-                  </ul>
-                </li>
-              </ul>
-              {/* <footer>
-          <ul class="items">
-            <li>
-              <h3>Email</h3>
-              <a href="#">information@untitled.ext</a>
-            </li>
-            <li>
-              <h3>Phone</h3>
-              <a href="#">(000) 000-0000</a>
-            </li>
-            <li>
-              <h3>Address</h3>
-              <span>1234 Somewhere Road, Nashville, TN 00000</span>
-            </li>
-            <li>
-              <h3>Elsewhere</h3>
-              <ul class="icons">
-                <li>
-                  <a href="#" class="icon brands fa-twitter"
-                    ><span class="label">Twitter</span></a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="icon brands fa-facebook-f"
-                    ><span class="label">Facebook</span></a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="icon brands fa-instagram"
-                    ><span class="label">Instagram</span></a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="icon brands fa-linkedin-in"
-                    ><span class="label">LinkedIn</span></a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="icon brands fa-github"
-                    ><span class="label">GitHub</span></a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="icon brands fa-codepen"
-                    ><span class="label">Codepen</span></a
-                  >
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </footer> */}
-            </section>
+            <Education />
+            <Resume />
+            <GetTouch />
             {/* Copyright */}
             <div className="copyright">© Arya Ziai</div>
           </div>
