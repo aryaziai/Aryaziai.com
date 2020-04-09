@@ -1,4 +1,4 @@
-node_modules
+/node_modules
 **/.DS_Store
 
 
@@ -8,10 +8,10 @@ node_modules
 .pnp.js
 
 # testing
-coverage
+/coverage
 
 # production
-build
+/build
 
 # misc
 .DS_Store
