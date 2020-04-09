@@ -3982,10 +3982,10 @@ body.is-ie #wrapper > section > .content > section {
     top: 0;
     width: 100%;
     background: url(/images/pic01.jpg);
-    background-position: 100%;
+    background-position: 106%;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-size: 50%;
+    background-size: 57%;
   }
 
   body.is-ie #wrapper section > footer {
@@ -4017,7 +4017,7 @@ body.is-ie #wrapper > section > .content > section {
   -webkit-animation: blinktext 5.6s steps(60, end),
     blink-caret 0.75s step-end infinite;
   margin-right: 0px;
-  animation-delay: 0.08s !important;
+  /* animation-delay: 0.08s !important; */
   padding-right: 2.5px;
   max-width: 17.6rem !important;
 }
