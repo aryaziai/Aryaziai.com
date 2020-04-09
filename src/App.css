@@ -3798,7 +3798,7 @@ ul.feature-icons li:nth-child(2) {
   }
 
   #wrapper > section > .content {
-    padding: 5rem 3rem;
+    padding: 5rem 3.5rem;
   }
 
   #wrapper > section > .content > section {
@@ -3952,7 +3952,7 @@ body.is-ie #wrapper > section > .content > section {
   }
 
   h3 {
-    font-size: 1.4em;
+    font-size: 1.3em;
     border: 0 !important;
   }
 
@@ -3971,7 +3971,6 @@ body.is-ie #wrapper > section > .content > section {
     background: url(/images/pic01.jpg) no-repeat center center;
     background-size: cover;
     overflow: hidden;
-    background-color: #49fcd4;
   }
 
   .hidemobile {
