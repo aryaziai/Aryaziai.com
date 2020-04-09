@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./App.css";
 import About from "./components/About.js";
 import Resume from "./components/Resume.js";
