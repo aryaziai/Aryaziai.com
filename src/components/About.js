@@ -2,7 +2,6 @@ import React from "react";
 export default function About() {
   return (
     <section id="first">
-      <br />
       <header>
         <h2>About Me</h2>
       </header>

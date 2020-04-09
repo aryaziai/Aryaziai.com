@@ -4008,6 +4008,9 @@ body.is-ie #wrapper > section > .content > section {
 
 /* Global CSS Rules */
 
+.content {
+  background: #fff;
+}
 .intro a {
   font-family: "Raleway", Helvetica, sans-serif;
   font-size: 0.8rem;
@@ -4029,10 +4032,6 @@ body.is-ie #wrapper > section > .content > section {
   /* animation-delay: 0.08s !important; */
   padding-right: 2.5px;
   max-width: 17.6rem !important;
-}
-
-#wrapper > section > header {
-  background-attachment: fixed !important;
 }
 
 @keyframes blinktext {
