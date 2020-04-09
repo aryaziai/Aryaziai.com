@@ -3953,7 +3953,7 @@ body.is-ie #wrapper > section > .content > section {
     background: transparent !important;
   }
 
-  .image.fill:before {
+  .image.fill {
     content: "";
     display: block;
     position: fixed;
