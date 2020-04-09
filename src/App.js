@@ -59,7 +59,7 @@ export default class App extends Component {
                   bugs.
                 </p>
                 <span className="image main">
-                  <img src="images/pic02.jpg" alt="" />
+                  {/* <img src="images/pic02.jpg" alt="" /> */}
                 </span>
               </div>
             </section>
@@ -137,7 +137,7 @@ export default class App extends Component {
                           target="_blank"
                           className="landscape"
                         >
-                          <img src="images/fetch.png" alt="" />
+                          {/* <img src="images/fetch.png" alt="" /> */}
                         </a>
                         <br />
                       </div>
@@ -170,7 +170,7 @@ export default class App extends Component {
                           target="_blank"
                           className="landscape"
                         >
-                          <img src="images/gallery/thumbs/01.png" alt="" />
+                          {/* <img src="images/gallery/thumbs/01.png" alt="" /> */}
                         </a>
                         <br />
                       </div>
@@ -201,7 +201,7 @@ export default class App extends Component {
                           target="_blank"
                           className="landscape"
                         >
-                          <img src="images/gallery/thumbs/01.png" alt="" />
+                          {/* <img src="images/gallery/thumbs/01.png" alt="" /> */}
                         </a>
                         <br />
                       </div>
@@ -223,21 +223,21 @@ export default class App extends Component {
                           target="_blank"
                           className="landscape"
                         >
-                          <img src="images/fetch.png" alt="" />
+                          {/* <img src="images/fetch.png" alt="" /> */}
                         </a>
                         <a
                           href="https://aryaziai.github.io/Fetch/"
                           target="_blank"
                           className="landscape"
                         >
-                          <img src="images/gallery/thumbs/01.png" alt="" />
+                          {/* <img src="images/gallery/thumbs/01.png" alt="" /> */}
                         </a>
                         <a
                           href="https://aryaziai.github.io/Fetch/"
                           target="_blank"
                           className="landscape"
                         >
-                          <img src="images/gallery/thumbs/01.png" alt="" />
+                          {/* <img src="images/gallery/thumbs/01.png" alt="" /> */}
                         </a>
                       </div>
                     </div>
@@ -261,13 +261,13 @@ export default class App extends Component {
                         href="images/gallery/fulls/05.jpg"
                         className="landscape"
                       >
-                        <img src="images/gallery/thumbs/05.jpg" alt="" />
+                        {/* <img src="images/gallery/thumbs/05.jpg" alt="" /> */}
                       </a>
                       <a href="images/gallery/fulls/06.jpg">
-                        <img src="images/gallery/thumbs/06.jpg" alt="" />
+                        {/* <img src="images/gallery/thumbs/06.jpg" alt="" /> */}
                       </a>
                       <a href="images/gallery/fulls/07.jpg">
-                        <img src="images/gallery/thumbs/07.jpg" alt="" />
+                        {/* <img src="images/gallery/thumbs/07.jpg" alt="" /> */}
                       </a>
                     </div>
                   </div>
@@ -289,19 +289,19 @@ export default class App extends Component {
                         href="images/gallery/fulls/08.jpg"
                         className="portrait"
                       >
-                        <img src="images/gallery/thumbs/08.jpg" alt="" />
+                        {/* <img src="images/gallery/thumbs/08.jpg" alt="" /> */}
                       </a>
                       <a
                         href="images/gallery/fulls/09.jpg"
                         className="portrait"
                       >
-                        <img src="images/gallery/thumbs/09.jpg" alt="" />
+                        {/* <img src="images/gallery/thumbs/09.jpg" alt="" /> */}
                       </a>
                       <a
                         href="images/gallery/fulls/10.jpg"
                         className="landscape"
                       >
-                        <img src="images/gallery/thumbs/10.jpg" alt="" />
+                        {/* <img src="images/gallery/thumbs/10.jpg" alt="" /> */}
                       </a>
                     </div>
                   </div>
