@@ -3952,7 +3952,6 @@ body.is-ie #wrapper > section > .content > section {
   #wrapper > section.intro > .content {
     background: transparent !important;
   }
-
   .image.fill {
     content: "";
     display: block;
@@ -3960,12 +3959,9 @@ body.is-ie #wrapper > section > .content > section {
     left: 0;
     top: 0;
     width: 100%;
-    height: 177.5vw;
+    height: 124.5vh;
     z-index: -10;
     background: url(/images/pic01.jpg) no-repeat center center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     overflow: hidden;
     background-color: #49fcd4;
