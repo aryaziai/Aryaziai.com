@@ -3951,13 +3951,14 @@ body.is-ie #wrapper > section > .content > section {
     position: absolute;
     top: 0;
     width: 100%;
-    background-image: url(/images/pic01.jpg);
-    background-position: 48%;
+    background: url(/images/pic01.jpg);
+    background-position: 106%;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 57%;
     background-color: #555;
   }
+
   .hidemobile {
     display: none;
   }
