@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import logo from "./logo.svg";
 import "./App.css";
 
 export default class App extends Component {
@@ -53,7 +52,7 @@ export default class App extends Component {
               </header>
               <div className="content">
                 <p>
-                  <strong>Front-end software engineer</strong> located in the SF
+                  <strong>Front-End software engineer</strong> located in the SF
                   Bay Area with multiple years of web design experience.
                   Dedicated to creating clean, maintainable and discoverable
                   code. Enjoy team building, learning new frameworks, and fixing
