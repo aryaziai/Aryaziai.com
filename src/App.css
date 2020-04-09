@@ -3945,11 +3945,15 @@ body.is-ie #wrapper > section > .content > section {
 @media screen and (max-width: 1152px) {
   /* mobile css */
 
-  .image.fill {
-    background: transparent;
+  .content {
+    background: #fff;
   }
 
-  .image.fill:before {
+  #wrapper > section.intro > .content {
+    background: transparent !important;
+  }
+
+  .image.fill {
     content: "";
     display: block;
     position: fixed;
@@ -4008,9 +4012,6 @@ body.is-ie #wrapper > section > .content > section {
 
 /* Global CSS Rules */
 
-.content {
-  background: #fff;
-}
 .intro a {
   font-family: "Raleway", Helvetica, sans-serif;
   font-size: 0.8rem;
@@ -4032,6 +4033,10 @@ body.is-ie #wrapper > section > .content > section {
   /* animation-delay: 0.08s !important; */
   padding-right: 2.5px;
   max-width: 17.6rem !important;
+}
+
+#wrapper .copyright {
+  background: #fff;
 }
 
 @keyframes blinktext {
