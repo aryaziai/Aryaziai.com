@@ -2585,12 +2585,13 @@ input[type="radio"] + label:before {
   margin-top: 0;
 }
 
-/* .image.fill {
+.image.fill {
   height: 100%;
   left: 0;
   position: absolute;
   top: 0;
   width: 100%;
+  background-color: #000000;
 }
 
 .image.fill img {
@@ -2599,7 +2600,7 @@ input[type="radio"] + label:before {
   position: absolute;
   top: 0;
   width: 100%;
-} */
+}
 
 /* List */
 
@@ -3953,7 +3954,7 @@ body.is-ie #wrapper > section > .content > section {
     width: 100%;
     background: url(/images/pic01.jpg);
     background-position: 48%;
-    /* background-attachment: fixed; */
+    background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #555;
