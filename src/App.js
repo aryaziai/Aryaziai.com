@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import About from "./components/About.js";
 import Resume from "./components/Resume.js";
 import Education from "./components/Education.js";
 import GetTouch from "./components/GetTouch.js";
@@ -52,30 +53,7 @@ export default class App extends Component {
                 </span>
               </div>
             </section>
-            {/* Section */}
-            <section id="first">
-              <header>
-                <h2>About Me</h2>
-                {/* <p><b>Location</b><br/> 
-			<span class="smallspace"></span>
-			SF Bay Area</p> */}
-              </header>
-              <div className="content">
-                <p>
-                  <strong>Front-End software engineer</strong> located in the SF
-                  Bay Area with multiple years of web design experience.
-                  Dedicated to creating clean, maintainable and discoverable
-                  code. Enjoy team building, learning new frameworks, and fixing
-                  bugs.
-                </p>
-                <span className="image main">
-                  <img src="images/pic02.jpg" alt="" />
-                </span>
-              </div>
-            </section>
-            {/* Section */}
             <Skills />
-            {/* Section */}
             <section>
               <header>
                 <h2>Projects</h2>
