@@ -3181,7 +3181,7 @@ a.arrow:before {
   }
 
   .gallery a.landscape img {
-    height: 25rem;
+    height: 33rem;
   }
 
   .gallery a.portrait img {
@@ -3987,6 +3987,7 @@ body.is-ie #wrapper > section > .content > section {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: 57%;
+    background-color: #555;
   }
 
   body.is-ie #wrapper section > footer {
