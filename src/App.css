@@ -3351,7 +3351,7 @@ ul.feature-icons li:nth-child(2) {
 
 #wrapper section > .content {
   grid-area: content;
-  max-width: 60rem;
+  /* max-width: 60rem; */
   position: relative;
 }
 
