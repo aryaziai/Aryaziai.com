@@ -2585,7 +2585,7 @@ input[type="radio"] + label:before {
   margin-top: 0;
 }
 
-/* .image.fill {
+.image.fill {
   height: 100%;
   left: 0;
   position: absolute;
@@ -2599,7 +2599,7 @@ input[type="radio"] + label:before {
   position: absolute;
   top: 0;
   width: 100%;
-} */
+}
 
 /* List */
 
