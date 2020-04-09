@@ -3974,7 +3974,7 @@ body.is-ie #wrapper > section > .content > section {
   }
   .gallery a.landscape img {
     height: 34vw;
-    padding: 0em 3em 0em 3em;
+    padding: 0.5em;
   }
   .dashblink {
     font-size: 100%;
