@@ -3956,12 +3956,12 @@ body.is-ie #wrapper > section > .content > section {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: #555;
+    background-color: #000;
   }
 
-  /* .hidemobile {
+  .hidemobile {
     display: none;
-  } */
+  }
   .gallery a.landscape img {
     height: 25vw;
     padding: 0em 3em 0em 3em;
