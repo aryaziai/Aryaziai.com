@@ -3798,7 +3798,7 @@ ul.feature-icons li:nth-child(2) {
   }
 
   #wrapper > section > .content {
-    padding: 5rem 2rem;
+    padding: 5rem 3rem;
   }
 
   #wrapper > section > .content > section {
@@ -3951,6 +3951,11 @@ body.is-ie #wrapper > section > .content > section {
     background: #fff;
   }
 
+  h3 {
+    font-size: 1.4em;
+    border: 0 !important;
+  }
+
   #wrapper > section.intro > .content {
     background: transparent !important;
   }
@@ -4004,7 +4009,6 @@ body.is-ie #wrapper > section > .content > section {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: 57%;
-    background-color: #555;
   }
 
   body.is-ie #wrapper section > footer {
