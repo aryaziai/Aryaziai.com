@@ -3951,9 +3951,12 @@ body.is-ie #wrapper > section > .content > section {
     background: #fff;
   }
 
-  h3 {
+  .Projects h3 {
     font-size: 1.3em;
-    border: 0 !important;
+  }
+
+  .Projects h3 a {
+    border: 0;
   }
 
   #wrapper > section.intro > .content {
