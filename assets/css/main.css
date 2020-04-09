@@ -3474,7 +3474,7 @@ ul.feature-icons li:nth-child(2) {
 }
 
 #wrapper section {
-  margin: 7.5rem 0 0 0;
+  margin: 5.5rem 0 0 0;
 }
 
 #wrapper section > header {
@@ -3949,7 +3949,7 @@ body.is-ie #wrapper > section > .content > section {
     display: none;
   }
   .gallery a.landscape img {
-    height: 40vw;
+    height: 25vw;
     padding: 0em 3em 0em 3em;
   }
   .dashblink {
