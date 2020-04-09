@@ -3952,16 +3952,16 @@ body.is-ie #wrapper > section > .content > section {
     top: 0;
     width: 100%;
     background: url(/images/pic01.jpg);
-    background-position: 106%;
+    background-position: 48%;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-size: 57%;
+    background-size: cover;
     background-color: #555;
   }
 
-  .hidemobile {
+  /* .hidemobile {
     display: none;
-  }
+  } */
   .gallery a.landscape img {
     height: 25vw;
     padding: 0em 3em 0em 3em;
