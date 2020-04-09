@@ -47,7 +47,7 @@ export default function App() {
             </header>
             <div className="content">
               <span className="image fill" data-position="center">
-                <img src="images/pic01.jpg" alt="" />
+                {/* <img src="images/pic01.jpg" alt="" /> */}
               </span>
             </div>
           </section>
