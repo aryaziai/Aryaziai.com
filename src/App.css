@@ -3174,6 +3174,8 @@ a.arrow:before {
   ul.items {
     list-style: none;
     padding: 3em 3rem 1.5em 3em;
+    background: #fff;
+    margin-bottom: 0px;
   }
 
   .gallery a img {
@@ -3953,11 +3955,11 @@ body.is-ie #wrapper > section > .content > section {
     background: transparent !important;
   }
   .image.fill {
-    content: "";
+    /* content: ""; */
     display: block;
     position: fixed;
     left: 0;
-    top: 0;
+    top: -9%;
     width: 100%;
     height: 124.4vh;
     z-index: -10;
@@ -3971,7 +3973,7 @@ body.is-ie #wrapper > section > .content > section {
     display: none;
   }
   .gallery a.landscape img {
-    height: 25vw;
+    height: 34vw;
     padding: 0em 3em 0em 3em;
   }
   .dashblink {
@@ -3979,6 +3981,12 @@ body.is-ie #wrapper > section > .content > section {
     font-weight: 200;
     animation: blinkingText 1.4s infinite;
     text-decoration: blink;
+  }
+
+  #wrapper .copyright {
+    background: #fff;
+    /* margin-bottom: -6px; */
+    /* margin-top: -1px; */
   }
 }
 
@@ -4031,10 +4039,6 @@ body.is-ie #wrapper > section > .content > section {
   /* animation-delay: 0.08s !important; */
   padding-right: 2.5px;
   max-width: 17.6rem !important;
-}
-
-#wrapper .copyright {
-  background: #fff;
 }
 
 @keyframes blinktext {
