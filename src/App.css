@@ -3968,6 +3968,7 @@ body.is-ie #wrapper > section > .content > section {
     -o-background-size: cover;
     background-size: cover;
     overflow: hidden;
+    background-color: #49fcd4;
   }
 
   .hidemobile {
