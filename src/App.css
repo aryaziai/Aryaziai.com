@@ -3951,7 +3951,7 @@ body.is-ie #wrapper > section > .content > section {
     position: absolute;
     top: 0;
     width: 100%;
-    background: url(/images/pic01.jpg);
+    background: url(/images/pic02.jpg);
     background-position: 48%;
     /* background-attachment: fixed; */
     background-repeat: no-repeat;
@@ -3959,7 +3959,7 @@ body.is-ie #wrapper > section > .content > section {
     background-color: #000;
   }
 
-  /* .image.fill:before {
+  .image.fill:before {
     content: "";
     display: block;
     position: fixed;
@@ -3973,7 +3973,7 @@ body.is-ie #wrapper > section > .content > section {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-  } */
+  }
 
   .hidemobile {
     display: none;
