@@ -12,7 +12,7 @@ import Gallery from "./components/Gallery.js";
 
 export default function App() {
   return (
-    <LazyLoad id="wrapper">
+    <div id="wrapper">
       <LazyLoad offset={100} once={true}>
         <Intro />
       </LazyLoad>
@@ -26,7 +26,7 @@ export default function App() {
         <header>
           <h2>Projects</h2>
         </header>
-        <LazyLoad className="content">
+        <div className="content">
           <div className="hidemobile">
             <p>
               <strong>Integer mollis egestas</strong> nam maximus erat id
@@ -62,13 +62,13 @@ export default function App() {
               </div>
             </div>
           </section>
-        </LazyLoad>
+        </div>
       </section>
       <Education />
       <Resume />
       <GetTouch />
       <div className="copyright">© Arya Ziai</div>
-    </LazyLoad>
+    </div>
   );
 }
 // }
