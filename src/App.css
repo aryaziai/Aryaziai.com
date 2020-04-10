@@ -4000,7 +4000,7 @@ body.is-ie #wrapper > section > .content > section {
 @media screen and (min-width: 1153px) {
   /* desktop css */
 
-  .image.fill {
+  .image.fill:after {
     height: 100%;
     left: 0;
     position: absolute;
@@ -4044,7 +4044,7 @@ body.is-ie #wrapper > section > .content > section {
   margin-right: 0px;
   /* animation-delay: 0.08s !important; */
   padding-right: 2.5px;
-  max-width: 17.6rem !important;
+  max-width: 17.61rem !important;
 }
 
 @keyframes blinktext {
