@@ -3980,7 +3980,6 @@ body.is-ie #wrapper > section > .content > section {
     display: none;
   }
   .gallery a.landscape img {
-    height: 34vw;
     padding: 0.5em;
   }
   .dashblink {
