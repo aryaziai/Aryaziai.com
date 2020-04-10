@@ -9,7 +9,7 @@ export default function About() {
         <p>
           <strong>Front-end software engineer</strong> located in the SF Bay
           Area with multiple years of web design experience. Dedicated to
-          creating clean, maintainable, and discoverable code. Enjoy team
+          creating clean, maintainable, and discoverable code. Enjoys team
           building, learning new frameworks, and fixing bugs.
         </p>
         <span className="image main">
