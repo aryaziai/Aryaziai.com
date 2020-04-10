@@ -13,9 +13,7 @@ import Gallery from "./components/Gallery.js";
 export default function App() {
   return (
     <div id="wrapper">
-      <LazyLoad offset={100} once={true}>
-        <Intro />
-      </LazyLoad>
+      <Intro />
       <LazyLoad offset={100} once={true}>
         <About />
       </LazyLoad>
