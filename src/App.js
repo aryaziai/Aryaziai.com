@@ -37,7 +37,9 @@ export default function App() {
           <LazyLoad offset={100} once={true}>
             <Projects />
           </LazyLoad>
-          <Gallery />
+          <LazyLoad offset={100} once={true}>
+            <Gallery />
+          </LazyLoad>
           <section>
             <header>
               <h3>Lorem gravida</h3>
@@ -64,9 +66,11 @@ export default function App() {
           </section>
         </div>
       </section>
-      <Education />
-      <Resume />
-      <GetTouch />
+      <LazyLoad offset={100} once={true}>
+        <Education />
+        <Resume />
+        <GetTouch />
+      </LazyLoad>
       <div className="copyright">© Arya Ziai</div>
     </div>
   );
