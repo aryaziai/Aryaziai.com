@@ -24,7 +24,7 @@ export default function App() {
           <h2>Projects</h2>
         </header>
         <div className="content">
-          <LazyLoad offset={100} once={true}>
+          <LazyLoad offset={50} once={true}>
             <Projects />
           </LazyLoad>
           <LazyLoad offset={100} once={true}>
