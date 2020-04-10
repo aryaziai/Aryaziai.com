@@ -7,9 +7,9 @@ export default function About() {
       </header>
       <div className="content">
         <p>
-          <strong>Front-End software engineer</strong> located in the SF Bay
+          <strong>Front-end software engineer</strong> located in the SF Bay
           Area with multiple years of web design experience. Dedicated to
-          creating clean, maintainable and discoverable code. Enjoy team
+          creating clean, maintainable, and discoverable code. Enjoy team
           building, learning new frameworks, and fixing bugs.
         </p>
         <span className="image main">
