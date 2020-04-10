@@ -44,7 +44,7 @@ export default function Projects() {
               target="_blank"
               className="landscape"
             >
-              <img src="images/Jspaint.png" alt="" />
+              <img src="images/jspaint.png" alt="" />
             </a>
             <br />
           </div>
@@ -95,14 +95,14 @@ export default function Projects() {
               <img src="images/fetch.png" alt="" />
             </a>
             <a
-              href="https://aryaziai.github.io/Fetch/"
+              href="https://aryaziai.github.io/JS-Paint/"
               target="_blank"
               className="landscape"
             >
-              <img src="images/Jspaint.png" alt="" />
+              <img src="images/jspaint.png" alt="" />
             </a>
             <a
-              href="https://aryaziai.github.io/Fetch/"
+              href="https://movie-reviewer-rb.herokuapp.com/"
               target="_blank"
               className="landscape"
             >
