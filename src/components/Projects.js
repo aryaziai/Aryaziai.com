@@ -44,13 +44,13 @@ export default function Projects() {
               target="_blank"
               className="landscape"
             >
-              <img src="images/gallery/thumbs/01.png" alt="" />
+              <img src="images/Jspaint.png" alt="" />
             </a>
             <br />
           </div>
         </div>
         <p>
-          - Developed with vanilla JavaScript front-end and Rails API backend -
+          Developed with vanilla JavaScript front-end and Rails API backend -
           Users can add/remove drawings from their profile
           <br />
           <b>Utilized:</b> HTML Canvas, eventListeners, CSS, Rails API, Git,
@@ -77,7 +77,7 @@ export default function Projects() {
           </div>
         </div>
         <p>
-          - Application built solely on rails with full CRUD capabilities -
+          Application built solely on rails with full CRUD capabilities -
           Reviews are a many to many relationship between users and pre-seeded
           movie data
           <br />
@@ -99,7 +99,7 @@ export default function Projects() {
               target="_blank"
               className="landscape"
             >
-              <img src="images/gallery/thumbs/01.png" alt="" />
+              <img src="images/Jspaint.png" alt="" />
             </a>
             <a
               href="https://aryaziai.github.io/Fetch/"
