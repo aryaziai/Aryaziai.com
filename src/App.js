@@ -18,16 +18,6 @@ export default function App() {
   // render() {
   return (
     <div>
-      <title>Arya Ziai | Front-End Software Engineer</title>
-      <meta charSet="utf-8" />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, user-scalable=no"
-      />
-      <meta name="description" content />
-      <meta name="keywords" content />
-      <link rel="stylesheet" href="assets/css/main.css" />
-      <link rel="icon" href="favicon-96x96.png" type="image/gif" />
       <div id="wrapper">
         <Intro />
         <About />
