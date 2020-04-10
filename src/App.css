@@ -3993,8 +3993,9 @@ body.is-ie #wrapper > section > .content > section {
     background: #fff !important;
     /* margin-bottom: -6px; */
     /* margin-top: -1px; */
-    position: absolute;
-    bottom: 0;
+  }
+  body {
+    overflow-y: hidden;
   }
 }
 
