@@ -3976,14 +3976,14 @@ body.is-ie #wrapper > section > .content > section {
     overflow: hidden;
   }
 
-  body:after {
+  #wrapper:after {
     content: "";
     display: block;
-    position: fixed;
+    position: absolute;
     left: 0;
-    bottom: -20%;
+    bottom: -1.3%;
     width: 100%;
-    height: 30vh;
+    height: 100px;
     /* z-index: -10; */
     background-color: #000;
     /* background: url(/images/pic01.jpg) no-repeat center center; */
