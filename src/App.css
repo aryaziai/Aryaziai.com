@@ -3211,7 +3211,7 @@ a.arrow:before {
   }
 
   .gallery a.landscape img {
-    height: 20rem;
+    height: 12rem;
   }
 
   .gallery a.portrait img {
@@ -3952,7 +3952,7 @@ body.is-ie #wrapper > section > .content > section {
   }
 
   .Projects h3 {
-    font-size: 1.3em;
+    font-size: 1.2em;
   }
 
   .Projects h3 a {
@@ -3993,9 +3993,6 @@ body.is-ie #wrapper > section > .content > section {
     background: #fff !important;
     /* margin-bottom: -6px; */
     /* margin-top: -1px; */
-  }
-  body {
-    overflow-y: hidden;
   }
 }
 
