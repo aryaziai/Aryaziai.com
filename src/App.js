@@ -26,13 +26,6 @@ export default function App() {
           <h2>Projects</h2>
         </header>
         <div className="content">
-          <div className="hidemobile">
-            <p>
-              <strong>Integer mollis egestas</strong> nam maximus erat id
-              euismod egestas. Pellentesque sapien ac quam. Lorem ipsum dolor
-              sit nullam.
-            </p>
-          </div>
           <LazyLoad offset={100} once={true}>
             <Projects />
           </LazyLoad>
