@@ -71,7 +71,7 @@ export default function Projects() {
               target="_blank"
               className="landscape"
             >
-              <img src="images/gallery/thumbs/01.png" alt="" />
+              <img src="images/movies.png" alt="" />
             </a>
             <br />
           </div>
@@ -106,7 +106,7 @@ export default function Projects() {
               target="_blank"
               className="landscape"
             >
-              <img src="images/gallery/thumbs/01.png" alt="" />
+              <img src="images/movies.png" alt="" />
             </a>
           </div>
         </div>
