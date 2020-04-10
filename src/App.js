@@ -13,30 +13,30 @@ export default function App() {
   return (
     <div id="wrapper">
       <Intro />
-      {/* <LazyLoad offset={50} once={true}> */}
-      <About />
-      {/* </LazyLoad> */}
-      {/* // <LazyLoad offset={100} once={true}> */}
-      <Skills />
-      {/* </LazyLoad> */}
+      <LazyLoad offset={50} once={true}>
+        <About />
+      </LazyLoad>
+      <LazyLoad offset={100} once={true}>
+        <Skills />
+      </LazyLoad>
       <section>
         <header>
           <h2>Projects</h2>
         </header>
         <div className="content">
-          {/* <LazyLoad offset={100} once={true}> */}
-          <Projects />
-          {/* </LazyLoad> */}
-          {/* <LazyLoad offset={100} once={true}> */}
-          <Gallery />
-          {/* </LazyLoad> */}
+          <LazyLoad offset={100} once={true}>
+            <Projects />
+          </LazyLoad>
+          <LazyLoad offset={100} once={true}>
+            <Gallery />
+          </LazyLoad>
         </div>
       </section>
-      {/* <LazyLoad offset={100} once={true}> */}
-      <Education />
-      <Resume />
-      <GetTouch />
-      {/* </LazyLoad> */}
+      <LazyLoad offset={100} once={true}>
+        <Education />
+        <Resume />
+        <GetTouch />
+      </LazyLoad>
       <div className="copyright">© Arya Ziai</div>
     </div>
   );
