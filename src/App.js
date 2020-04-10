@@ -8,20 +8,14 @@ import Education from "./components/Education.js";
 import GetTouch from "./components/GetTouch.js";
 import Skills from "./components/Skills.js";
 import Projects from "./components/Projects.js";
+import Gallery from "./components/Gallery.js";
 
 export default function App() {
-  // componentDidMount() {
-  //   fetch("https://fetch-backend-api.herokuapp.com");
-  //   fetch("https://movie-reviewer-rb.herokuapp.com/");
-  //   fetch("https://js-paint-backend.herokuapp.com/");
-  // }
-
-  // render() {
   return (
     <div id="wrapper">
+      <Intro />
+      <About />
       <LazyLoad offset={100} once={true}>
-        <Intro />
-        <About />
         <Skills />
       </LazyLoad>
       <section>
@@ -35,32 +29,11 @@ export default function App() {
               euismod egestas. Pellentesque sapien ac quam. Lorem ipsum dolor
               sit nullam.
             </p>
-          </div>{" "}
-          <Projects />
-          <section>
-            <header>
-              <h3>Nisl consequat</h3>
-              <p>
-                Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin
-                aliquam sed facilisis ante interdum congue. Integer mollis, nisl
-                amet convallis, porttitor magna ullamcorper, amet mauris. Ut
-                magna finibus nisi nec lacinia ipsum maximus.
-              </p>
-            </header>
-            <div className="content">
-              <div className="gallery">
-                <a href="images/gallery/fulls/05.jpg" className="landscape">
-                  <img src="images/gallery/thumbs/05.jpg" alt="" />
-                </a>
-                <a href="images/gallery/fulls/06.jpg">
-                  <img src="images/gallery/thumbs/06.jpg" alt="" />
-                </a>
-                <a href="images/gallery/fulls/07.jpg">
-                  <img src="images/gallery/thumbs/07.jpg" alt="" />
-                </a>
-              </div>
-            </div>
-          </section>
+          </div>
+          <LazyLoad offset={100} once={true}>
+            <Projects />
+          </LazyLoad>
+          <Gallery />
           <section>
             <header>
               <h3>Lorem gravida</h3>
