@@ -13,7 +13,7 @@ export default function App() {
   return (
     <div id="wrapper">
       <Intro />
-      <LazyLoad offset={100} once={true}>
+      <LazyLoad offset={50} once={true}>
         <About />
       </LazyLoad>
       <LazyLoad offset={100} once={true}>
