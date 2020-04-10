@@ -3962,8 +3962,8 @@ body.is-ie #wrapper > section > .content > section {
   #wrapper > section.intro > .content {
     background: transparent !important;
   }
-  .image.fill {
-    /* content: ""; */
+  .image.fill:before {
+    content: "";
     display: block;
     position: fixed;
     left: 0;
@@ -4000,7 +4000,7 @@ body.is-ie #wrapper > section > .content > section {
 @media screen and (min-width: 1153px) {
   /* desktop css */
 
-  .image.fill:after {
+  .image.fill {
     height: 100%;
     left: 0;
     position: absolute;
