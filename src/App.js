@@ -14,10 +14,10 @@ export default function App() {
   return (
     <div id="wrapper">
       <Intro />
-      <LazyLoad offset={50} once={true}>
+      <LazyLoad offset={100} once={true}>
         <About />
       </LazyLoad>
-      <LazyLoad offset={50} once={true}>
+      <LazyLoad offset={100} once={true}>
         <Skills />
       </LazyLoad>
       <section>
@@ -32,10 +32,10 @@ export default function App() {
               sit nullam.
             </p>
           </div>
-          <LazyLoad offset={50} once={true}>
+          <LazyLoad offset={100} once={true}>
             <Projects />
           </LazyLoad>
-          <LazyLoad offset={50} once={true}>
+          <LazyLoad offset={100} once={true}>
             <Gallery />
           </LazyLoad>
           <section>
@@ -64,7 +64,7 @@ export default function App() {
           </section>
         </div>
       </section>
-      <LazyLoad offset={50} once={true}>
+      <LazyLoad offset={100} once={true}>
         <Education />
         <Resume />
         <GetTouch />
