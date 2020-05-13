@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App-min.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
