@@ -286,6 +286,10 @@ html {
 }
 
 @media screen and (max-width: 1152px) {
+  .gallery p {
+    margin: 0 0 4rem 0.6rem;
+  }
+
   html {
     font-size: 14pt;
   }
@@ -3863,7 +3867,7 @@ ul.feature-icons li:nth-child(2) {
   }
 
   #wrapper > section > .content {
-    padding: 5rem 3rem;
+    padding: 6rem 3rem;
   }
 
   #wrapper > section > .content > section {
@@ -4012,17 +4016,21 @@ body.is-ie #wrapper > section > .content > section {
 @media screen and (max-width: 1152px) {
   /* mobile css */
 
+  body {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
   .utilized {
     display: block;
     margin-top: 13px;
   }
 
   .gallery a img {
-    width: 80%;
+    width: 100%;
   }
 
   p {
-    margin: 0 0 2rem 0.6rem;
+    margin: 0 0 3rem 0.6rem;
   }
 
   .content {
