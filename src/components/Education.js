@@ -7,13 +7,13 @@ export default function Education() {
       </header>
       <div className="content">
         <span className="smallspace" />
-        <i>Class of 2020 </i>
-        <br />
-        <b>Flatiron School, San Francisco</b>
-        <br />
-        Software Engineer
-        <p />
         <p>
+          <i>Class of 2020 </i>
+          <br />
+          <b>Flatiron School, San Francisco</b>
+          <br />
+          Software Engineer
+          <p />
           <i>Class of 2014</i> <br />
           <b>University of California, Los Angeles</b>
           <br />

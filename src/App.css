@@ -36,10 +36,6 @@ img {
   line-height: 2.5;
   text-transform: uppercase;
 }
-.utilized {
-  display: block;
-  margin-top: 10px;
-}
 
 .intro p {
   overflow: hidden; /* Ensures the content is not revealed until the animation */
@@ -378,7 +374,7 @@ h6 a {
 h1 {
   font-family: "Source Sans Pro", Helvetica, sans-serif;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em;
   line-height: 1.1;
   margin: 0 0 1.5rem 0;
   text-transform: none;
@@ -3242,7 +3238,7 @@ a.arrow:before {
 @media screen and (max-width: 1152px) {
   ul.items {
     list-style: none;
-    padding: 3em 3rem 1.5em 3em;
+    padding: 3em 3rem 1.5em 3.5em;
     background: #fff;
     margin-bottom: 0px;
   }
@@ -4016,6 +4012,11 @@ body.is-ie #wrapper > section > .content > section {
 @media screen and (max-width: 1152px) {
   /* mobile css */
 
+  .utilized {
+    display: block;
+    margin-top: 13px;
+  }
+
   .gallery a img {
     width: 80%;
   }
@@ -4090,6 +4091,11 @@ body.is-ie #wrapper > section > .content > section {
 @media screen and (min-width: 1153px) {
   /* desktop css */
 
+  .utilized {
+    display: block;
+    margin-top: 10px;
+  }
+
   .gallery a img {
     display: block;
     object-fit: contain;
@@ -4102,6 +4108,7 @@ body.is-ie #wrapper > section > .content > section {
   .gallery h3 {
     font-size: 1rem;
     margin-left: 0.7rem;
+    border-bottom: 1px dotted;
   }
 
   h3 {
@@ -4109,8 +4116,9 @@ body.is-ie #wrapper > section > .content > section {
   }
 
   p {
-    margin: 0 0 2rem 0rem;
+    margin: 0 0 2rem 0;
     font-size: 16px;
+    line-height: 29px;
   }
 
   .gallery p {
