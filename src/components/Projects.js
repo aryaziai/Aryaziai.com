@@ -1,115 +1,91 @@
 import React from "react";
 export default function Projects() {
   return (
-    
     <section className="Projects">
-      <header>
-        <h3>
-          <a href="https://aryaziai.github.io/Fetch/" target="_blank">
-            Fetch
-          </a>
-        </h3>
-        <div className="hidedesktop">
-          <div className="gallery">
+      <div className="content">
+        <div className="gallery">
+          <h3>
             <a
               href="https://aryaziai.github.io/Fetch/"
               target="_blank"
-              className="landscape"
+              rel="noopener noreferrer"
             >
-              <img src="images/fetch.png" alt="" />
+              Fetch
             </a>
-            <br />
-          </div>
-        </div>
-        <p>
-          Fetch news via Google API in topics users specify with customized
-          parameters - Users can remove articles from feed, which deletes
-          article from db and state in React - Share articles via iMessage and
-          Email, auto-populates content with respective article
-          <br />
-          <b>Utilized:</b> React, Google API, JSON Web Tokens, localStorage,
-          Rails API
-        </p>
-        <br />
-        <br />
-        <h3>
-          {" "}
-          <a href="https://aryaziai.github.io/JS-Paint/" target="_blank">
-            JSPaint
+          </h3>
+
+          <a
+            href="https://aryaziai.github.io/Fetch/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="landscape"
+          >
+            <img src="images/fetch.png" alt="" />
           </a>
-        </h3>
-        <div className="hidedesktop">
-          <div className="gallery">
+
+          <p>
+            Fetch news via Google API in topics users specify with customized
+            parameters - Users can remove articles from feed, which deletes
+            article from db and state in React - Share articles via iMessage and
+            Email, auto-populates content with respective article
+            <span className="utilized">
+              <b>Utilized:</b> React, Google API, JSON Web Tokens, localStorage,
+              Rails API
+            </span>
+          </p>
+
+          <h3>
             <a
               href="https://aryaziai.github.io/JS-Paint/"
               target="_blank"
-              className="landscape"
+              rel="noopener noreferrer"
             >
-              <img src="images/jspaint.png" alt="" />
+              JSPaint
             </a>
-            <br />
-          </div>
-        </div>
-        <p>
-          Developed with vanilla JavaScript front-end and Rails API backend -
-          Users can add/remove drawings from their profile
-          <br />
-          <b>Utilized:</b> HTML Canvas, eventListeners, CSS, Rails API, Git,
-          Heroku
-        </p>
-        <br />
-        <br />
-        <h3>
-          {" "}
-          <a href="https://movie-reviewer-rb.herokuapp.com/" target="_blank">
-            Movie Reviewer
+          </h3>
+
+          <a
+            href="https://aryaziai.github.io/JS-Paint/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="landscape"
+          >
+            <img src="images/jspaint.png" alt="" />
           </a>
-        </h3>
-        <div className="hidedesktop">
-          <div className="gallery">
+          <p>
+            Developed with vanilla JavaScript front-end and Rails API backend -
+            Users can add/remove drawings from their profile
+            <span className="utilized">
+              <b>Utilized:</b> HTML Canvas, eventListeners, CSS, Rails API, Git,
+              Heroku
+            </span>
+          </p>
+          <h3>
             <a
               href="https://movie-reviewer-rb.herokuapp.com/"
               target="_blank"
-              className="landscape"
+              rel="noopener noreferrer"
             >
-              <img src="images/movie.png" alt="" />
+              Movie Reviewer
             </a>
-            <br />
-          </div>
-        </div>
-        <p>
-          Application built solely on rails with full CRUD capabilities -
-          Reviews are a many to many relationship between users and pre-seeded
-          movie data
-          <br />
-          <b>Utilized:</b> Ruby on Rails, Embedded Ruby, PostgreSQL, Git, Heroku
-        </p>
-      </header>
-      <div className="hidemobile">
-        <div className="content">
-          <div className="gallery">
-            <a
-              href="https://aryaziai.github.io/Fetch/"
-              target="_blank"
-              className="landscape"
-            >
-              <img src="images/fetch.png" alt="" />
-            </a>
-            <a
-              href="https://aryaziai.github.io/JS-Paint/"
-              target="_blank"
-              className="landscape"
-            >
-              <img src="images/jspaint.png" alt="" />
-            </a>
-            <a
-              href="https://movie-reviewer-rb.herokuapp.com/"
-              target="_blank"
-              className="landscape"
-            >
-              <img src="images/movie.png" alt="" />
-            </a>
-          </div>
+          </h3>
+          <a
+            href="https://movie-reviewer-rb.herokuapp.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="landscape"
+          >
+            <img src="images/movie.png" alt="" />
+          </a>
+          <p>
+            Application built solely on rails with full CRUD capabilities -
+            Reviews are a many to many relationship between users and pre-seeded
+            movie data
+            <span className="utilized">
+              <b>Utilized:</b> Ruby on Rails, Embedded Ruby, PostgreSQL, Git,
+              Heroku
+            </span>
+          </p>
         </div>
       </div>
     </section>

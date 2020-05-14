@@ -27,6 +27,7 @@ export default function GetTouch() {
               <a
                 href="https://github.com/aryaziai"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="icon brands fa-github"
               >
                 <span className="label">GitHub</span>
@@ -36,6 +37,7 @@ export default function GetTouch() {
               <a
                 href="https://twitter.com/aryaziai"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="icon brands fa-twitter"
               >
                 <span className="label">Twitter</span>
@@ -45,6 +47,7 @@ export default function GetTouch() {
               <a
                 href="https://www.linkedin.com/in/aryaziai/"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="icon brands fa-linkedin-in"
               >
                 <span className="label">LinkedIn</span>

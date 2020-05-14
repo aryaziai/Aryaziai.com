@@ -1,6 +1,80 @@
 @import url(./css/fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600,700,300i,600i,700i|Raleway:600,800");
 
+/* Global CSS Rules */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+span,
+a,
+.copyright,
+li {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently*/
+}
+
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+.intro a {
+  font-family: "Raleway", Helvetica, sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.175em;
+  line-height: 2.5;
+  text-transform: uppercase;
+}
+.utilized {
+  display: block;
+  margin-top: 10px;
+}
+
+.intro p {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: 0.15em solid #43d9b7; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.15em; /* Adjust as needed */
+  animation: blinktext 5s steps(60, end), blink-caret 0.75s step-end infinite;
+  -webkit-animation: blinktext 5.6s steps(60, end),
+    blink-caret 0.75s step-end infinite;
+  margin-right: 0px;
+  /* animation-delay: 0.08s !important; */
+  padding-right: 2.5px;
+  max-width: 17.61rem !important;
+}
+
+@keyframes blinktext {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #43d9b7;
+  }
+}
+
 html,
 body,
 div,
@@ -181,13 +255,13 @@ html {
   box-sizing: inherit;
 }
 
-html {
+/* html {
   overflow-x: hidden;
-}
+} */
 
 body {
   background: #ffffff;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 body.is-preload *,
@@ -251,10 +325,10 @@ textarea {
 }
 
 a {
-  -moz-transition: border-bottom-color 0.25s ease-in-out;
+  /* -moz-transition: border-bottom-color 0.25s ease-in-out;
   -webkit-transition: border-bottom-color 0.25s ease-in-out;
   -ms-transition: border-bottom-color 0.25s ease-in-out;
-  transition: border-bottom-color 0.25s ease-in-out;
+  transition: border-bottom-color 0.25s ease-in-out; */
   text-decoration: none;
   color: #000000;
   border-bottom: dotted 1px;
@@ -274,10 +348,6 @@ b {
 em,
 i {
   font-style: italic;
-}
-
-p {
-  margin: 0 0 2rem 0;
 }
 
 h1,
@@ -313,17 +383,17 @@ h1 {
   margin: 0 0 1.5rem 0;
   text-transform: none;
   color: #222;
-  font-size: 82px;
+  font-size: 76px;
 }
 
 h2 {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 800;
-  margin: 0 0 2rem 0;
+  margin: 0 0 2rem 1rem;
 }
 
 h3 {
-  font-size: 0.875rem;
+  font-size: 1.1rem;
 }
 
 h4 {
@@ -345,7 +415,7 @@ h6 {
   }
 
   h2 {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     line-height: 1.7;
     margin: 0 0 3rem 0 !important;
   }
@@ -2836,7 +2906,7 @@ ul.icons li .icon {
 }
 
 ul.icons li .icon:before {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
 }
 
 ul.icons li .icon:hover {
@@ -3007,26 +3077,25 @@ a.arrow:before {
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  margin: -1.25rem 0 0 -1.25rem;
-  width: calc(100% + 1.25rem);
+  margin: 1rem 0 0 0rem;
+  width: 100%;
 }
 
 .gallery a {
   border-bottom: 0;
   display: block;
-  margin: 0.4rem 0 0 1.25rem;
+  /* margin: 0.4rem 0 0 1.25rem; */
   outline: 0;
   position: relative;
-  width: calc(50% - 1.25rem);
+  width: 100%;
 }
 
 .gallery a img {
   display: block;
-  height: 25vw;
-  min-height: 18rem;
   object-fit: contain;
   object-position: center;
-  width: 100%;
+  margin-bottom: 7%;
+  margin-top: 2%;
 }
 
 .gallery a.landscape {
@@ -3034,8 +3103,8 @@ a.arrow:before {
 }
 
 .gallery a.landscape img {
-  height: 30vw;
-  padding: 0em 7em 0em 7em;
+  /* height: 30vw; */
+  /* padding: 0em 7em 0em 7em; */
 }
 
 .gallery a.portrait img {
@@ -3197,13 +3266,13 @@ a.arrow:before {
 
 @media screen and (max-width: 736px) {
   .gallery {
-    margin: -0.625rem 0 0 -0.625rem;
+    margin: 0rem 0 0 -0.625rem;
     width: calc(100% + 0.625rem);
   }
 
   .gallery a {
-    margin: 0.625rem 0 0 0.625rem;
-    width: calc(50% - 0.625rem);
+    /* margin: 0.625rem 0 0 0.625rem; */
+    width: 100%;
   }
 
   .gallery a img {
@@ -3262,7 +3331,7 @@ ul.feature-icons li:before {
   background-size: contain;
   color: #000000;
   display: block;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   height: 3.25rem;
   left: 0;
   line-height: 3.25rem;
@@ -3421,7 +3490,7 @@ ul.feature-icons li:nth-child(2) {
 }
 
 #wrapper > section > .content > section:first-child {
-  margin-top: 6rem;
+  margin-top: 0rem;
 }
 
 #wrapper > section.intro {
@@ -3543,7 +3612,7 @@ ul.feature-icons li:nth-child(2) {
 
 @media screen and (max-width: 1280px) {
   #wrapper {
-    padding: 0 0 8rem 0;
+    padding: 0 0 6rem 0;
   }
 
   #wrapper section {
@@ -3556,7 +3625,7 @@ ul.feature-icons li:nth-child(2) {
   }
 
   #wrapper section > .content {
-    padding: 0 4rem;
+    padding: 0rem 4rem;
   }
 
   #wrapper section > footer {
@@ -3596,7 +3665,7 @@ ul.feature-icons li:nth-child(2) {
   }
 }
 
-@media screen and (max-width: 1280px) and (max-width: 1152px) {
+@media screen and (max-width: 1152px) {
   #wrapper > section.intro > header > * {
     width: 100%;
   }
@@ -3693,7 +3762,7 @@ ul.feature-icons li:nth-child(2) {
   }
 
   #wrapper > section > .content > :last-child {
-    margin-bottom: 0;
+    /* margin-bottom: 0; */
   }
 
   #wrapper > section > .content > section {
@@ -3794,11 +3863,11 @@ ul.feature-icons li:nth-child(2) {
   }
 
   #wrapper > section > header {
-    padding: 3rem 2rem;
+    padding: 2rem 4rem 1rem 4rem;
   }
 
   #wrapper > section > .content {
-    padding: 5rem 3.5rem;
+    padding: 5rem 3rem;
   }
 
   #wrapper > section > .content > section {
@@ -3947,16 +4016,24 @@ body.is-ie #wrapper > section > .content > section {
 @media screen and (max-width: 1152px) {
   /* mobile css */
 
+  .gallery a img {
+    width: 80%;
+  }
+
+  p {
+    margin: 0 0 2rem 0.6rem;
+  }
+
   .content {
     background: #fff;
   }
 
   .Projects h3 {
-    font-size: 1.2em;
+    font-size: 1.1em;
   }
 
   .Projects h3 a {
-    border: 0;
+    margin: 0 0 0rem 0.6rem;
   }
 
   #wrapper > section.intro > .content {
@@ -3994,7 +4071,7 @@ body.is-ie #wrapper > section > .content > section {
     display: none;
   }
   .gallery a.landscape img {
-    padding: 0.5em;
+    /* padding: 0.5em; */
   }
   .dashblink {
     font-size: 100%;
@@ -4012,6 +4089,33 @@ body.is-ie #wrapper > section > .content > section {
 
 @media screen and (min-width: 1153px) {
   /* desktop css */
+
+  .gallery a img {
+    display: block;
+    object-fit: contain;
+    object-position: center;
+    width: 72%;
+    margin-bottom: 7%;
+    margin-top: 2%;
+  }
+
+  .gallery h3 {
+    font-size: 1rem;
+    margin-left: 0.7rem;
+  }
+
+  h3 {
+    font-size: 0.775rem;
+  }
+
+  p {
+    margin: 0 0 2rem 0rem;
+    font-size: 16px;
+  }
+
+  .gallery p {
+    margin: 0 0 5rem 0.6rem;
+  }
 
   .image.fill {
     height: 100%;
@@ -4032,58 +4136,5 @@ body.is-ie #wrapper > section > .content > section {
 
   .hidedesktop {
     display: none;
-  }
-}
-
-/* Global CSS Rules */
-
-* {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently*/
-}
-
-.intro a {
-  font-family: "Raleway", Helvetica, sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.175em;
-  line-height: 2.5;
-  text-transform: uppercase;
-}
-
-.intro p {
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: 0.15em solid #43d9b7; /* The typwriter cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: 0.15em; /* Adjust as needed */
-  animation: blinktext 5s steps(60, end), blink-caret 0.75s step-end infinite;
-  -webkit-animation: blinktext 5.6s steps(60, end),
-    blink-caret 0.75s step-end infinite;
-  margin-right: 0px;
-  /* animation-delay: 0.08s !important; */
-  padding-right: 2.5px;
-  max-width: 17.61rem !important;
-}
-
-@keyframes blinktext {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-@keyframes blink-caret {
-  from,
-  to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: #43d9b7;
   }
 }

@@ -5,7 +5,11 @@ export default function Intro() {
       <header>
         <h1>Arya Ziai</h1>
         <p>Front-End Software Engineer</p>
-        <a href="https://twitter.com/aryaziai" target="_blank">
+        <a
+          href="https://twitter.com/aryaziai"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           @aryaziai
         </a>
         <p />

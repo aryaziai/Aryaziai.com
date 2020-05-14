@@ -7,7 +7,7 @@ import Education from "./components/Education.js";
 import GetTouch from "./components/GetTouch.js";
 import Skills from "./components/Skills.js";
 import Projects from "./components/Projects.js";
-import Gallery from "./components/Gallery.js";
+// import Gallery from "./components/Gallery.js";
 
 export default function App() {
   return (
@@ -16,28 +16,28 @@ export default function App() {
       <LazyLoad offset={50} once={true}>
         <About />
       </LazyLoad>
-      <LazyLoad offset={150} once={true}>
+      <LazyLoad offset={200} once={true}>
         <Skills />
-      </LazyLoad>
+      {/* </LazyLoad> */}
       <section>
         <header>
           <h2>Projects</h2>
         </header>
         <div className="content">
-          <LazyLoad offset={401} once={true}>
+          {/* <LazyLoad offset={401} once={true}> */}
             <Projects />
-          </LazyLoad>
-          <LazyLoad offset={150} once={true}>
+          {/* </LazyLoad> */}
+          {/* <LazyLoad offset={150} once={true}>
             <Gallery />
-          </LazyLoad>
+          </LazyLoad> */}
         </div>
       </section>
-      <LazyLoad offset={150} once={true}>
+      {/* <LazyLoad offset={150} once={true}> */}
         <Education />
         <Resume />
         <GetTouch />
       </LazyLoad>
-      <div className="copyright">© Arya Ziai</div>
+      <div className="copyright">© Arya Ziai. Built with ReactJS.</div>
     </div>
   );
 }
