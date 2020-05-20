@@ -29,7 +29,7 @@ export default function App() {
           </LazyLoad>
           {/* {/* <LazyLoad offset={150} once={true}> */}
           {/* <Gallery /> */}
-          {/* </LazyLoad> */} */}
+          {/* </LazyLoad> */}
         </div>
       </section>
       {/* <LazyLoad offset={150} once={true}> */}
