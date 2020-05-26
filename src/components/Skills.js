@@ -8,21 +8,21 @@ export default function Skills() {
           Javascript
           <br />
           ReactJS <br />
+          Redux <br />
           React Native <br />
           Ruby on Rails <br />
           REST API <br />
           Wordpress <br />
-          HTML5 <br />
-          Figma <br />
-          CSS <br />
+          HTML5/CSS3 <br />
           SQL <br />
           Git
         </p>
       </header>
       <div className="content">
         <p>
-          <strong>Passion for creating</strong> responsive and lightweight
-          sites. this is filler text. this is filler text. this is filler text.
+          <strong>Passion for</strong> buidling responsive and lightweight
+          sites. Responsible for designing and building compelling UIs for
+          business applications and customer facing websites.
         </p>
         <ul className="feature-icons">
           <li className="icon solid fa-laptop">Responsive Design</li>
@@ -32,11 +32,11 @@ export default function Skills() {
           <li className="icon solid fa-users">Collaborative</li>
           <li className="icon solid fa-th">Pixel-Perfect</li>
         </ul>
-        <p>
+        {/* <p>
           Vehicula ultrices sed ultricies condimentum. Magna sed etiam
           consequat, et lorem adipiscing sed nulla. Volutpat nisl et tempus et
           dolor libero, feugiat magna tempus, sed et lorem adipiscing.
-        </p>
+        </p> */}
       </div>
     </section>
   );
