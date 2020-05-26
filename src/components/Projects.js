@@ -50,7 +50,7 @@ export default function Projects() {
         <div className="content">
           <h3>
             <a
-              href="https://aryaziai.github.io/Fetch/"
+              href="https://fetchnow.org"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -94,7 +94,7 @@ export default function Projects() {
         <div className="content">
           <h3>
             <a
-              href="https://aryaziai.github.io/Fetch/"
+              href="https://aryaziai.github.io/JS-Paint/"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -442,7 +442,7 @@ h6 {
   }
 
   h5 {
-    font-size: 0.675rem;
+    font-size: 0.75rem;
   }
 }
 
@@ -2916,6 +2916,7 @@ ul.icons li .icon {
   line-height: 2.25rem;
   border-radius: 2.25rem;
   display: inline-block;
+  border: none;
 }
 
 ul.icons li .icon:before {
@@ -4045,14 +4046,9 @@ body.is-ie #wrapper > section > .content > section {
   }
 
   .content a img {
-    display: block;
-    object-fit: contain;
-    object-position: center;
-    width: 100%;
-    margin-bottom: 7%;
+    width: 73%;
+    margin-bottom: 5.5%;
     margin-top: 2%;
-    padding-left: 10%;
-    padding-right: 10%;
   }
 
   body {
