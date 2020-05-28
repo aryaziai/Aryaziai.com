@@ -3898,7 +3898,7 @@ ul.feature-icons li:nth-child(2) {
   }
 
   #wrapper > section > header {
-    padding: 2.25rem 1.5rem;
+    padding: 2rem 3rem 2rem;
   }
 
   #wrapper > section > .content {
@@ -4046,9 +4046,8 @@ body.is-ie #wrapper > section > .content > section {
   }
 
   .content a img {
-    width: 73%;
-    margin-bottom: 5.5%;
-    margin-top: 2%;
+    max-width: 74%;
+    margin: 0 0 0.8rem 3.1rem;
   }
 
   body {
