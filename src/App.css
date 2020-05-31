@@ -2703,7 +2703,7 @@ ul {
 }
 
 ul li {
-  padding-left: 0.325rem;
+  padding-right: 0.325rem;
 }
 
 ul.alt {
@@ -3545,7 +3545,7 @@ ul.feature-icons li:nth-child(2) {
 }
 
 #wrapper section {
-  margin: 5.5rem 0 0 0;
+  margin: 6rem 0 0 0;
 }
 
 #wrapper section > header {
@@ -4142,12 +4142,8 @@ body.is-ie #wrapper > section > .content > section {
   }
 
   .content a img {
-    display: block;
-    object-fit: contain;
-    object-position: center;
-    width: 73%;
-    margin-bottom: 7%;
-    margin-top: 2%;
+    width: 72%;
+    margin: 2% 0 4% 0;
   }
 
   .content h3 {
@@ -4156,7 +4152,7 @@ body.is-ie #wrapper > section > .content > section {
   }
 
   h3 {
-    font-size: 0.775rem;
+    font-size: 0.9rem;
   }
 
   p {
