@@ -14,7 +14,7 @@ export default function GetTouch() {
         </li>
         <li>
           <h3>Phone</h3>
-          <a href="tel:+4157548665">415.754.8665</a>
+          <a href="tel:+4157548664">415.754.8664</a>
         </li>
         <li>
           <h3>Location</h3>
