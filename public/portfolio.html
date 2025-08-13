@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arya Ziai - Frontend Developer</title>
+  <link rel="icon" href="https://aryaziai.com/images/favicon-96x96.png" type="image/gif">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --profile-image: url('https://aryaziai.com/images/pic01.jpg');
+
+      /* Background gradient colors */
+      --bg-color-1: #ffeaa7;
+      --bg-color-2: #fdcb6e;
+      --bg-color-3: #fab1a0;
+      --bg-color-4: #a29bfe;
+      --bg-color-5: #74b9ff;
+      --bg-color-6: #a8e6cf;
+
+      /* Card colors */
+      --card-bg: #fff;
+      --card-shadow: rgba(0, 0, 0, 0.15);
+      --card-shadow-hover: rgba(0, 0, 0, 0.2);
+
+      /* Contact panel colors */
+      --contact-gradient-start: #667eea;
+      --contact-gradient-end: #764ba2;
+      --contact-text: white;
+      --contact-text-shadow: rgba(0, 0, 0, 0.3);
+
+      /* Text colors */
+      --text-color: #333;
+
+      /* Border radius */
+      --card-radius: 10px;
+      --image-radius: 5px;
+
+      /* Spacing */
+      --image-margin: 10px;
+      --content-padding: 40px;
+      --content-padding-mobile: 30px;
+      --content-padding-small: 25px;
+
+      /* Font sizes */
+      --font-size-body: 16px;
+      --font-size-contact: 16px;
+      --font-size-mobile: 15px;
+      --font-size-small: 14px;
+    }
+
+    html {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3), var(--bg-color-4), var(--bg-color-5), var(--bg-color-6), var(--bg-color-1));
+      background-size: 700% 700%;
+      animation: gradientShift 60s ease infinite;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      25% {
+        background-position: 100% 50%;
+      }
+
+      50% {
+        background-position: 100% 100%;
+      }
+
+      75% {
+        background-position: 0% 100%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    body {
+      width: 90%;
+      max-width: 800px;
+      /* background: var(--card-bg); */
+      border-radius: var(--card-radius);
+      box-shadow: 0 20px 60px var(--card-shadow);
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      min-height: 400px;
+      perspective: 1000px;
+    }
+
+    /* Left side - Image that flips to show contact */
+    body::before {
+      content: '';
+      flex: 0 0 300px;
+      margin: var(--image-margin);
+      border-radius: var(--image-radius) 0 0 var(--image-radius);
+      position: relative;
+
+      /* Image fills the entire area */
+      background-image: var(--profile-image);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+      /* cursor: pointer; */
+      margin: 0;
+      text-align: left;
+      color: var(--contact-text);
+      font-size: var(--font-size-contact);
+      font-weight: 100;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      text-shadow: 2px 2px 2px var(--contact-text-shadow);
+    }
+
+    body:not(:hover)::before {}
+
+    /* On hover - rotate and show contact info */
+    body:hover::before {
+      transform: rotateY(180deg) scaleX(-1);
+      background-image: none;
+      /* background: linear-gradient(135deg, var(--contact-gradient-start), var(--contact-gradient-end)); */
+      background-color: transparent;
+
+      /* Show contact details - same size as image area */
+      content: '✉️  arya721@gmail.com\A\A📱  415.786.7985\A\A🔗  linkedin.com/in/aryaziai\A\A📍  San Francisco, CA';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    /* Right side - Text content */
+    body::after {
+      content: 'About Me \A\A I\'m a creative developer who enjoys pushing the boundaries of what\'s possible with web technologies. \A\A I believe in semantic HTML, clean code, and finding innovative solutions to interesting constraints. When I\'m not coding, you\'ll find me exploring new technologies and sharing knowledge with the developer community. \A\A Let\'s connect and build something amazing together! \A\A 𝗙𝘂𝗻 𝗳𝗮𝗰𝘁: My portfolio is built entirely without div elements or javascript, using only CSS pseudo-elements.';
+      flex: 1;
+      padding: var(--content-padding);
+      white-space: pre-wrap;
+      line-height: 1.6;
+      color: var(--text-color);
+      font-size: var(--font-size-body);
+      display: flex;
+      align-items: center;
+      background: var(--card-bg);
+      border-radius: 0 var(--card-radius) var(--card-radius) 0;
+    }
+
+    /* Hover effect for the whole card */
+    body {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    body:hover {
+      box-shadow: 0 25px 70px var(--card-shadow-hover);
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      html {
+        padding: 20px;
+      }
+
+      body {
+        flex-direction: column;
+        max-width: 400px;
+        min-height: auto;
+      }
+
+      body::before {
+        flex: none;
+        width: 100%;
+        height: 300px;
+        margin: 0 auto;
+        border-radius: var(--card-radius) var(--card-radius) 0 0;
+      }
+
+      body:hover::before {
+        transform: rotateY(180deg) scaleX(-1);
+        font-size: var(--font-size-body);
+      }
+
+      body::after {
+        padding: var(--content-padding-mobile);
+        font-size: var(--font-size-mobile);
+        border-radius: 0 0 var(--card-radius) var(--card-radius);
+      }
+    }
+
+    /* Smaller mobile */
+    @media (max-width: 480px) {
+      body::before {
+        height: 250px;
+      }
+
+      body:hover::before {
+        transform: rotateY(180deg) scaleX(-1);
+        font-size: var(--font-size-mobile);
+      }
+
+      body::after {
+        padding: var(--content-padding-small);
+        font-size: var(--font-size-small);
+      }
+    }
+  </style>
+</head>
+
+</html>
