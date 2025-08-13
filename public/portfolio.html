@@ -97,7 +97,8 @@
       display: flex;
       overflow: hidden;
       position: relative;
-      min-height: 400px;
+      min-height: 450px;
+      /* Increased to accommodate both contents */
       perspective: 1000px;
     }
 
@@ -147,7 +148,7 @@
       overflow: hidden;
     }
 
-    /* Right side - Text content */
+    /* Right side - Text content - DEFAULT: About me */
     body::after {
       content: 'About me \A\A I\'m a creative developer who enjoys pushing the boundaries of what\'s possible with web technologies since 2019. \A\A I believe in semantic HTML, clean code, and finding innovative solutions to interesting constraints. When I\'m not coding, you\'ll find me exploring new technologies, new bike paths 🚲 and sharing knowledge with the developer community. \A\A Let\'s connect and build something amazing together! \A\A 𝗙𝘂𝗻 𝗳𝗮𝗰𝘁: My portfolio is built entirely via CSS pseudo-elements, without div elements or javascript.\A\A - 𝒜𝓇𝓎𝒶 𝒵𝒾𝒶𝒾';
       flex: 1;
@@ -157,9 +158,22 @@
       color: var(--text-color);
       font-size: var(--font-size-body);
       display: flex;
-      align-items: center;
+      align-items: flex-start;
+      /* Changed from center to top-align */
+      padding-top: 50px;
+      /* Add consistent top padding */
       background: var(--card-bg);
       border-radius: 0 var(--card-radius) var(--card-radius) 0;
+      transition: opacity 0.3s ease;
+      overflow-y: auto;
+      /* Allow scroll if needed */
+      max-height: 450px;
+      /* Match body min-height */
+    }
+
+    /* When hovering on body, show skills */
+    body:hover::after {
+      content: '🛠️ Skills & Expertise\A\A⚛️ React / Next.js / TypeScript\A\A🎨 CSS3 / Tailwind / Animations\A\A📱 Responsive Design / Mobile-First\A\A🚀 Performance Optimization\A\A🔧 Node.js / Express / APIs\A\A📊 Data Visualization / D3.js\A\A🎯 Web Accessibility / SEO\A\A💡 Creative Problem Solving\A\A🤝 Team Collaboration / Mentoring';
     }
 
     /* Hover effect for the whole card */
