@@ -3,151 +3,104 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Arya Ziai - Frontend Developer</title>
   <link rel="icon" href="https://aryaziai.com/images/favicon-96x96.png" type="image/gif">
   <style>
     * {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+      box-sizing: border-box
     }
 
-    :root {
-      --profile-image: url('https://aryaziai.com/images/pic01.jpg');
-
-      /* Background gradient colors */
-      --bg-color-1: #ffeaa7;
-      --bg-color-2: #fdcb6e;
-      --bg-color-3: #fab1a0;
-      --bg-color-4: #a29bfe;
-      --bg-color-5: #74b9ff;
-      --bg-color-6: #a8e6cf;
-
-      /* Card colors */
-      --card-bg: #fff;
-      --card-shadow: rgba(0, 0, 0, 0.15);
-      --card-shadow-hover: rgba(0, 0, 0, 0.2);
-
-      /* Contact panel colors */
-      --contact-gradient-start: #667eea;
-      --contact-gradient-end: #764ba2;
-      --contact-text: white;
-      --contact-text-shadow: rgba(0, 0, 0, 0.3);
-
-      /* Text colors */
-      --text-color: #333;
-
-      /* Border radius */
-      --card-radius: 10px;
-      --image-radius: 5px;
-
-      /* Spacing */
-      --image-margin: 10px;
-      --content-padding: 40px;
-      --content-padding-mobile: 30px;
-      --content-padding-small: 25px;
-
-      /* Font sizes */
-      --font-size-body: 16px;
-      --font-size-contact: 16px;
-      --font-size-mobile: 15px;
-      --font-size-small: 14px;
-    }
-
-    /* Initial white background for typing animation */
     html {
-      /* cursor: url("./wheel-2.png") 48 48, auto; */
+      cursor: url("./wheel-2.png") 48 48, auto;
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: white;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      animation: backgroundTransition 3.5s ease-out forwards;
+      background: linear-gradient(135deg, #ffeaa7, #fdcb6e, #a29bfe, #74b9ff);
+      background-size: 700% 700%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      animation: gradient 60s ease infinite
     }
 
-    /* Typing animation overlay */
     html::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: #fff;
+      z-index: 999;
+      animation: fadeOut .5s ease-out 5.5s forwards
+    }
+
+    html::after {
       content: '';
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 3rem;
-      color: black;
-      font-family: 'Courier New', monospace;
-      font-weight: normal;
-      z-index: 1000;
-      animation:
-        reveal-text 2s steps(1, end) 0.3s forwards,
-        blink 0.75s step-end infinite 2.3s,
-        fadeOut 0.5s ease-out 3s forwards;
+      font: 3rem 'Courier New', monospace;
+      color: #000;
+      z-index: 1001;
       white-space: nowrap;
       pointer-events: none;
-    }
-
-    /* Typing animation with blinking cursor */
-    html::before {
-      border-right: 3px solid black;
+      border-right: 3px solid #000;
       padding-right: 3px;
-      animation:
-        reveal-text 2s steps(1, end) 0.3s forwards,
-        blink 0.75s step-end 2.3s 5,
-        fadeOut 0.5s ease-out 4.5s forwards;
+      animation: type 2s steps(1, end) 1.3s forwards, blink .75s step-end 3.3s 5, fadeOut .5s ease-out 5.5s forwards
     }
 
-    @keyframes reveal-text {
+    @keyframes type {
       0% {
-        content: '';
+        content: ''
       }
 
-      8.33% {
-        content: 'H';
+      8% {
+        content: 'H'
       }
 
-      16.66% {
-        content: 'Hi';
+      16% {
+        content: 'Hi'
       }
 
       25% {
-        content: 'Hi,';
+        content: 'Hi,'
       }
 
-      33.33% {
-        content: 'Hi, ';
+      33% {
+        content: 'Hi, '
       }
 
-      41.66% {
-        content: "Hi, I";
+      41% {
+        content: "Hi, I"
       }
 
       50% {
-        content: "Hi, I'";
+        content: "Hi, I'"
       }
 
-      58.33% {
-        content: "Hi, I'm";
+      58% {
+        content: "Hi, I'm"
       }
 
-      66.66% {
-        content: "Hi, I'm ";
+      66% {
+        content: "Hi, I'm "
       }
 
       75% {
-        content: "Hi, I'm A";
+        content: "Hi, I'm A"
       }
 
-      83.33% {
-        content: "Hi, I'm Ar";
+      83% {
+        content: "Hi, I'm Ar"
       }
 
-      91.66% {
-        content: "Hi, I'm Ary";
+      91% {
+        content: "Hi, I'm Ary"
       }
 
       100% {
-        content: "Hi, I'm Arya";
+        content: "Hi, I'm Arya"
       }
     }
 
@@ -155,231 +108,144 @@
 
       from,
       to {
-        border-color: transparent;
+        border-color: transparent
       }
 
       50% {
-        border-color: black;
+        border-color: #000
       }
     }
 
     @keyframes fadeOut {
-      from {
-        opacity: 1;
-      }
-
       to {
         opacity: 0;
-        visibility: hidden;
+        visibility: hidden
       }
     }
 
-    /* Background transition from white to gradient */
-    @keyframes backgroundTransition {
+    @keyframes gradient {
 
       0%,
-      90% {
-        background: white;
-      }
-
       100% {
-        background: linear-gradient(135deg, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3), var(--bg-color-4), var(--bg-color-5), var(--bg-color-6), var(--bg-color-1));
-        background-size: 700% 700%;
-      }
-    }
-
-    /* Gradient animation starts after typing completes */
-    @keyframes gradientShift {
-      0% {
-        background-position: 0% 50%;
+        background-position: 0% 50%
       }
 
       25% {
-        background-position: 100% 50%;
+        background-position: 100% 50%
       }
 
       50% {
-        background-position: 100% 100%;
+        background-position: 100% 100%
       }
 
       75% {
-        background-position: 0% 100%;
+        background-position: 0% 100%
       }
-
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
-    /* Apply gradient animation after initial transition */
-    html {
-      animation:
-        backgroundTransition 5s ease-out forwards,
-        gradientShift 60s ease 5s infinite;
     }
 
     body {
-      cursor: default;
       width: 90%;
       max-width: 800px;
-      border-radius: var(--card-radius);
-      box-shadow: 0 20px 60px var(--card-shadow);
+      border-radius: 10px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .15);
       display: flex;
       overflow: hidden;
       position: relative;
       min-height: 450px;
       perspective: 1000px;
       opacity: 0;
-      animation: fadeInCard 0.8s ease-out 4.7s forwards;
+      animation: fadeIn .8s ease-out 5.7s forwards;
+      transition: transform .3s ease, box-shadow .3s ease
     }
 
-    @keyframes fadeInCard {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
+    @keyframes fadeIn {
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0)
       }
     }
 
-    /* Left side - Image that flips to show contact */
+    body:hover {
+      box-shadow: 0 25px 70px rgba(0, 0, 0, .2)
+    }
+
     body::before {
       content: '';
       flex: 0 0 300px;
-      margin: var(--image-margin);
-      border-radius: var(--image-radius) 0 0 var(--image-radius);
-      position: relative;
-
-      /* Image fills the entire area */
-      background-image: var(--profile-image);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-
-      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 5px 0 0 5px;
+      background: url('https://aryaziai.com/images/pic01.jpg') center/cover;
+      transition: all .6s cubic-bezier(.4, 0, .2, 1);
       transform-style: preserve-3d;
-      margin: 0;
-      text-align: left;
-      color: var(--contact-text);
-      font-size: var(--font-size-contact);
-      font-weight: 100;
-      line-height: 1.8;
+      color: #fff;
+      font: 100 16px/1.8 inherit;
       white-space: pre-wrap;
-      text-shadow: 2px 2px 2px var(--contact-text-shadow);
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, .3)
     }
 
-    /* On hover - rotate and show contact info */
     body:hover::before {
       transform: rotateY(180deg) scaleX(-1);
-      background-image: none;
-      background-color: transparent;
-
-      /* Show contact details - same size as image area */
+      background: transparent;
       content: '✉️  arya721@gmail.com\A\A📱  415.786.7985\A\A🔗  linkedin.com/in/aryaziai\A\A📍  San Francisco, CA';
       display: flex;
       align-items: center;
       justify-content: center;
-
-      box-sizing: border-box;
-      overflow: hidden;
+      box-sizing: border-box
     }
 
-    /* Right side - Text content - DEFAULT: About me */
     body::after {
       content: 'About me \A\A I\'m a creative developer who enjoys pushing the boundaries of what\'s possible with web technologies since 2019. \A\A I believe in semantic HTML, clean code, and finding innovative solutions to interesting constraints. When I\'m not coding, you\'ll find me exploring new technologies, new bike paths 🚲 and sharing knowledge with the developer community. \A\A Let\'s connect and build something amazing together! \A\A 𝗙𝘂𝗻 𝗳𝗮𝗰𝘁: My portfolio is built entirely via CSS pseudo-elements, without div elements or javascript.\A\A - 𝒜𝓇𝓎𝒶 𝒵𝒾𝒶𝒾';
       flex: 1;
-      padding: var(--content-padding);
+      padding: 50px 40px 40px;
       white-space: pre-wrap;
       line-height: 1.6;
-      color: var(--text-color);
-      font-size: var(--font-size-body);
-      display: flex;
-      align-items: flex-start;
-      padding-top: 50px;
-      background: var(--card-bg);
-      border-radius: 0 var(--card-radius) var(--card-radius) 0;
-      transition: opacity 0.3s ease;
+      color: #333;
+      font-size: 16px;
+      background: #fff;
+      border-radius: 0 10px 10px 0;
+      transition: opacity .3s ease;
       overflow-y: auto;
-      max-height: 450px;
+      max-height: 450px
     }
 
-    /* When hovering on body, show skills */
     body:hover::after {
-      content: '🛠️ Skills & Expertise\A\A⚛️ React / Next.js / TypeScript\A\A🎨 CSS3 / Tailwind / Animations\A\A📱 Responsive Design / Mobile-First\A\A🚀 Performance Optimization\A\A🔧 Node.js / Express / APIs\A\A📊 Data Visualization / D3.js\A\A🎯 Web Accessibility / SEO\A\A💡 Creative Problem Solving\A\A🤝 Team Collaboration / Mentoring';
+      content: '🛠️ Skills & Expertise\A\A⚛️ React / Next.js / TypeScript\A\A🎨 CSS3 / Tailwind / Animations\A\A📱 Responsive Design / Mobile-First\A\A🚀 Performance Optimization\A\A🔧 Node.js / Express / APIs\A\A📊 Data Visualization / D3.js\A\A🎯 Web Accessibility / SEO\A\A💡 Creative Problem Solving\A\A🤝 Team Collaboration / Mentoring'
     }
 
-    /* Hover effect for the whole card */
-    body {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    body:hover {
-      box-shadow: 0 25px 70px var(--card-shadow-hover);
-    }
-
-    /* Mobile responsive */
-    @media (max-width: 768px) {
+    @media (max-width:768px) {
       html {
-        padding: 20px;
+        padding: 20px
       }
 
       html::before {
-        font-size: 2rem;
+        font-size: 2rem
       }
 
       body {
         flex-direction: column;
         max-width: 400px;
-        min-height: auto;
+        min-height: auto
       }
 
       body::before {
         flex: none;
         width: 100%;
         height: 300px;
-        margin: 0 auto;
-        border-radius: var(--card-radius) var(--card-radius) 0 0;
+        border-radius: 10px 10px 0 0
       }
 
       body:hover::before {
-        transform: rotateY(180deg) scaleX(-1);
-        font-size: var(--font-size-body);
+        font-size: 16px
       }
 
       body::after {
-        padding: var(--content-padding-mobile);
-        font-size: var(--font-size-mobile);
-        border-radius: 0 0 var(--card-radius) var(--card-radius);
-      }
-    }
-
-    /* Smaller mobile */
-    @media (max-width: 480px) {
-      html::before {
-        font-size: 1.5rem;
-      }
-
-      body::before {
-        height: 250px;
-      }
-
-      body:hover::before {
-        transform: rotateY(180deg) scaleX(-1);
-        font-size: var(--font-size-mobile);
-      }
-
-      body::after {
-        padding: var(--content-padding-small);
-        font-size: var(--font-size-small);
+        padding: 30px;
+        font-size: 15px;
+        border-radius: 0 0 10px 10px
       }
     }
   </style>
 </head>
 
 <body></body>
-<!-- Look Ma, No Divs! -->
 
 </html>
