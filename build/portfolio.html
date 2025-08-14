@@ -55,17 +55,140 @@
       --font-size-small: 14px;
     }
 
+    /* Initial white background for typing animation */
     html {
+      /* cursor: url("./wheel-2.png") 48 48, auto; */
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3), var(--bg-color-4), var(--bg-color-5), var(--bg-color-6), var(--bg-color-1));
-      background-size: 700% 700%;
-      animation: gradientShift 60s ease infinite;
+      background: white;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      animation: backgroundTransition 3.5s ease-out forwards;
     }
 
+    /* Typing animation overlay */
+    html::before {
+      content: '';
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      color: black;
+      font-family: 'Courier New', monospace;
+      font-weight: normal;
+      z-index: 1000;
+      animation:
+        reveal-text 2s steps(1, end) 0.3s forwards,
+        blink 0.75s step-end infinite 2.3s,
+        fadeOut 0.5s ease-out 3s forwards;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    /* Typing animation with blinking cursor */
+    html::before {
+      border-right: 3px solid black;
+      padding-right: 3px;
+      animation:
+        reveal-text 2s steps(1, end) 0.3s forwards,
+        blink 0.75s step-end 2.3s 5,
+        fadeOut 0.5s ease-out 4.5s forwards;
+    }
+
+    @keyframes reveal-text {
+      0% {
+        content: '';
+      }
+
+      8.33% {
+        content: 'H';
+      }
+
+      16.66% {
+        content: 'Hi';
+      }
+
+      25% {
+        content: 'Hi,';
+      }
+
+      33.33% {
+        content: 'Hi, ';
+      }
+
+      41.66% {
+        content: "Hi, I";
+      }
+
+      50% {
+        content: "Hi, I'";
+      }
+
+      58.33% {
+        content: "Hi, I'm";
+      }
+
+      66.66% {
+        content: "Hi, I'm ";
+      }
+
+      75% {
+        content: "Hi, I'm A";
+      }
+
+      83.33% {
+        content: "Hi, I'm Ar";
+      }
+
+      91.66% {
+        content: "Hi, I'm Ary";
+      }
+
+      100% {
+        content: "Hi, I'm Arya";
+      }
+    }
+
+    @keyframes blink {
+
+      from,
+      to {
+        border-color: transparent;
+      }
+
+      50% {
+        border-color: black;
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    /* Background transition from white to gradient */
+    @keyframes backgroundTransition {
+
+      0%,
+      90% {
+        background: white;
+      }
+
+      100% {
+        background: linear-gradient(135deg, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3), var(--bg-color-4), var(--bg-color-5), var(--bg-color-6), var(--bg-color-1));
+        background-size: 700% 700%;
+      }
+    }
+
+    /* Gradient animation starts after typing completes */
     @keyframes gradientShift {
       0% {
         background-position: 0% 50%;
@@ -88,17 +211,38 @@
       }
     }
 
+    /* Apply gradient animation after initial transition */
+    html {
+      animation:
+        backgroundTransition 5s ease-out forwards,
+        gradientShift 60s ease 5s infinite;
+    }
+
     body {
+      cursor: default;
       width: 90%;
       max-width: 800px;
-      /* background: var(--card-bg); */
       border-radius: var(--card-radius);
       box-shadow: 0 20px 60px var(--card-shadow);
       display: flex;
       overflow: hidden;
       position: relative;
-      min-height: 400px;
+      min-height: 450px;
       perspective: 1000px;
+      opacity: 0;
+      animation: fadeInCard 0.8s ease-out 4.7s forwards;
+    }
+
+    @keyframes fadeInCard {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Left side - Image that flips to show contact */
@@ -117,7 +261,6 @@
 
       transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       transform-style: preserve-3d;
-      /* cursor: pointer; */
       margin: 0;
       text-align: left;
       color: var(--contact-text);
@@ -128,13 +271,10 @@
       text-shadow: 2px 2px 2px var(--contact-text-shadow);
     }
 
-    body:not(:hover)::before {}
-
     /* On hover - rotate and show contact info */
     body:hover::before {
       transform: rotateY(180deg) scaleX(-1);
       background-image: none;
-      /* background: linear-gradient(135deg, var(--contact-gradient-start), var(--contact-gradient-end)); */
       background-color: transparent;
 
       /* Show contact details - same size as image area */
@@ -147,7 +287,7 @@
       overflow: hidden;
     }
 
-    /* Right side - Text content */
+    /* Right side - Text content - DEFAULT: About me */
     body::after {
       content: 'About me \A\A I\'m a creative developer who enjoys pushing the boundaries of what\'s possible with web technologies since 2019. \A\A I believe in semantic HTML, clean code, and finding innovative solutions to interesting constraints. When I\'m not coding, you\'ll find me exploring new technologies, new bike paths 🚲 and sharing knowledge with the developer community. \A\A Let\'s connect and build something amazing together! \A\A 𝗙𝘂𝗻 𝗳𝗮𝗰𝘁: My portfolio is built entirely via CSS pseudo-elements, without div elements or javascript.\A\A - 𝒜𝓇𝓎𝒶 𝒵𝒾𝒶𝒾';
       flex: 1;
@@ -157,9 +297,18 @@
       color: var(--text-color);
       font-size: var(--font-size-body);
       display: flex;
-      align-items: center;
+      align-items: flex-start;
+      padding-top: 50px;
       background: var(--card-bg);
       border-radius: 0 var(--card-radius) var(--card-radius) 0;
+      transition: opacity 0.3s ease;
+      overflow-y: auto;
+      max-height: 450px;
+    }
+
+    /* When hovering on body, show skills */
+    body:hover::after {
+      content: '🛠️ Skills & Expertise\A\A⚛️ React / Next.js / TypeScript\A\A🎨 CSS3 / Tailwind / Animations\A\A📱 Responsive Design / Mobile-First\A\A🚀 Performance Optimization\A\A🔧 Node.js / Express / APIs\A\A📊 Data Visualization / D3.js\A\A🎯 Web Accessibility / SEO\A\A💡 Creative Problem Solving\A\A🤝 Team Collaboration / Mentoring';
     }
 
     /* Hover effect for the whole card */
@@ -175,6 +324,10 @@
     @media (max-width: 768px) {
       html {
         padding: 20px;
+      }
+
+      html::before {
+        font-size: 2rem;
       }
 
       body {
@@ -205,6 +358,10 @@
 
     /* Smaller mobile */
     @media (max-width: 480px) {
+      html::before {
+        font-size: 1.5rem;
+      }
+
       body::before {
         height: 250px;
       }
