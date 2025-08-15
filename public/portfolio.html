@@ -75,11 +75,11 @@
     /* Navigation dots using only header element */
     header {
       position: fixed;
-      top: 50%;
       transform: translateY(-30px);
       pointer-events: none;
       width: 100vw;
       margin-left: 100px;
+      align-self: center;
     }
 
     header::before,
@@ -117,7 +117,6 @@
       pointer-events: all;
       cursor: pointer;
       padding: calc(var(--dot-size) / 2);
-      border: 1px solid red;
       margin: 0 auto;
     }
 
