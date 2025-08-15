@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,7 +13,14 @@
     }
 
     html {
-      cursor: url("./wheel-2.png") 48 48, auto;
+      --intro-duration: 5.5s;
+      --type-delay: 1.3s;
+      --type-duration: 2s;
+      --blink-duration: 0.75s;
+      --dot-size: 12px;
+      --dot-spacing: 20px;
+      --total-pages: 4;
+      cursor: none;
       height: 100%;
       display: flex;
       justify-content: center;
@@ -25,18 +31,21 @@
       animation: gradient 70s ease infinite;
     }
 
+    html:has([page]) {
+      cursor: url("./wheel-2.png") 48 48, auto;
+    }
+
     html:has([page="2"]) {
       animation-delay: 3s;
     }
 
     html:has([page="3"]) {
-      animation-delay: 5s;
+      animation-delay: 6s;
     }
 
     html:has([page="4"]) {
-      animation-delay: 7s;
+      animation-delay: 9s;
     }
-
 
     html::before {
       content: '';
@@ -44,7 +53,7 @@
       inset: 0;
       /* background: #fff; */
       z-index: 999;
-      animation: fadeOut .5s ease-out 5.5s forwards;
+      animation: fadeOut .5s ease-out var(--intro-duration) forwards;
     }
 
     html::after {
@@ -60,7 +69,7 @@
       pointer-events: none;
       border-right: 3px solid #000;
       padding-right: 3px;
-      animation: type 2s steps(1, end) 1.3s forwards, blink .75s step-end 3.3s 5, fadeOut .5s ease-out 5.5s forwards
+      animation: type var(--type-duration) steps(1, end) var(--type-delay) forwards, blink var(--blink-duration) step-end calc(var(--type-delay) + var(--type-duration)) 5, fadeOut .5s ease-out var(--intro-duration) forwards
     }
 
     /* Navigation dots using only header element */
@@ -78,8 +87,8 @@
       content: '';
       position: absolute;
       left: 0;
-      width: 12px;
-      height: 12px;
+      width: var(--dot-size);
+      height: var(--dot-size);
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.3);
       transition: background 0.3s ease;
@@ -91,38 +100,50 @@
       top: 0;
       background: rgba(255, 255, 255, 1);
       box-shadow:
-        0 20px 0 rgba(255, 255, 255, 0.3),
-        0 40px 0 rgba(255, 255, 255, 0.3),
-        0 60px 0 rgba(255, 255, 255, 0.3);
+        0 calc(var(--dot-spacing) * 1) 0 rgba(255, 255, 255, 0.3),
+        0 calc(var(--dot-spacing) * 2) 0 rgba(255, 255, 255, 0.3),
+        0 calc(var(--dot-spacing) * 3) 0 rgba(255, 255, 255, 0.3);
     }
 
+    /* Create invisible click area for each dot using ::after */
     header::after {
-      display: none;
+      display: block;
+      background: transparent;
+      width: calc(var(--dot-size) + 8px);
+      height: calc(var(--dot-spacing) * var(--total-pages));
+      top: calc(var(--dot-size) / -1.5);
+      left: calc(var(--dot-size) / -2 - 4px);
+      border-radius: 0;
+      pointer-events: all;
+      cursor: pointer;
+      padding: calc(var(--dot-size) / 2);
+      border: 1px solid red;
+      margin: 0 auto;
     }
 
     /* Active states for all 4 dots */
     body[page="2"] header::before {
       background: rgba(255, 255, 255, 0.3);
       box-shadow:
-        0 20px 0 rgba(255, 255, 255, 1),
-        0 40px 0 rgba(255, 255, 255, 0.3),
-        0 60px 0 rgba(255, 255, 255, 0.3);
+        0 calc(var(--dot-spacing) * 1) 0 rgba(255, 255, 255, 1),
+        0 calc(var(--dot-spacing) * 2) 0 rgba(255, 255, 255, 0.3),
+        0 calc(var(--dot-spacing) * 3) 0 rgba(255, 255, 255, 0.3);
     }
 
     body[page="3"] header::before {
       background: rgba(255, 255, 255, 0.3);
       box-shadow:
-        0 20px 0 rgba(255, 255, 255, 0.3),
-        0 40px 0 rgba(255, 255, 255, 1),
-        0 60px 0 rgba(255, 255, 255, 0.3);
+        0 calc(var(--dot-spacing) * 1) 0 rgba(255, 255, 255, 0.3),
+        0 calc(var(--dot-spacing) * 2) 0 rgba(255, 255, 255, 1),
+        0 calc(var(--dot-spacing) * 3) 0 rgba(255, 255, 255, 0.3);
     }
 
     body[page="4"] header::before {
       background: rgba(255, 255, 255, 0.3);
       box-shadow:
-        0 20px 0 rgba(255, 255, 255, 0.3),
-        0 40px 0 rgba(255, 255, 255, 0.3),
-        0 60px 0 rgba(255, 255, 255, 1);
+        0 calc(var(--dot-spacing) * 1) 0 rgba(255, 255, 255, 0.3),
+        0 calc(var(--dot-spacing) * 2) 0 rgba(255, 255, 255, 0.3),
+        0 calc(var(--dot-spacing) * 3) 0 rgba(255, 255, 255, 1);
     }
 
     @keyframes type {
@@ -225,12 +246,12 @@
       display: flex;
       overflow: hidden;
       position: relative;
-      min-height: 450px;
       perspective: 1000px;
       opacity: 0;
-      animation: fadeIn .8s ease-out 5.7s forwards;
+      animation: fadeIn .8s ease-out calc(var(--intro-duration) + 0.2s) forwards;
       transition: transform .3s ease, box-shadow .3s ease;
       justify-content: center;
+      height: 65vh;
     }
 
     @keyframes fadeIn {
@@ -268,7 +289,7 @@
     }
 
     body::after {
-      content: "About me \A\A I\'m a creative developer who has been pushing the boundaries of what\'s possible with web technologies since 2019. \A\A I believe in semantic HTML, clean code, and finding innovative solutions to interesting constraints. When I\'m not coding, you\'ll find me exploring new technologies, discovering new bike paths 🚲, and sharing knowledge with the developer community. \A\A Let\'s connect and build something amazing together! \A\A 𝗙𝘂𝗻 𝗳𝗮𝗰𝘁: My portfolio is built using CSS pseudo-elements, minimal JavaScript, and zero <𝚍𝚒𝚟> elements.\A\A - 𝒜𝓇𝓎𝒶 𝒵𝒾𝒶𝒾";
+      content: "About me \A\A I\'m a creative developer who has been pushing the boundaries of what\'s possible with web technologies since 2019. \A\A I believe in semantic HTML, clean code, and finding innovative solutions to interesting constraints. When I\'m not coding, you\'ll find me exploring new technologies, discovering new bike paths 🚲, and sharing knowledge with the developer community.\A\A 𝗙𝘂𝗻 𝗳𝗮𝗰𝘁: My portfolio is built using CSS pseudo-elements, minimal JavaScript, and zero <𝚍𝚒𝚟> elements.\A\A - 𝒜𝓇𝓎𝒶 𝒵𝒾𝒶𝒾";
       flex: 1;
       padding: 50px 40px 40px;
       white-space: pre-wrap;
@@ -280,7 +301,6 @@
       transition: opacity .3s ease;
       overflow-y: auto;
       width: 400px;
-      height: 50vh;
     }
 
     /* Page content switching */
@@ -295,11 +315,6 @@
     body[page="4"]::after {
       content: 'At vero eos et accusamus\A\AEt iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.\A\ASimilique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.\A\ANam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.';
     }
-
-    /*
-    body:hover::after {
-      content: '🛠️ Skills & Expertise\A\A⚛️ React / Next.js / TypeScript\A\A🎨 CSS3 / Tailwind / Animations\A\A📱 Responsive Design / Mobile-First\A\A🚀 Performance Optimization\A\A🔧 Node.js / Express / APIs\A\A📊 Data Visualization / D3.js\A\A🎯 Web Accessibility / SEO\A\A💡 Creative Problem Solving\A\A🤝 Team Collaboration / Mentoring'
-    } */
 
     @media (max-width:1099px) {
       html {
@@ -332,64 +347,13 @@
         font-size: 15px;
         border-radius: 0 0 10px 10px
       }
-
-      nav {
-        display: none;
-      }
-
-      header {
-        display: none;
-      }
     }
   </style>
 </head>
 
-<body page="1">
+<body>
   <header></header>
-
-  <script>
-    let currentPage = 1;
-    let isScrolling = false;
-    let scrollTimeout;
-    let startY = 0;
-
-    const updatePage = (newPage) => {
-      if (newPage < 1 || newPage > 4) return;
-      currentPage = newPage;
-      document.body.setAttribute('page', currentPage);
-    };
-
-    const handleScroll = (delta) => {
-      if (isScrolling || Math.abs(delta) < 8) return; // sensitivity
-      isScrolling = true;
-      updatePage(currentPage + (delta > 0 ? 1 : -1));
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => (isScrolling = false), 500);
-    };
-
-    const handleSwipe = (endY) => {
-      const diff = startY - endY;
-      if (Math.abs(diff) > 50) updatePage(currentPage + (diff > 0 ? 1 : -1));
-    };
-
-    // Touch events
-    document.addEventListener('touchstart', (e) => (startY = e.touches[0].clientY));
-    document.addEventListener('touchend', (e) => handleSwipe(e.changedTouches[0].clientY));
-
-    // Wheel
-    document.addEventListener('wheel', (e) => {
-      e.preventDefault();
-      handleScroll(e.deltaY);
-    }, { passive: false });
-
-    // Keyboard
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        updatePage(currentPage + (e.key === 'ArrowDown' ? 1 : -1));
-      }
-    });
-  </script>
+  <script src="./script.js"></script>
 </body>
 
 </html>
