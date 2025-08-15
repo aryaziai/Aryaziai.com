@@ -14,6 +14,7 @@
     }
 
     html {
+      --intro-duration: 5.5s;
       cursor: url("./wheel-2.png") 48 48, auto;
       height: 100%;
       display: flex;
@@ -30,13 +31,12 @@
     }
 
     html:has([page="3"]) {
-      animation-delay: 5s;
+      animation-delay: 6s;
     }
 
     html:has([page="4"]) {
-      animation-delay: 7s;
+      animation-delay: 9s;
     }
-
 
     html::before {
       content: '';
@@ -44,7 +44,7 @@
       inset: 0;
       /* background: #fff; */
       z-index: 999;
-      animation: fadeOut .5s ease-out 5.5s forwards;
+      animation: fadeOut .5s ease-out var(--intro-duration) forwards;
     }
 
     html::after {
@@ -60,7 +60,7 @@
       pointer-events: none;
       border-right: 3px solid #000;
       padding-right: 3px;
-      animation: type 2s steps(1, end) 1.3s forwards, blink .75s step-end 3.3s 5, fadeOut .5s ease-out 5.5s forwards
+      animation: type 2s steps(1, end) 1.3s forwards, blink .75s step-end 3.3s 5, fadeOut .5s ease-out var(--intro-duration) forwards
     }
 
     /* Navigation dots using only header element */
@@ -228,7 +228,7 @@
       min-height: 450px;
       perspective: 1000px;
       opacity: 0;
-      animation: fadeIn .8s ease-out 5.7s forwards;
+      animation: fadeIn .8s ease-out calc(var(--intro-duration) + 0.4s) forwards;
       transition: transform .3s ease, box-shadow .3s ease;
       justify-content: center;
     }
@@ -300,7 +300,6 @@
     body:hover::after {
       content: '🛠️ Skills & Expertise\A\A⚛️ React / Next.js / TypeScript\A\A🎨 CSS3 / Tailwind / Animations\A\A📱 Responsive Design / Mobile-First\A\A🚀 Performance Optimization\A\A🔧 Node.js / Express / APIs\A\A📊 Data Visualization / D3.js\A\A🎯 Web Accessibility / SEO\A\A💡 Creative Problem Solving\A\A🤝 Team Collaboration / Mentoring'
     } */
-
     @media (max-width:1099px) {
       html {
         padding: 20px
@@ -346,19 +345,16 @@
 
 <body page="1">
   <header></header>
-
   <script>
     let currentPage = 1;
     let isScrolling = false;
     let scrollTimeout;
     let startY = 0;
-
     const updatePage = (newPage) => {
       if (newPage < 1 || newPage > 4) return;
       currentPage = newPage;
       document.body.setAttribute('page', currentPage);
     };
-
     const handleScroll = (delta) => {
       if (isScrolling || Math.abs(delta) < 8) return; // sensitivity
       isScrolling = true;
@@ -366,22 +362,18 @@
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => (isScrolling = false), 500);
     };
-
     const handleSwipe = (endY) => {
       const diff = startY - endY;
       if (Math.abs(diff) > 50) updatePage(currentPage + (diff > 0 ? 1 : -1));
     };
-
     // Touch events
     document.addEventListener('touchstart', (e) => (startY = e.touches[0].clientY));
     document.addEventListener('touchend', (e) => handleSwipe(e.changedTouches[0].clientY));
-
     // Wheel
     document.addEventListener('wheel', (e) => {
       e.preventDefault();
       handleScroll(e.deltaY);
     }, { passive: false });
-
     // Keyboard
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
