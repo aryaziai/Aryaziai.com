@@ -15,6 +15,9 @@
 
     html {
       --intro-duration: 5.5s;
+      --type-delay: 1.3s;
+      --type-duration: 2s;
+      --blink-duration: 0.75s;
       cursor: url("./wheel-2.png") 48 48, auto;
       height: 100%;
       display: flex;
@@ -60,7 +63,7 @@
       pointer-events: none;
       border-right: 3px solid #000;
       padding-right: 3px;
-      animation: type 2s steps(1, end) 1.3s forwards, blink .75s step-end 3.3s 5, fadeOut .5s ease-out var(--intro-duration) forwards
+      animation: type var(--type-duration) steps(1, end) var(--type-delay) forwards, blink var(--blink-duration) step-end calc(var(--type-delay) + var(--type-duration)) 5, fadeOut .5s ease-out var(--intro-duration) forwards
     }
 
     /* Navigation dots using only header element */
@@ -228,7 +231,7 @@
       min-height: 450px;
       perspective: 1000px;
       opacity: 0;
-      animation: fadeIn .8s ease-out calc(var(--intro-duration) + 0.4s) forwards;
+      animation: fadeIn .8s ease-out calc(var(--intro-duration) + 0.2s) forwards;
       transition: transform .3s ease, box-shadow .3s ease;
       justify-content: center;
     }
@@ -350,19 +353,30 @@
     let isScrolling = false;
     let scrollTimeout;
     let startY = 0;
+    let navigationEnabled = false;
+
+    // Get intro duration from CSS and enable navigation after it completes
+    const introDuration = getComputedStyle(document.documentElement)
+      .getPropertyValue('--intro-duration');
+    const introMs = parseFloat(introDuration) * 1000;
+    setTimeout(() => {
+      navigationEnabled = true;
+    }, introMs + 200); // Add 200ms to match body animation
+
     const updatePage = (newPage) => {
-      if (newPage < 1 || newPage > 4) return;
+      if (!navigationEnabled || newPage < 1 || newPage > 4) return;
       currentPage = newPage;
       document.body.setAttribute('page', currentPage);
     };
     const handleScroll = (delta) => {
-      if (isScrolling || Math.abs(delta) < 8) return; // sensitivity
+      if (!navigationEnabled || isScrolling || Math.abs(delta) < 8) return; // sensitivity
       isScrolling = true;
       updatePage(currentPage + (delta > 0 ? 1 : -1));
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => (isScrolling = false), 500);
     };
     const handleSwipe = (endY) => {
+      if (!navigationEnabled) return;
       const diff = startY - endY;
       if (Math.abs(diff) > 50) updatePage(currentPage + (diff > 0 ? 1 : -1));
     };
@@ -378,7 +392,9 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         e.preventDefault();
-        updatePage(currentPage + (e.key === 'ArrowDown' ? 1 : -1));
+        if (navigationEnabled) {
+          updatePage(currentPage + (e.key === 'ArrowDown' ? 1 : -1));
+        }
       }
     });
   </script>
