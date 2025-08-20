@@ -14,6 +14,8 @@
 
     :root {
       color-scheme: only light;
+      --dot-inactive: rgba(255, 255, 255, 0.3);
+      --dot-active: rgba(255, 255, 255, 1);
     }
 
     html {
@@ -33,6 +35,8 @@
       background-size: 700% 700%;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       animation: gradient 70s ease infinite;
+      width: 100vw;
+      height: 100vh;
     }
 
     html:has([page]) {
@@ -66,15 +70,23 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font: clamp(50px, 5vw, 999px) 'Courier New', monospace;
+      font: clamp(40px, 5vw, 999px) 'Courier New', monospace;
       color: black;
       z-index: 1001;
-      white-space: nowrap;
+      white-space: normal;
+      /* allow wrapping */
+      text-align: center;
+      /* center text inside */
+      max-width: 90vw;
+      /* constrain so it wraps before overflow */
       pointer-events: none;
       border-right: 3px solid #000;
       padding-right: 3px;
-      animation: type var(--type-duration) steps(1, end) var(--type-delay) forwards, blink var(--blink-duration) step-end calc(var(--type-delay) + var(--type-duration)) 5, fadeOut .5s ease-out var(--intro-duration) forwards
+      animation: type var(--type-duration) steps(1, end) var(--type-delay) forwards,
+        blink var(--blink-duration) step-end calc(var(--type-delay) + var(--type-duration)) 5,
+        fadeOut .5s ease-out var(--intro-duration) forwards;
     }
+
 
     /* Navigation dots using only header element */
     header {
@@ -102,11 +114,11 @@
 
     header::before {
       top: 0;
-      background: rgba(255, 255, 255, 1);
+      background: var(--dot-active);
       box-shadow:
-        0 calc(var(--dot-spacing) * 1) 0 rgba(255, 255, 255, 0.3),
-        0 calc(var(--dot-spacing) * 2) 0 rgba(255, 255, 255, 0.3),
-        0 calc(var(--dot-spacing) * 3) 0 rgba(255, 255, 255, 0.3);
+        0 calc(var(--dot-spacing) * 1) 0 var(--dot-inactive),
+        0 calc(var(--dot-spacing) * 2) 0 var(--dot-inactive),
+        0 calc(var(--dot-spacing) * 3) 0 var(--dot-inactive);
     }
 
     /* Create invisible click area for each dot using ::after */
@@ -126,27 +138,27 @@
 
     /* Active states for all 4 dots */
     body[page="2"] header::before {
-      background: rgba(255, 255, 255, 0.3);
+      background: var(--dot-inactive);
       box-shadow:
-        0 calc(var(--dot-spacing) * 1) 0 rgba(255, 255, 255, 1),
-        0 calc(var(--dot-spacing) * 2) 0 rgba(255, 255, 255, 0.3),
-        0 calc(var(--dot-spacing) * 3) 0 rgba(255, 255, 255, 0.3);
+        0 calc(var(--dot-spacing) * 1) 0 var(--dot-active),
+        0 calc(var(--dot-spacing) * 2) 0 var(--dot-inactive),
+        0 calc(var(--dot-spacing) * 3) 0 var(--dot-inactive);
     }
 
     body[page="3"] header::before {
-      background: rgba(255, 255, 255, 0.3);
+      background: var(--dot-inactive);
       box-shadow:
-        0 calc(var(--dot-spacing) * 1) 0 rgba(255, 255, 255, 0.3),
-        0 calc(var(--dot-spacing) * 2) 0 rgba(255, 255, 255, 1),
-        0 calc(var(--dot-spacing) * 3) 0 rgba(255, 255, 255, 0.3);
+        0 calc(var(--dot-spacing) * 1) 0 var(--dot-inactive),
+        0 calc(var(--dot-spacing) * 2) 0 var(--dot-active),
+        0 calc(var(--dot-spacing) * 3) 0 var(--dot-inactive);
     }
 
     body[page="4"] header::before {
-      background: rgba(255, 255, 255, 0.3);
+      background: var(--dot-inactive);
       box-shadow:
-        0 calc(var(--dot-spacing) * 1) 0 rgba(255, 255, 255, 0.3),
-        0 calc(var(--dot-spacing) * 2) 0 rgba(255, 255, 255, 0.3),
-        0 calc(var(--dot-spacing) * 3) 0 rgba(255, 255, 255, 1);
+        0 calc(var(--dot-spacing) * 1) 0 var(--dot-inactive),
+        0 calc(var(--dot-spacing) * 2) 0 var(--dot-inactive),
+        0 calc(var(--dot-spacing) * 3) 0 var(--dot-active);
     }
 
     @keyframes type {
@@ -304,6 +316,7 @@
       transition: opacity .3s ease;
       overflow-y: auto;
       width: 400px;
+      max-width: fit-content;
     }
 
     /* Page content switching */
@@ -320,6 +333,11 @@
     }
 
     @media (max-width:1099px) {
+      :root {
+        --dot-inactive: rgba(101, 101, 101, 0.8);
+        --dot-active: rgb(0, 154, 243);
+      }
+
       html {
         padding: 20px
       }
@@ -331,7 +349,8 @@
       body {
         flex-direction: column;
         /* max-width: 400px; */
-        min-height: auto
+        /* min-height: auto */
+        height: 90vh;
       }
 
       body::before {
@@ -349,6 +368,12 @@
         padding: 30px;
         font-size: 15px;
         border-radius: 0 0 10px 10px
+      }
+
+      header {
+        transform: rotate(90deg);
+        position: absolute;
+        bottom: 145px;
       }
     }
   </style>

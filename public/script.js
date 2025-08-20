@@ -1,100 +1,106 @@
 let isScrolling = false;
 let scrollTimeout;
 let startY = 0;
+let startX = 0;
 let navigationEnabled = false;
 
-// Get current page from body attribute
+const isMobile = () => window.innerWidth < 1100;
+
+// --- Page helpers ---
 const getCurrentPage = () => parseInt(document.body.getAttribute('page') || '0');
+const setPage = (page) => document.body.setAttribute('page', page);
 
-// Set page on body element
-const setPage = (pageNum) => {
-  document.body.setAttribute('page', pageNum);
-};
-
-// Get intro duration from CSS and enable navigation after it completes
-const introDuration = getComputedStyle(document.documentElement)
-  .getPropertyValue('--intro-duration');
-const introMs = parseFloat(introDuration) * 1000;
-
-setTimeout(() => {
-  navigationEnabled = true;
-  setPage(1); // Set initial page when navigation is enabled
-}, introMs + 200); // Add 200ms to match body animation
-
-// Navigate to a new page
 const navigateToPage = (newPage) => {
   if (!navigationEnabled) return;
-
-  const currentPage = getCurrentPage();
-  if (newPage < 1 || newPage > 4 || newPage === currentPage) return;
-
+  const current = getCurrentPage();
+  if (newPage < 1 || newPage > 4 || newPage === current) return;
   setPage(newPage);
 };
 
-// Handle scroll with direction
+// --- Navigation delay (intro animation) ---
+const introMs = parseFloat(
+  getComputedStyle(document.documentElement).getPropertyValue('--intro-duration')
+) * 1000;
+
+setTimeout(() => {
+  navigationEnabled = true;
+  setPage(1); // initial page
+}, introMs + 200);
+
+// --- Scroll ---
 const handleScroll = (delta) => {
   if (!navigationEnabled || isScrolling || Math.abs(delta) < 8) return;
 
   isScrolling = true;
-  const currentPage = getCurrentPage();
-  navigateToPage(currentPage + (delta > 0 ? 1 : -1));
+  navigateToPage(getCurrentPage() + (delta > 0 ? 1 : -1));
 
   clearTimeout(scrollTimeout);
   scrollTimeout = setTimeout(() => (isScrolling = false), 500);
 };
 
-// Handle swipe gesture - REVERSED for natural mobile feel
-const handleSwipe = (endY) => {
+// --- Swipe ---
+const handleSwipe = (endX, endY) => {
   if (!navigationEnabled) return;
 
-  const diff = startY - endY;
-  if (Math.abs(diff) > 50) {
-    const currentPage = getCurrentPage();
-    // Reversed: swipe down (negative diff) goes to next page (+1)
-    navigateToPage(currentPage + (diff > 0 ? -1 : 1));
+  const dx = startX - endX;
+  const dy = startY - endY;
+  const threshold = 50;
+
+  if (isMobile()) {
+    if (Math.abs(dx) > threshold) {
+      navigateToPage(getCurrentPage() + (dx > 0 ? -1 : 1));
+    }
+  } else {
+    if (Math.abs(dy) > threshold) {
+      navigateToPage(getCurrentPage() + (dy > 0 ? -1 : 1));
+    }
   }
 };
 
-// Touch events
-document.addEventListener('touchstart', (e) => (startY = e.touches[0].clientY));
-document.addEventListener('touchend', (e) => handleSwipe(e.changedTouches[0].clientY));
-
-// Wheel event
-document.addEventListener('wheel', (e) => {
-  e.preventDefault();
-  handleScroll(e.deltaY);
-}, { passive: false });
-
-// Keyboard navigation
-document.addEventListener('keydown', (e) => {
+// --- Keyboard ---
+const handleKey = (key) => {
   if (!navigationEnabled) return;
+  const current = getCurrentPage();
 
-  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-    e.preventDefault();
-    const currentPage = getCurrentPage();
-    navigateToPage(currentPage + (e.key === 'ArrowDown' ? 1 : -1));
+  if (isMobile()) {
+    if (key === 'ArrowLeft') navigateToPage(current + 1);
+    if (key === 'ArrowRight') navigateToPage(current - 1);
+  } else {
+    if (key === 'ArrowUp') navigateToPage(current - 1);
+    if (key === 'ArrowDown') navigateToPage(current + 1);
   }
-});
+};
 
-// Add click handler for navigation dots
-document.querySelector('header').addEventListener('click', (e) => {
+// --- Dots ---
+const handleDotClick = (e) => {
   if (!navigationEnabled) return;
 
-  // Get CSS variables from the root element
   const styles = getComputedStyle(document.documentElement);
   const dotSpacing = parseFloat(styles.getPropertyValue('--dot-spacing'));
   const totalPages = parseInt(styles.getPropertyValue('--total-pages'));
 
-  // Get click position relative to the header element
   const rect = e.currentTarget.getBoundingClientRect();
-  const clickY = e.clientY - rect.top;
+  const pos = isMobile() ? e.clientX - rect.left : e.clientY - rect.top;
 
-  // Determine which dot was clicked based on Y position and spacing
   const targetPage = Math.min(
-    Math.max(1, Math.floor(clickY / dotSpacing) + 1),
+    Math.max(1, Math.floor(pos / dotSpacing) + 1),
     totalPages
   );
 
   navigateToPage(targetPage);
-});
+};
 
+// --- Event bindings ---
+document.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+});
+document.addEventListener('touchend', (e) => {
+  handleSwipe(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
+});
+document.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  handleScroll(e.deltaY);
+}, { passive: false });
+document.addEventListener('keydown', (e) => handleKey(e.key));
+document.querySelector('header').addEventListener('click', handleDotClick);
