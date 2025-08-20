@@ -334,7 +334,7 @@
 
     @media (max-width:1099px) {
       :root {
-        --dot-inactive: rgba(101, 101, 101, 0.8);
+        --dot-inactive: rgba(203, 203, 203, 0.8);
         --dot-active: rgb(0, 154, 243);
       }
 
@@ -371,9 +371,11 @@
       }
 
       header {
-        transform: rotate(90deg);
+        transform: rotate(90deg) translateX(-35px);
         position: absolute;
-        bottom: 145px;
+        width: 0;
+        left: 0;
+        height: 50%;
       }
     }
   </style>
