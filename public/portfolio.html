@@ -1,299 +1,358 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Arya Ziai - Frontend Developer</title>
-  <link rel="icon" href="https://aryaziai.com/images/favicon-96x96.png" type="image/gif">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box
+  <meta name="description"
+    content="Creative frontend developer pushing the boundaries of web technologies. Specializing in semantic HTML, clean code, and innovative solutions.">
+  <meta property="og:title" content="Arya Ziai - Frontend Developer">
+  <meta property="og:description"
+    content="Creative frontend developer pushing the boundaries of web technologies since 2019.">
+  <meta property="og:image" content="https://aryaziai.com/images/pic01.jpg">
+  <link rel="icon" href="https://aryaziai.com/images/favicon-96x96.png" type="image/png">
+</head>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    color-scheme: only light;
+
+    /* Colors */
+    --dot-inactive: rgba(255, 255, 255, 0.3);
+    --dot-active: rgba(255, 255, 255, 1);
+    --shadow-light: rgba(0, 0, 0, .15);
+    --shadow-dark: rgba(0, 0, 0, .2);
+
+    /* Timing */
+    --intro-duration: 0s;
+    --type-delay: 1.3s;
+    --type-duration: 2s;
+    --blink-duration: 0.75s;
+
+    /* Layout */
+    --dot-size: 12px;
+    --dot-spacing: 20px;
+    --total-pages: 4;
+    --border-radius: 10px;
+  }
+
+  /* Base Layout */
+  html {
+    cursor: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ffeaa7, #fdcb6e, #a29bfe, #74b9ff);
+    background-size: 700% 700%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    animation: gradient 70s ease infinite;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  html:has([page]) {
+    cursor: url("./wheel-2.png") 48 48, auto;
+  }
+
+  html:has([page="2"]) {
+    animation-delay: 3s;
+  }
+
+  html:has([page="3"]) {
+    animation-delay: 6s;
+  }
+
+  html:has([page="4"]) {
+    animation-delay: 9s;
+  }
+
+  /* Intro Overlay */
+  html::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    animation: fadeOut .5s ease-out var(--intro-duration) forwards;
+  }
+
+  /* Typing Animation */
+  html::after {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font: clamp(40px, 5vw, 999px) 'Courier New', monospace;
+    color: black;
+    z-index: 1001;
+    white-space: normal;
+    text-align: center;
+    max-width: 90vw;
+    pointer-events: none;
+    border-right: 3px solid #000;
+    padding-right: 3px;
+    animation:
+      type var(--type-duration) steps(1, end) var(--type-delay) forwards,
+      blink var(--blink-duration) step-end calc(var(--type-delay) + var(--type-duration)) 5,
+      fadeOut .5s ease-out var(--intro-duration) forwards;
+  }
+
+  /* Main Card Container */
+  body {
+    /* max-width: 100vw; */
+    border-radius: var(--border-radius);
+    box-shadow: 0 20px 60px var(--shadow-light);
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    perspective: 1000px;
+    opacity: 0;
+    animation: fadeIn .8s ease-out calc(var(--intro-duration) + 0.2s) forwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    justify-content: center;
+    height: 65vh;
+  }
+
+  body:hover {
+    box-shadow: 0 25px 70px var(--shadow-dark);
+  }
+
+  /* Left Panel - Image/Contact */
+  body::before {
+    content: '';
+    flex: 0 0 300px;
+    border-radius: 5px 0 0 5px;
+    background: url('https://aryaziai.com/images/pic01.jpg') center/cover;
+    transition: all 0.6s cubic-bezier(.4, 0, .2, 1);
+    transform-style: preserve-3d;
+    color: #fff;
+    font: 100 16px/1.8 inherit;
+    white-space: pre-wrap;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, .3);
+  }
+
+  /* Right Panel - Content */
+  body::after {
+    --content-1: "About me \A\A I\'m a creative developer who has been pushing the boundaries of what\'s possible with web technologies since 2019. \A\A I believe in semantic HTML, clean code, and finding innovative solutions to interesting constraints. When I\'m not coding, you\'ll find me exploring new technologies, discovering new bike paths 🚲, and sharing knowledge with the developer community.\A\A 𝗙𝘂𝗻 𝗳𝗮𝗰𝘁: My portfolio is built using CSS pseudo-elements, concise JavaScript, and zero <𝚍𝚒𝚟> elements.\A\A - 𝒜𝓇𝓎𝒶 𝒵𝒾𝒶𝒾";
+    --content-2: "Hobbies \A\A I\'m a creative developer who has been pushing the boundaries of what\'s possible with web technologies since 2019. \A\A I believe in semantic HTML, clean code, and finding innovative solutions to interesting constraints. When I\'m not coding, you\'ll find me exploring new technologies, discovering new bike paths 🚲, and sharing knowledge with the developer community.\A\A 𝗙𝘂𝗻 𝗳𝗮𝗰𝘁: My portfolio is built using CSS pseudo-elements, minimal JavaScript, and zero <𝚍𝚒𝚟> elements.\A\A - 𝒜𝓇𝓎𝒶 𝒵𝒾𝒶𝒾";
+    --content-3: "Interests \A\A I\'m a creative developer who has been pushing the boundaries of what\'s possible with web technologies since 2019. \A\A I believe in semantic HTML, clean code, and finding innovative solutions to interesting constraints. When I\'m not coding, you\'ll find me exploring new technologies, discovering new bike paths 🚲, and sharing knowledge with the developer community.\A\A 𝗙𝘂𝗻 𝗳𝗮𝗰𝘁: My portfolio is built using CSS pseudo-elements, minimal JavaScript, and zero <𝚍𝚒𝚟> elements.\A\A - 𝒜𝓇𝓎𝒶 𝒵𝒾𝒶𝒾";
+    --content-4: 'At vero eos et accusamus\A\AEt iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.\A\ASimilique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.\A\ANam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.';
+
+    content: var(--content-1);
+    flex: 1;
+    padding: 50px 40px 40px;
+    white-space: pre-wrap;
+    line-height: 1.6;
+    color: #333;
+    font-size: 16px;
+    background: #fff;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    transition: opacity var(--transition-fast);
+    overflow-y: auto;
+    width: 400px;
+    max-width: fit-content;
+  }
+
+  /* Page content switching - simplified */
+  body[page="2"]::after {
+    content: var(--content-2);
+  }
+
+  body[page="3"]::after {
+    content: var(--content-3);
+  }
+
+  body[page="4"]::after {
+    content: var(--content-4);
+  }
+
+  /* Navigation Header */
+  header {
+    position: fixed;
+    transform: translateY(-30px);
+    pointer-events: none;
+    width: 100vw;
+    margin-left: 100px;
+    align-self: center;
+  }
+
+  /* Navigation Dots Base */
+  header::before,
+  header::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: var(--dot-size);
+    height: var(--dot-size);
+    border-radius: 50%;
+    background: var(--dot-inactive);
+    transition: background var(--transition-fast);
+    cursor: pointer;
+    pointer-events: all;
+  }
+
+  /* Visible dots */
+  header::before {
+    top: 0;
+    background: var(--dot-active);
+    box-shadow:
+      0 calc(var(--dot-spacing) * 1) 0 var(--dot-inactive),
+      0 calc(var(--dot-spacing) * 2) 0 var(--dot-inactive),
+      0 calc(var(--dot-spacing) * 3) 0 var(--dot-inactive);
+  }
+
+  /* Click area */
+  header::after {
+    display: block;
+    background: transparent;
+    width: calc(var(--dot-size) + 8px);
+    height: calc(var(--dot-spacing) * var(--total-pages));
+    top: calc(var(--dot-size) / -1.5);
+    left: calc(var(--dot-size) / -2 - 4px);
+    border-radius: 0;
+    padding: calc(var(--dot-size) / 2);
+    margin: 0 auto;
+  }
+
+  /* Active dot states - using CSS custom properties for cleaner code */
+  body[page="2"] header::before,
+  body[page="3"] header::before,
+  body[page="4"] header::before {
+    background: var(--dot-inactive);
+  }
+
+  body[page="2"] header::before {
+    box-shadow:
+      0 var(--dot-spacing) 0 var(--dot-active),
+      0 calc(var(--dot-spacing) * 2) 0 var(--dot-inactive),
+      0 calc(var(--dot-spacing) * 3) 0 var(--dot-inactive);
+  }
+
+  body[page="3"] header::before {
+    box-shadow:
+      0 var(--dot-spacing) 0 var(--dot-inactive),
+      0 calc(var(--dot-spacing) * 2) 0 var(--dot-active),
+      0 calc(var(--dot-spacing) * 3) 0 var(--dot-inactive);
+  }
+
+  body[page="4"] header::before {
+    box-shadow:
+      0 var(--dot-spacing) 0 var(--dot-inactive),
+      0 calc(var(--dot-spacing) * 2) 0 var(--dot-inactive),
+      0 calc(var(--dot-spacing) * 3) 0 var(--dot-active);
+  }
+
+  /* Animations */
+  @keyframes type {
+    0% {
+      content: ''
     }
 
-    :root {
-      color-scheme: only light;
-      --dot-inactive: rgba(255, 255, 255, 0.3);
-      --dot-active: rgba(255, 255, 255, 1);
+    8% {
+      content: 'H'
     }
 
-    html {
-      /* --intro-duration: 5.5s; */
-      --intro-duration: 0s;
-      --type-delay: 1.3s;
-      --type-duration: 2s;
-      --blink-duration: 0.75s;
-      --dot-size: 12px;
-      --dot-spacing: 20px;
-      --total-pages: 4;
-      cursor: none;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #ffeaa7, #fdcb6e, #a29bfe, #74b9ff);
-      background-size: 700% 700%;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      animation: gradient 70s ease infinite;
-      width: 100vw;
-      height: 100vh;
+    16% {
+      content: 'Hi'
     }
 
-    html:has([page]) {
-      cursor: url("./wheel-2.png") 48 48, auto;
+    25% {
+      content: 'Hi,'
     }
 
-    html:has([page="2"]) {
-      animation-delay: 3s;
+    33% {
+      content: 'Hi, '
     }
 
-    html:has([page="3"]) {
-      animation-delay: 6s;
+    41% {
+      content: "Hi, I"
     }
 
-    html:has([page="4"]) {
-      animation-delay: 9s;
+    50% {
+      content: "Hi, I'"
     }
 
-    html::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      /* background: #fff; */
-      z-index: 999;
-      animation: fadeOut .5s ease-out var(--intro-duration) forwards;
+    58% {
+      content: "Hi, I'm"
     }
 
-    html::after {
-      content: '';
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font: clamp(40px, 5vw, 999px) 'Courier New', monospace;
-      color: black;
-      z-index: 1001;
-      white-space: normal;
-      /* allow wrapping */
-      text-align: center;
-      /* center text inside */
-      max-width: 90vw;
-      /* constrain so it wraps before overflow */
-      pointer-events: none;
-      border-right: 3px solid #000;
-      padding-right: 3px;
-      animation: type var(--type-duration) steps(1, end) var(--type-delay) forwards,
-        blink var(--blink-duration) step-end calc(var(--type-delay) + var(--type-duration)) 5,
-        fadeOut .5s ease-out var(--intro-duration) forwards;
+    66% {
+      content: "Hi, I'm "
     }
 
-
-    /* Navigation dots using only header element */
-    header {
-      position: fixed;
-      transform: translateY(-30px);
-      pointer-events: none;
-      width: 100vw;
-      margin-left: 100px;
-      align-self: center;
+    75% {
+      content: "Hi, I'm A"
     }
 
-    header::before,
-    header::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      width: var(--dot-size);
-      height: var(--dot-size);
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      transition: background 0.3s ease;
-      cursor: pointer;
-      pointer-events: all;
+    83% {
+      content: "Hi, I'm Ar"
     }
 
-    header::before {
-      top: 0;
-      background: var(--dot-active);
-      box-shadow:
-        0 calc(var(--dot-spacing) * 1) 0 var(--dot-inactive),
-        0 calc(var(--dot-spacing) * 2) 0 var(--dot-inactive),
-        0 calc(var(--dot-spacing) * 3) 0 var(--dot-inactive);
+    91% {
+      content: "Hi, I'm Ary"
     }
 
-    /* Create invisible click area for each dot using ::after */
-    header::after {
-      display: block;
-      background: transparent;
-      width: calc(var(--dot-size) + 8px);
-      height: calc(var(--dot-spacing) * var(--total-pages));
-      top: calc(var(--dot-size) / -1.5);
-      left: calc(var(--dot-size) / -2 - 4px);
-      border-radius: 0;
-      pointer-events: all;
-      cursor: pointer;
-      padding: calc(var(--dot-size) / 2);
-      margin: 0 auto;
+    100% {
+      content: "Hi, I'm Arya"
+    }
+  }
+
+  @keyframes blink {
+
+    from,
+    to {
+      border-color: transparent
     }
 
-    /* Active states for all 4 dots */
-    body[page="2"] header::before {
-      background: var(--dot-inactive);
-      box-shadow:
-        0 calc(var(--dot-spacing) * 1) 0 var(--dot-active),
-        0 calc(var(--dot-spacing) * 2) 0 var(--dot-inactive),
-        0 calc(var(--dot-spacing) * 3) 0 var(--dot-inactive);
+    50% {
+      border-color: #000
     }
+  }
 
-    body[page="3"] header::before {
-      background: var(--dot-inactive);
-      box-shadow:
-        0 calc(var(--dot-spacing) * 1) 0 var(--dot-inactive),
-        0 calc(var(--dot-spacing) * 2) 0 var(--dot-active),
-        0 calc(var(--dot-spacing) * 3) 0 var(--dot-inactive);
-    }
-
-    body[page="4"] header::before {
-      background: var(--dot-inactive);
-      box-shadow:
-        0 calc(var(--dot-spacing) * 1) 0 var(--dot-inactive),
-        0 calc(var(--dot-spacing) * 2) 0 var(--dot-inactive),
-        0 calc(var(--dot-spacing) * 3) 0 var(--dot-active);
-    }
-
-    @keyframes type {
-      0% {
-        content: ''
-      }
-
-      8% {
-        content: 'H'
-      }
-
-      16% {
-        content: 'Hi'
-      }
-
-      25% {
-        content: 'Hi,'
-      }
-
-      33% {
-        content: 'Hi, '
-      }
-
-      41% {
-        content: "Hi, I"
-      }
-
-      50% {
-        content: "Hi, I'"
-      }
-
-      58% {
-        content: "Hi, I'm"
-      }
-
-      66% {
-        content: "Hi, I'm "
-      }
-
-      75% {
-        content: "Hi, I'm A"
-      }
-
-      83% {
-        content: "Hi, I'm Ar"
-      }
-
-      91% {
-        content: "Hi, I'm Ary"
-      }
-
-      100% {
-        content: "Hi, I'm Arya"
-      }
-    }
-
-    @keyframes blink {
-
-      from,
-      to {
-        border-color: transparent
-      }
-
-      50% {
-        border-color: #000
-      }
-    }
-
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        visibility: hidden
-      }
-    }
-
-    @keyframes gradient {
-
-      0%,
-      100% {
-        background-position: 0% 50%
-      }
-
-      25% {
-        background-position: 100% 50%
-      }
-
-      50% {
-        background-position: 100% 100%
-      }
-
-      75% {
-        background-position: 0% 100%
-      }
-    }
-
-    body {
-      max-width: 100vw;
-      border-radius: 10px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, .15);
-      display: flex;
-      overflow: hidden;
-      position: relative;
-      perspective: 1000px;
+  @keyframes fadeOut {
+    to {
       opacity: 0;
-      animation: fadeIn .8s ease-out calc(var(--intro-duration) + 0.2s) forwards;
-      transition: transform .3s ease, box-shadow .3s ease;
-      justify-content: center;
-      height: 65vh;
+      visibility: hidden
+    }
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0)
+    }
+  }
+
+  @keyframes gradient {
+
+    0%,
+    100% {
+      background-position: 0% 50%
     }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0)
-      }
+    25% {
+      background-position: 100% 50%
     }
 
-    body:hover {
-      box-shadow: 0 25px 70px rgba(0, 0, 0, .2)
+    50% {
+      background-position: 100% 100%
     }
 
-    body::before {
-      content: '';
-      flex: 0 0 300px;
-      border-radius: 5px 0 0 5px;
-      background: url('https://aryaziai.com/images/pic01.jpg') center/cover;
-      transition: all .6s cubic-bezier(.4, 0, .2, 1);
-      transform-style: preserve-3d;
-      color: #fff;
-      font: 100 16px/1.8 inherit;
-      white-space: pre-wrap;
-      text-shadow: 2px 2px 2px rgba(0, 0, 0, .3)
+    75% {
+      background-position: 0% 100%
     }
+  }
 
+  /* Mobile Styles */
+
+  @media (min-width: 1100px) {
     body:hover::before {
       transform: rotateY(180deg) scaleX(-1);
       background: transparent;
@@ -301,89 +360,54 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-sizing: border-box
+    }
+  }
+
+  @media (max-width: 1099px) {
+    :root {
+      --dot-inactive: rgba(203, 203, 203, 0.8);
+      --dot-active: rgb(0, 154, 243);
+    }
+
+    /* html {
+        padding: 20px;
+      } */
+
+    html::before {
+      font-size: 2rem;
+    }
+
+    body {
+      flex-direction: column;
+      height: 90vh;
+      max-width: 90vw;
+    }
+
+    body::before {
+      width: 100%;
+      max-height: 20vh;
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
     }
 
     body::after {
-      content: "About me \A\A I\'m a creative developer who has been pushing the boundaries of what\'s possible with web technologies since 2019. \A\A I believe in semantic HTML, clean code, and finding innovative solutions to interesting constraints. When I\'m not coding, you\'ll find me exploring new technologies, discovering new bike paths 🚲, and sharing knowledge with the developer community.\A\A 𝗙𝘂𝗻 𝗳𝗮𝗰𝘁: My portfolio is built using CSS pseudo-elements, minimal JavaScript, and zero <𝚍𝚒𝚟> elements.\A\A - 𝒜𝓇𝓎𝒶 𝒵𝒾𝒶𝒾";
-      flex: 1;
-      padding: 50px 40px 40px;
-      white-space: pre-wrap;
-      line-height: 1.6;
-      color: #333;
-      font-size: 16px;
-      background: #fff;
-      border-radius: 0 10px 10px 0;
-      transition: opacity .3s ease;
-      overflow-y: auto;
-      width: 400px;
-      max-width: fit-content;
+      flex: 1 0 auto;
+      padding: 30px;
+      font-size: 15px;
+      border-radius: 0 0 var(--border-radius) var(--border-radius);
+      min-height: 0;
+      height: 60vh;
     }
 
-    /* Page content switching */
-    body[page="2"]::after {
-      content: 'Lorem ipsum dolor sit amet\A\AConsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\A\ADuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\A\ASed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.';
+    header {
+      transform: rotate(270deg);
+      position: absolute;
+      width: 0;
+      left: 43%;
+      margin: 0;
+      top: 24vh;
     }
-
-    body[page="3"]::after {
-      content: 'Totam rem aperiam\A\AEaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.\A\ASed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.\A\AUt enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.';
-    }
-
-    body[page="4"]::after {
-      content: 'At vero eos et accusamus\A\AEt iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.\A\ASimilique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.\A\ANam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.';
-    }
-
-    @media (max-width:1099px) {
-      :root {
-        --dot-inactive: rgba(203, 203, 203, 0.8);
-        --dot-active: rgb(0, 154, 243);
-      }
-
-      html::before {
-        font-size: 2rem
-      }
-
-      html {
-        padding: 20px;
-      }
-
-      body:hover::before {
-        transform: none;
-      }
-
-      body {
-        flex-direction: column;
-        height: 90vh;
-        display: flex;
-      }
-
-      body::before {
-        /* flex: 0 1 auto; */
-        width: 100%;
-        max-height: 20vh;
-        border-radius: 10px 10px 0 0;
-      }
-
-      body::after {
-        flex: 1 0 auto;
-        padding: 30px;
-        font-size: 15px;
-        border-radius: 0 0 10px 10px;
-        min-height: 0;
-        overflow-y: auto;
-        height: 60vh;
-      }
-
-      header {
-        transform: rotate(270deg);
-        position: absolute;
-        width: 0;
-        left: 43%;
-        margin: 0;
-        top: 24vh;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
