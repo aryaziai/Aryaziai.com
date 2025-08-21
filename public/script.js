@@ -1,106 +1,58 @@
-let isScrolling = false;
-let scrollTimeout;
-let startY = 0;
-let startX = 0;
-let navigationEnabled = false;
+/* eslint-disable eqeqeq */
+let isScrolling, startY, startX, isDragging, navigationEnabled;
+const isMobile = () => innerWidth < 1100;
+const getPage = () => +document.body.getAttribute('page') || 0;
+const setPage = p => document.body.setAttribute('page', p);
+const nav = p => navigationEnabled && p > 0 && p < 5 && p != getPage() && setPage(p);
 
-const isMobile = () => window.innerWidth < 1100;
+// Enable after intro
+setTimeout(() => (navigationEnabled = 1, setPage(1)), 200);
 
-// --- Page helpers ---
-const getCurrentPage = () => parseInt(document.body.getAttribute('page') || '0');
-const setPage = (page) => document.body.setAttribute('page', page);
-
-const navigateToPage = (newPage) => {
+// Handle all swipes/drags
+const swipe = (endX, endY) => {
   if (!navigationEnabled) return;
-  const current = getCurrentPage();
-  if (newPage < 1 || newPage > 4 || newPage === current) return;
-  setPage(newPage);
+  const dx = startX - endX, dy = startY - endY;
+  if (Math.abs(isMobile() ? dx : dy) > 50)
+    nav(getPage() + (isMobile() ? dx : -dy) / Math.abs(isMobile() ? dx : dy));
 };
 
-// --- Navigation delay (intro animation) ---
-const introMs = parseFloat(
-  getComputedStyle(document.documentElement).getPropertyValue('--intro-duration')
-) * 1000;
-
-setTimeout(() => {
-  navigationEnabled = true;
-  setPage(1); // initial page
-}, introMs + 200);
-
-// --- Scroll ---
-const handleScroll = (delta) => {
-  if (!navigationEnabled || isScrolling || Math.abs(delta) < 8) return;
-
-  isScrolling = true;
-  navigateToPage(getCurrentPage() + (delta > 0 ? 1 : -1));
-
-  clearTimeout(scrollTimeout);
-  scrollTimeout = setTimeout(() => (isScrolling = false), 500);
-};
-
-// --- Swipe ---
-const handleSwipe = (endX, endY) => {
-  if (!navigationEnabled) return;
-
-  const dx = startX - endX;
-  const dy = startY - endY;
-  const threshold = 50;
-
-  if (isMobile()) {
-    if (Math.abs(dx) > threshold) {
-      navigateToPage(getCurrentPage() + (dx > 0 ? 1 : -1));
-    }
-  } else {
-    if (Math.abs(dy) > threshold) {
-      navigateToPage(getCurrentPage() + (dy > 0 ? -1 : 1));
-    }
+// Mouse drag
+window.addEventListener('mousedown', e => {
+  if (!e.target.closest('header') && !isMobile()) {
+    isDragging = 1;
+    startX = e.clientX;
+    startY = e.clientY;
   }
-};
+}, true);
 
-// --- Keyboard ---
-const handleKey = (key) => {
-  if (!navigationEnabled) return;
-  const current = getCurrentPage();
+window.addEventListener('mouseup', e => isDragging && !isMobile() && (isDragging = 0, swipe(e.clientX, e.clientY)), true);
 
-  if (isMobile()) {
-    if (key === 'ArrowLeft') navigateToPage(current - 1);
-    if (key === 'ArrowRight') navigateToPage(current + 1);
-  } else {
-    if (key === 'ArrowUp') navigateToPage(current - 1);
-    if (key === 'ArrowDown') navigateToPage(current + 1);
-  }
-};
+// Touch
+addEventListener('touchstart', e => (startX = e.touches[0].clientX, startY = e.touches[0].clientY));
+addEventListener('touchend', e => swipe(e.changedTouches[0].clientX, e.changedTouches[0].clientY));
 
-// --- Dots ---
-const handleDotClick = (e) => {
-  if (!navigationEnabled) return;
-
-  const styles = getComputedStyle(document.documentElement);
-  const dotSpacing = parseFloat(styles.getPropertyValue('--dot-spacing'));
-  const totalPages = parseInt(styles.getPropertyValue('--total-pages'));
-
-  const rect = e.currentTarget.getBoundingClientRect();
-  const pos = isMobile() ? e.clientX - rect.left : e.clientY - rect.top;
-
-  const targetPage = Math.min(
-    Math.max(1, Math.floor(pos / dotSpacing) + 1),
-    totalPages
-  );
-
-  navigateToPage(targetPage);
-};
-
-// --- Event bindings ---
-document.addEventListener('touchstart', (e) => {
-  startX = e.touches[0].clientX;
-  startY = e.touches[0].clientY;
-});
-document.addEventListener('touchend', (e) => {
-  handleSwipe(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
-});
-document.addEventListener('wheel', (e) => {
+// Wheel
+addEventListener('wheel', e => {
   e.preventDefault();
-  handleScroll(e.deltaY);
+  if (!navigationEnabled || isScrolling || Math.abs(e.deltaY) < 8) return;
+  isScrolling = 1;
+  nav(getPage() + (e.deltaY > 0 ? 1 : -1));
+  clearTimeout(isScrolling);
+  isScrolling = setTimeout(() => isScrolling = 0, 500);
 }, { passive: false });
-document.addEventListener('keydown', (e) => handleKey(e.key));
-document.querySelector('header').addEventListener('click', handleDotClick);
+
+// Keyboard
+addEventListener('keydown', e => {
+  if (!navigationEnabled) return;
+  const k = e.key, p = getPage();
+  if (k == `Arrow${isMobile() ? 'Left' : 'Up'}`) nav(p - 1);
+  if (k == `Arrow${isMobile() ? 'Right' : 'Down'}`) nav(p + 1);
+});
+
+// Dots
+document.querySelector('header').addEventListener('click', e => {
+  if (!navigationEnabled) return;
+  const s = getComputedStyle(document.documentElement);
+  const pos = (isMobile() ? e.clientX : e.clientY) - e.currentTarget.getBoundingClientRect()[isMobile() ? 'left' : 'top'];
+  nav(Math.min(4, Math.max(1, Math.floor(pos / parseFloat(s.getPropertyValue('--dot-spacing'))) + 1)));
+});
