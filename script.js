@@ -48,7 +48,7 @@ const handleSwipe = (endX, endY) => {
 
   if (isMobile()) {
     if (Math.abs(dx) > threshold) {
-      navigateToPage(getCurrentPage() + (dx > 0 ? -1 : 1));
+      navigateToPage(getCurrentPage() + (dx > 0 ? 1 : -1));
     }
   } else {
     if (Math.abs(dy) > threshold) {
@@ -63,8 +63,8 @@ const handleKey = (key) => {
   const current = getCurrentPage();
 
   if (isMobile()) {
-    if (key === 'ArrowLeft') navigateToPage(current + 1);
-    if (key === 'ArrowRight') navigateToPage(current - 1);
+    if (key === 'ArrowLeft') navigateToPage(current - 1);
+    if (key === 'ArrowRight') navigateToPage(current + 1);
   } else {
     if (key === 'ArrowUp') navigateToPage(current - 1);
     if (key === 'ArrowDown') navigateToPage(current + 1);
