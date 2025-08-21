@@ -34,7 +34,7 @@ const nav = (p) => {
 setTimeout(() => {
   navigationEnabled = true;
   setPage(1);
-}, parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--intro-duration')) * 1000);
+}, parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--intro-duration')) * 1000 + 1000);
 
 // Swipe handling (desktop and mobile)
 const swipe = (endX, endY) => {
