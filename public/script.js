@@ -1,4 +1,3 @@
-/* eslint-disable eqeqeq */
 let isDragging = false,
   startX = 0,
   startY = 0,
@@ -13,14 +12,25 @@ const getPage = () => +document.body.getAttribute('page') || 0;
 
 const setPage = (p) => {
   const currentPage = getPage();
-  if (!isMobile() && currentPage !== 0) {
-    // Clear any ongoing animation by forcing a reflow
-    document.body.style.animation = 'none';
-    document.body.offsetHeight; // Force reflow
-    document.body.style.animation = '';
 
-    document.body.setAttribute('data-direction', p > currentPage ? 'down' : 'up');
+  // Trigger animation for desktop only when there's a page change
+  if (!isMobile() && !isSmallScreen() && currentPage !== 0 && currentPage !== p) {
+    const body = document.body;
+    const direction = p > currentPage ? 'down' : 'up';
+
+    // Remove any existing animation
+    body.style.animation = 'none';
+    body.offsetHeight; // Force reflow
+
+    // Apply the appropriate animation
+    body.style.animation = `page${direction.charAt(0).toUpperCase() + direction.slice(1)} var(--page-transition) cubic-bezier(0.4, 0, 0.2, 1) both`;
+
+    // Clean up animation after it completes
+    setTimeout(() => {
+      body.style.animation = '';
+    }, 400);
   }
+
   document.body.setAttribute('page', p);
   lastPage = currentPage;
 };

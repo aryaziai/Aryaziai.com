@@ -13,7 +13,6 @@
   <meta property="og:image" content="https://aryaziai.com/images/pic01.jpg">
   <link rel="icon" href="https://aryaziai.com/images/favicon-96x96.png" type="image/png">
 </head>
-
 <style>
   * {
     margin: 0;
@@ -23,20 +22,17 @@
 
   :root {
     color-scheme: only light;
-
     /* Colors */
     --dot-inactive: rgba(255, 255, 255, 0.3);
     --dot-active: rgba(255, 255, 255, 1);
     --shadow-light: rgba(0, 0, 0, .15);
     --shadow-dark: rgba(0, 0, 0, .2);
-
     /* Timing */
     --intro-duration: 5.5s;
     --type-delay: 1.3s;
     --type-duration: 2s;
     --blink-duration: 0.75s;
     --page-transition: 0.4s;
-
     /* Layout */
     --dot-size: 12px;
     --dot-spacing: 20px;
@@ -105,7 +101,7 @@
       fadeOut .5s ease-out var(--intro-duration) forwards;
   }
 
-  /* Main Card Container with vertical page transition */
+  /* Main Card Container - Initial state hidden */
   body {
     cursor: default;
     border-radius: var(--border-radius);
@@ -115,16 +111,26 @@
     position: relative;
     perspective: 1000px;
     opacity: 0;
-    animation: fadeIn .8s ease-out calc(var(--intro-duration) + 0.2s) forwards;
     transition: transform var(--page-transition) cubic-bezier(0.4, 0, 0.2, 1),
       box-shadow 0.3s ease;
     justify-content: center;
     height: 65vh;
   }
 
-  body:hover {
-    box-shadow: 0 25px 70px var(--shadow-dark);
+  /* Only animate fadeIn on initial load (no page attribute) */
+  body:not([page]) {
+    animation: fadeIn 2s ease calc(var(--intro-duration) + 0.5s) both;
   }
+
+  /* Once we have a page attribute, body is always visible */
+  body[page] {
+    opacity: 1;
+    box-shadow: 0 25px 100px var(--shadow-dark);
+  }
+
+  /* body:hover {
+    box-shadow: 0 25px 70px var(--shadow-dark);
+  } */
 
   /* Desktop vertical scroll effect */
   @media (min-width: 1100px) {
@@ -135,20 +141,6 @@
     body[page="4"] {
       transform: translateY(0);
       opacity: 1;
-    }
-
-    /* Going down animations */
-    body[data-direction="down"][page="2"],
-    body[data-direction="down"][page="3"],
-    body[data-direction="down"][page="4"] {
-      animation: pageDown var(--page-transition) cubic-bezier(0.4, 0, 0.2, 1) both;
-    }
-
-    /* Going up animations */
-    body[data-direction="up"][page="1"],
-    body[data-direction="up"][page="2"],
-    body[data-direction="up"][page="3"] {
-      animation: pageUp var(--page-transition) cubic-bezier(0.4, 0, 0.2, 1) both;
     }
   }
 
@@ -217,7 +209,6 @@
     --content-2: "Hobbies \A\A I\'m a creative developer who has been pushing the boundaries of what\'s possible with web technologies since 2019. \A\A I believe in semantic HTML, clean code, and finding innovative solutions to interesting constraints. When I\'m not coding, you\'ll find me exploring new technologies, discovering new bike paths 🚲, and sharing knowledge with the developer community.\A\A 𝗙𝘂𝗻 𝗳𝗮𝗰𝘁: My portfolio is built using CSS pseudo-elements, minimal JavaScript, and zero <𝚍𝚒𝚟> elements";
     --content-3: "Interests \A\A I\'m a creative developer who has been pushing the boundaries of what\'s possible with web technologies since 2019. \A\A I believe in semantic HTML, clean code, and finding innovative solutions to interesting constraints. When I\'m not coding, you\'ll find me exploring new technologies, discovering new bike paths 🚲, and sharing knowledge with the developer community.\A\A 𝗙𝘂𝗻 𝗳𝗮𝗰𝘁: My portfolio is built using CSS pseudo-elements, minimal JavaScript, and zero <𝚍𝚒𝚟> elements";
     --content-4: "Contact \A\A I\'m a creative developer who has been pushing the boundaries of what\'s possible with web technologies since 2019. \A\A I believe in semantic HTML, clean code, and finding innovative solutions to interesting constraints. When I\'m not coding, you\'ll find me exploring new technologies, discovering new bike paths 🚲, and sharing knowledge with the developer community.\A\A 𝗙𝘂𝗻 𝗳𝗮𝗰𝘁: My portfolio is built using CSS pseudo-elements, minimal JavaScript, and zero <𝚍𝚒𝚟> elements";
-
     content: var(--content-1);
     flex: 1;
     padding: 50px 40px 40px;

@@ -119,18 +119,18 @@
 
   /* Only animate fadeIn on initial load (no page attribute) */
   body:not([page]) {
-    animation: fadeIn 4s ease-out calc(var(--intro-duration) + 2s) forwards;
+    animation: fadeIn 2s ease calc(var(--intro-duration) + 0.5s) both;
   }
 
   /* Once we have a page attribute, body is always visible */
   body[page] {
     opacity: 1;
-    box-shadow: 0 25px 700px var(--shadow-dark);
+    box-shadow: 0 25px 100px var(--shadow-dark);
   }
 
-  body:hover {
-    /* box-shadow: 0 25px 700px var(--shadow-dark); */
-  }
+  /* body:hover {
+    box-shadow: 0 25px 70px var(--shadow-dark);
+  } */
 
   /* Desktop vertical scroll effect */
   @media (min-width: 1100px) {
@@ -141,20 +141,6 @@
     body[page="4"] {
       transform: translateY(0);
       opacity: 1;
-    }
-
-    /* Going down animations */
-    body[data-direction="down"][page="2"],
-    body[data-direction="down"][page="3"],
-    body[data-direction="down"][page="4"] {
-      animation: pageDown var(--page-transition) cubic-bezier(0.4, 0, 0.2, 1) both;
-    }
-
-    /* Going up animations */
-    body[data-direction="up"][page="1"],
-    body[data-direction="up"][page="2"],
-    body[data-direction="up"][page="3"] {
-      animation: pageUp var(--page-transition) cubic-bezier(0.4, 0, 0.2, 1) both;
     }
   }
 
