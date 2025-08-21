@@ -6,7 +6,8 @@ const setPage = p => document.body.setAttribute('page', p);
 const nav = p => navigationEnabled && p > 0 && p < 5 && p != getPage() && setPage(p);
 
 // Enable after intro
-setTimeout(() => (navigationEnabled = 1, setPage(1)), 200);
+setTimeout(() => (navigationEnabled = 1, setPage(1)),
+  parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--intro-duration')) * 1000);
 
 // Handle all swipes/drags
 const swipe = (endX, endY) => {
