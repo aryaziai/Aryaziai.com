@@ -31,7 +31,7 @@
     --shadow-dark: rgba(0, 0, 0, .2);
 
     /* Timing */
-    --intro-duration: 0s;
+    --intro-duration: 5.5s;
     --type-delay: 1.3s;
     --type-duration: 2s;
     --blink-duration: 0.75s;
@@ -45,7 +45,7 @@
 
   /* Base Layout */
   html {
-    /* cursor: none; */
+    cursor: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -354,14 +354,19 @@
   /* Mobile Styles */
 
   @media (min-width: 1100px) {
-    body:hover::before {
+
+    body {
+      width: 55vw;
+    }
+
+    /* body:hover::before {
       transform: rotateY(180deg) scaleX(-1);
       background: transparent;
       content: '✉️  arya721@gmail.com\A\A📱  415.786.7985\A\A🔗  linkedin.com/in/aryaziai\A\A📍  San Francisco, CA';
       display: flex;
       align-items: center;
       justify-content: center;
-    }
+    } */
   }
 
   @media (max-width: 1099px) {
