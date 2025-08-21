@@ -13,11 +13,19 @@ setTimeout(() => (navigationEnabled = 1, setPage(1)),
 const swipe = (endX, endY) => {
   if (!navigationEnabled) return;
   const dx = startX - endX, dy = startY - endY;
-  if (Math.abs(isMobile() ? dx : dy) > 50)
-    nav(getPage() + (isMobile() ? dx : -dy) / Math.abs(isMobile() ? dx : dy));
+
+  if (isMobile()) {
+    // Only horizontal swipes on mobile
+    if (Math.abs(dx) > 50)
+      nav(getPage() + (dx > 0 ? 1 : -1));
+  } else {
+    // Only vertical swipes on desktop
+    if (Math.abs(dy) > 50)
+      nav(getPage() + (dy > 0 ? 1 : -1));
+  }
 };
 
-// Mouse drag
+// Mouse drag (desktop only)
 window.addEventListener('mousedown', e => {
   if (!e.target.closest('header') && !isMobile()) {
     isDragging = 1;
@@ -26,14 +34,19 @@ window.addEventListener('mousedown', e => {
   }
 }, true);
 
-window.addEventListener('mouseup', e => isDragging && !isMobile() && (isDragging = 0, swipe(e.clientX, e.clientY)), true);
+window.addEventListener('mouseup', e =>
+  isDragging && !isMobile() && (isDragging = 0, swipe(e.clientX, e.clientY)), true);
 
-// Touch
-addEventListener('touchstart', e => (startX = e.touches[0].clientX, startY = e.touches[0].clientY));
+// Touch (mobile only)
+addEventListener('touchstart', e => {
+  startX = e.touches[0].clientX;
+  startY = e.touches[0].clientY;
+});
 addEventListener('touchend', e => swipe(e.changedTouches[0].clientX, e.changedTouches[0].clientY));
 
-// Wheel
+// Wheel (desktop only)
 addEventListener('wheel', e => {
+  if (isMobile()) return; // disable wheel on mobile
   e.preventDefault();
   if (!navigationEnabled || isScrolling || Math.abs(e.deltaY) < 8) return;
   isScrolling = 1;
@@ -46,14 +59,20 @@ addEventListener('wheel', e => {
 addEventListener('keydown', e => {
   if (!navigationEnabled) return;
   const k = e.key, p = getPage();
-  if (k == `Arrow${isMobile() ? 'Left' : 'Up'}`) nav(p - 1);
-  if (k == `Arrow${isMobile() ? 'Right' : 'Down'}`) nav(p + 1);
+  if (isMobile()) {
+    if (k == 'ArrowLeft') nav(p - 1);
+    if (k == 'ArrowRight') nav(p + 1);
+  } else {
+    if (k == 'ArrowUp') nav(p - 1);
+    if (k == 'ArrowDown') nav(p + 1);
+  }
 });
 
 // Dots
 document.querySelector('header').addEventListener('click', e => {
   if (!navigationEnabled) return;
   const s = getComputedStyle(document.documentElement);
-  const pos = (isMobile() ? e.clientX : e.clientY) - e.currentTarget.getBoundingClientRect()[isMobile() ? 'left' : 'top'];
+  const rect = e.currentTarget.getBoundingClientRect();
+  const pos = (isMobile() ? e.clientX - rect.left : e.clientY - rect.top);
   nav(Math.min(4, Math.max(1, Math.floor(pos / parseFloat(s.getPropertyValue('--dot-spacing'))) + 1)));
 });
