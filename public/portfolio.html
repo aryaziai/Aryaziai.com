@@ -144,7 +144,7 @@
     }
   }
 
-  /* Page transition animations */
+  /* Page transition animations - Desktop (vertical) */
   @keyframes pageDown {
     0% {
       transform: translateY(0);
@@ -185,6 +185,51 @@
 
     100% {
       transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* Page transition animations - Mobile (horizontal) */
+  @keyframes pageRight {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    45% {
+      transform: translateX(-100vw);
+      opacity: 0;
+    }
+
+    55% {
+      transform: translateX(100vw);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pageLeft {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    45% {
+      transform: translateX(100vw);
+      opacity: 0;
+    }
+
+    55% {
+      transform: translateX(-100vw);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateX(0);
       opacity: 1;
     }
   }
