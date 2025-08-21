@@ -35,6 +35,7 @@
     --type-delay: 1.3s;
     --type-duration: 2s;
     --blink-duration: 0.75s;
+    --page-transition: 0.4s;
 
     /* Layout */
     --dot-size: 12px;
@@ -52,13 +53,12 @@
     background: linear-gradient(135deg, #ffeaa7, #fdcb6e, #a29bfe, #74b9ff);
     background-size: 700% 700%;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    animation: gradient 70s ease infinite;
+    animation: gradient 65s ease infinite;
     width: 100vw;
     height: 100vh;
   }
 
   html:has([page]) {
-    /* cursor: url("./wheel-2.png") 48 48, auto; */
     cursor: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='16' cy='16' r='12' fill='%23808080' opacity='0.01'/%3E%3Ccircle cx='16' cy='16' r='12' fill='none' stroke='%23808080' stroke-width='1' opacity='0.5'/%3E%3C/svg%3E") 16 16, auto;
   }
 
@@ -105,7 +105,7 @@
       fadeOut .5s ease-out var(--intro-duration) forwards;
   }
 
-  /* Main Card Container */
+  /* Main Card Container with vertical page transition */
   body {
     cursor: default;
     border-radius: var(--border-radius);
@@ -116,13 +116,85 @@
     perspective: 1000px;
     opacity: 0;
     animation: fadeIn .8s ease-out calc(var(--intro-duration) + 0.2s) forwards;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform var(--page-transition) cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.3s ease;
     justify-content: center;
     height: 65vh;
   }
 
   body:hover {
     box-shadow: 0 25px 70px var(--shadow-dark);
+  }
+
+  /* Desktop vertical scroll effect */
+  @media (min-width: 1100px) {
+
+    body[page="1"],
+    body[page="2"],
+    body[page="3"],
+    body[page="4"] {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Going down animations */
+    body[data-direction="down"][page="2"],
+    body[data-direction="down"][page="3"],
+    body[data-direction="down"][page="4"] {
+      animation: pageDown var(--page-transition) cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    /* Going up animations */
+    body[data-direction="up"][page="1"],
+    body[data-direction="up"][page="2"],
+    body[data-direction="up"][page="3"] {
+      animation: pageUp var(--page-transition) cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+  }
+
+  /* Page transition animations */
+  @keyframes pageDown {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    45% {
+      transform: translateY(-100vh);
+      opacity: 0;
+    }
+
+    55% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pageUp {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    45% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+
+    55% {
+      transform: translateY(-100vh);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 
   /* Left Panel - Image/Contact */
@@ -155,7 +227,7 @@
     font-size: 16px;
     background: #fff;
     border-radius: 0 var(--border-radius) var(--border-radius) 0;
-    transition: opacity var(--transition-fast);
+    transition: opacity 0.3s ease;
     overflow-y: auto;
     width: 400px;
     max-width: fit-content;
@@ -197,7 +269,7 @@
     height: var(--dot-size);
     border-radius: 50%;
     background: var(--dot-inactive);
-    transition: background var(--transition-fast);
+    transition: background 0.3s ease;
     cursor: pointer;
     pointer-events: all;
   }
@@ -225,7 +297,7 @@
     margin: 0 auto;
   }
 
-  /* Active dot states - using CSS custom properties for cleaner code */
+  /* Active dot states */
   body[page="2"] header::before,
   body[page="3"] header::before,
   body[page="4"] header::before {
@@ -354,34 +426,20 @@
     }
   }
 
-  /* Mobile Styles */
-
+  /* Desktop specific styles */
   @media (min-width: 1100px) {
-
     body {
       width: 55vw;
     }
-
-    /* body:hover::before {
-      transform: rotateY(180deg) scaleX(-1);
-      background: transparent;
-      content: '✉️  arya721@gmail.com\A\A📱  415.786.7985\A\A🔗  linkedin.com/in/aryaziai\A\A📍  San Francisco, CA';
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    } */
   }
 
+  /* Mobile Styles */
   @media (max-width: 1099px) {
     :root {
       --dot-inactive: rgba(203, 203, 203, 0.8);
       --dot-active: rgb(0, 154, 243);
       --mobile-image-height: 30vh;
     }
-
-    /* html {
-        padding: 20px;
-      } */
 
     html::before {
       font-size: 2rem;
@@ -417,11 +475,11 @@
     }
   }
 </style>
-</head>
 
 <body>
   <header></header>
   <script src="./script.js"></script>
 </body>
+<!--Look Ma, No Divs!-->
 
 </html>
