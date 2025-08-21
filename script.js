@@ -13,10 +13,10 @@ const getPage = () => +document.body.getAttribute('page') || 0;
 const setPage = (p) => {
   const currentPage = getPage();
 
-  // Trigger animation for desktop only when there's a page change
-  if (!isMobile() && !isSmallScreen() && currentPage !== 0 && currentPage !== p) {
+  // Trigger animation when there's a page change
+  if (currentPage !== 0 && currentPage !== p) {
     const body = document.body;
-    const direction = p > currentPage ? 'down' : 'up';
+    const direction = p > currentPage ? (isMobile() || isSmallScreen() ? 'right' : 'down') : (isMobile() || isSmallScreen() ? 'left' : 'up');
 
     // Remove any existing animation
     body.style.animation = 'none';
@@ -27,7 +27,7 @@ const setPage = (p) => {
 
     // Clean up animation after it completes
     setTimeout(() => {
-      body.style.animation = '';
+      body.removeAttribute('style');
     }, 400);
   }
 
