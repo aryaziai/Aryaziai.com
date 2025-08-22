@@ -49,10 +49,10 @@ const swipe = (endX, endY) => {
         // Small screens: natural direction (positive delta = forward)
         nav(getPage() + (direction > 0 ? 1 : -1));
       } else {
-        // Large screens: inverted direction (negative delta = forward)
-        nav(getPage() + (direction > 0 ? -1 : 1));
+        // Large screens: natural direction for mouse drag (positive delta = forward)
+        nav(getPage() + (direction > 0 ? 1 : -1));
       }
-      setTimeout(() => swipeLocked = false, 400);
+      setTimeout(() => swipeLocked = false, 100);
     }
   };
 
@@ -102,9 +102,9 @@ addEventListener('wheel', e => {
       swipeLocked = true;
       // Inverted: positive deltaY goes back, negative goes forward
       nav(getPage() + (e.deltaY > 0 ? -1 : 1));
-      setTimeout(() => swipeLocked = false, 400);
+      setTimeout(() => swipeLocked = false, 100);
     }
-  }, 50);
+  }, 20);
 }, { passive: false });
 
 // Keyboard navigation
