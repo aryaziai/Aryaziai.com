@@ -2,37 +2,26 @@ let isDragging = false,
   startX = 0,
   startY = 0,
   navigationEnabled = false,
-  lastPage = 0,
   swipeLocked = false;
 
-const isMobile = () => 'ontouchstart' in window; // real mobile devices only
+const isMobile = () => 'ontouchstart' in window;
 const isSmallScreen = () => innerWidth < 1100;
-
 const getPage = () => +document.body.getAttribute('page') || 0;
 
 const setPage = (p) => {
   const currentPage = getPage();
-
-  // Trigger animation when there's a page change
   if (currentPage !== 0 && currentPage !== p) {
     const body = document.body;
-    const direction = p > currentPage ? (isMobile() || isSmallScreen() ? 'right' : 'down') : (isMobile() || isSmallScreen() ? 'left' : 'up');
+    const direction = p > currentPage ?
+      (isMobile() || isSmallScreen() ? 'right' : 'down') :
+      (isMobile() || isSmallScreen() ? 'left' : 'up');
 
-    // Remove any existing animation
     body.style.animation = 'none';
     body.offsetHeight; // Force reflow
-
-    // Apply the appropriate animation
     body.style.animation = `page${direction.charAt(0).toUpperCase() + direction.slice(1)} var(--page-transition) cubic-bezier(0.4, 0, 0.2, 1) both`;
-
-    // Clean up animation after it completes
-    setTimeout(() => {
-      body.removeAttribute('style');
-    }, 400);
+    setTimeout(() => body.removeAttribute('style'), 400);
   }
-
   document.body.setAttribute('page', p);
-  lastPage = currentPage;
 };
 
 const nav = (p) => {
@@ -46,47 +35,51 @@ setTimeout(() => {
   setPage(1);
 }, parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--intro-duration')) * 1000 + 1000);
 
-// Swipe handling (desktop and mobile)
+// Swipe handling
 const swipe = (endX, endY) => {
   if (!navigationEnabled || swipeLocked) return;
+  const dx = startX - endX;
+  const dy = startY - endY;
+  const resistance = 120;
 
-  const dx = startX - endX,
-    dy = startY - endY;
-  const resistance = 120; // minimum distance to trigger a swipe
-  let delta = 0;
+  const checkSwipe = (delta, direction) => {
+    if (Math.abs(delta) > resistance) {
+      swipeLocked = true;
+      if (isMobile() || isSmallScreen()) {
+        // Small screens: natural direction (positive delta = forward)
+        nav(getPage() + (direction > 0 ? 1 : -1));
+      } else {
+        // Large screens: inverted direction (negative delta = forward)
+        nav(getPage() + (direction > 0 ? -1 : 1));
+      }
+      setTimeout(() => swipeLocked = false, 400);
+    }
+  };
 
   if (isMobile() || isSmallScreen()) {
-    // Horizontal swipe for mobile or small screens
-    if (Math.abs(dx) > resistance) delta = dx > 0 ? 1 : -1;
+    checkSwipe(dx, dx);
   } else {
-    // Vertical swipe for large desktop screens
-    if (Math.abs(dy) > resistance) delta = dy > 0 ? 1 : -1;
-  }
-
-  if (delta) {
-    swipeLocked = true;
-    nav(getPage() + delta);
-    setTimeout(() => swipeLocked = false, 400);
+    checkSwipe(dy, dy);
   }
 };
 
-// Mouse drag (all computers)
-window.addEventListener('mousedown', e => {
-  if (!e.target.closest('header') && !isMobile()) {
+// Mouse events
+addEventListener('mousedown', e => {
+  if (!e.target.closest('header') && !isMobile() && !swipeLocked) {
     isDragging = true;
     startX = e.clientX;
     startY = e.clientY;
   }
 }, true);
 
-window.addEventListener('mouseup', e => {
+addEventListener('mouseup', e => {
   if (isDragging) {
     isDragging = false;
-    swipe(e.clientX, e.clientY);
+    if (!swipeLocked) swipe(e.clientX, e.clientY);
   }
 }, true);
 
-// Touch events (mobile only)
+// Touch events
 addEventListener('touchstart', e => {
   startX = e.touches[0].clientX;
   startY = e.touches[0].clientY;
@@ -96,34 +89,37 @@ addEventListener('touchend', e => {
   swipe(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
 });
 
-// Wheel scrolling (desktop only)
+// Wheel scrolling with debouncing
+let wheelTimeout;
 addEventListener('wheel', e => {
-  if (isMobile() || isSmallScreen()) return; // disable wheel for mobile/small screens
+  if (isMobile() || isSmallScreen()) return;
   e.preventDefault();
   if (!navigationEnabled || swipeLocked || Math.abs(e.deltaY) < 8) return;
 
-  swipeLocked = true;
-  nav(getPage() + (e.deltaY > 0 ? 1 : -1));
-  setTimeout(() => swipeLocked = false, 400);
+  clearTimeout(wheelTimeout);
+  wheelTimeout = setTimeout(() => {
+    if (!swipeLocked) {
+      swipeLocked = true;
+      // Inverted: positive deltaY goes back, negative goes forward
+      nav(getPage() + (e.deltaY > 0 ? -1 : 1));
+      setTimeout(() => swipeLocked = false, 400);
+    }
+  }, 50);
 }, { passive: false });
 
 // Keyboard navigation
 addEventListener('keydown', e => {
   if (!navigationEnabled || swipeLocked) return;
   const p = getPage();
+  const keys = isSmallScreen() ?
+    { ArrowLeft: p - 1, ArrowRight: p + 1 } :
+    { ArrowUp: p - 1, ArrowDown: p + 1 };
 
-  if (isSmallScreen()) {
-    // Small screens: left/right arrows
-    if (e.key === 'ArrowLeft') nav(p - 1);
-    if (e.key === 'ArrowRight') nav(p + 1);
-  } else {
-    // Large screens: up/down arrows
-    if (e.key === 'ArrowUp') nav(p - 1);
-    if (e.key === 'ArrowDown') nav(p + 1);
+  if (keys[e.key]) {
+    nav(keys[e.key]);
+    swipeLocked = true;
+    setTimeout(() => swipeLocked = false, 400);
   }
-
-  swipeLocked = true;
-  setTimeout(() => swipeLocked = false, 400);
 });
 
 // Dots navigation
@@ -132,9 +128,9 @@ document.querySelector('header').addEventListener('click', e => {
   const s = getComputedStyle(document.documentElement);
   const rect = e.currentTarget.getBoundingClientRect();
   const pos = (isMobile() || isSmallScreen()) ? e.clientX - rect.left : e.clientY - rect.top;
+  const page = Math.min(4, Math.max(1, Math.floor(pos / parseFloat(s.getPropertyValue('--dot-spacing'))) + 1));
 
-  nav(Math.min(4, Math.max(1, Math.floor(pos / parseFloat(s.getPropertyValue('--dot-spacing'))) + 1)));
-
+  nav(page);
   swipeLocked = true;
   setTimeout(() => swipeLocked = false, 400);
 });
