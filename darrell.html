@@ -27,7 +27,7 @@
   <style>
     body {
       margin: 0;
-      font-family: "Comic Sans MS", cursive, sans-serif;
+      font-family: arial;
       background-color: #013220;
       color: #f0fff0;
       overflow-x: hidden;
@@ -69,7 +69,7 @@
       padding: 0;
       text-align: left;
       perspective: 1000px;
-      height: 400px;
+      height: 500px;
     }
 
     .card-inner {
@@ -111,9 +111,10 @@
     }
 
     .card img {
-      width: 100%;
       border-radius: 12px;
       margin-bottom: 10px;
+      width: 100%;
+      height: auto;
     }
 
     .card h3 {
@@ -598,7 +599,9 @@
       <div class="card">
         <div class="card-inner">
           <div class="card-front">
-            <img src="https://images.unsplash.com/photo-1577801592620-3a79f2a85c9a" alt="Carrot Juice">
+            <img
+              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.freepik.com%2Fpremium-photo%2Fgreen-smoothie-green-juice_948265-9956.jpg&f=1&nofb=1&ipt=26ba5eec59bd22166cdacdc4f544fda8318eaca852e87ce572880ea60629d8b1"
+              alt="Carrot Juice">
             <h3>Carrot Kick</h3>
             <ul>
               <li>Carrots</li>
@@ -630,7 +633,9 @@
       <div class="card">
         <div class="card-inner">
           <div class="card-front">
-            <img src="https://images.unsplash.com/photo-1600790065554-7d4bfe63c19e" alt="Green Juice">
+            <img
+              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.freepik.com%2Fpremium-photo%2Fgreen-smoothie-green-juice_948265-9956.jpg&f=1&nofb=1&ipt=26ba5eec59bd22166cdacdc4f544fda8318eaca852e87ce572880ea60629d8b1"
+              alt="Green Juice">
             <h3>Green Machine</h3>
             <ul>
               <li>Kale</li>
@@ -662,7 +667,9 @@
       <div class="card">
         <div class="card-inner">
           <div class="card-front">
-            <img src="https://images.unsplash.com/photo-1617196039897-f7ff63f63683" alt="Beet Juice">
+            <img
+              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.freepik.com%2Fpremium-photo%2Fgreen-smoothie-green-juice_948265-9956.jpg&f=1&nofb=1&ipt=26ba5eec59bd22166cdacdc4f544fda8318eaca852e87ce572880ea60629d8b1"
+              alt="Beet Juice">
             <h3>Beet Blast</h3>
             <ul>
               <li>Beets</li>
@@ -694,7 +701,9 @@
       <div class="card">
         <div class="card-inner">
           <div class="card-front">
-            <img src="https://images.unsplash.com/photo-1572441710534-680c9418b478" alt="Berry Juice">
+            <img
+              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.freepik.com%2Fpremium-photo%2Fgreen-smoothie-green-juice_948265-9956.jpg&f=1&nofb=1&ipt=26ba5eec59bd22166cdacdc4f544fda8318eaca852e87ce572880ea60629d8b1"
+              alt="Berry Juice">
             <h3>Berry Burst</h3>
             <ul>
               <li>Blueberries</li>
@@ -726,7 +735,9 @@
       <div class="card">
         <div class="card-inner">
           <div class="card-front">
-            <img src="https://images.unsplash.com/photo-1617396900799-7a7b8efc54b6" alt="Citrus Juice">
+            <img
+              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.freepik.com%2Fpremium-photo%2Fgreen-smoothie-green-juice_948265-9956.jpg&f=1&nofb=1&ipt=26ba5eec59bd22166cdacdc4f544fda8318eaca852e87ce572880ea60629d8b1"
+              alt="Citrus Juice">
             <h3>Citrus Splash</h3>
             <ul>
               <li>Oranges</li>
@@ -758,7 +769,9 @@
       <div class="card">
         <div class="card-inner">
           <div class="card-front">
-            <img src="https://images.unsplash.com/photo-1626806862736-872f5f8a2e99" alt="Pineapple Juice">
+            <img
+              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.freepik.com%2Fpremium-photo%2Fgreen-smoothie-green-juice_948265-9956.jpg&f=1&nofb=1&ipt=26ba5eec59bd22166cdacdc4f544fda8318eaca852e87ce572880ea60629d8b1"
+              alt="Pineapple Juice">
             <h3>Tropical Twist</h3>
             <ul>
               <li>Pineapple</li>
@@ -790,114 +803,65 @@
   </div>
 
   <script>
-    // Epic particle system
+    // Optimized particle system
     const particles = document.getElementById('particles');
     const ctx = particles.getContext('2d');
     particles.width = window.innerWidth;
     particles.height = window.innerHeight;
 
     const particleArray = [];
-    const juiceColors = ['#32cd32', '#228b22', '#00ff7f', '#90ee90', '#98fb98', '#00fa9a', '#20b2aa'];
-    const fruitEmojis = ['🍊', '🍎', '🍌', '🥕', '🥬', '🍓', '🍍', '🫐', '🥝', '🍇'];
+    const juiceColors = ['#32cd32', '#90ee90', '#00fa9a'];
+    const fruitEmojis = ['🍊', '🍎', '🥕', '🍓'];
 
-    // Create juice drop particles
-    for (let i = 0; i < 150; i++) {
+    // Reduced particle count for better performance
+    const particleCount = window.innerWidth < 768 ? 30 : 60;
+
+    // Create fewer, simpler particles
+    for (let i = 0; i < particleCount; i++) {
       particleArray.push({
         x: Math.random() * particles.width,
         y: Math.random() * particles.height - particles.height,
-        size: Math.random() * 8 + 3,
+        size: Math.random() * 6 + 2,
         color: juiceColors[Math.floor(Math.random() * juiceColors.length)],
-        speed: Math.random() * 4 + 2,
-        opacity: Math.random() * 0.8 + 0.2,
-        rotation: Math.random() * 2 * Math.PI,
-        rotationSpeed: (Math.random() - 0.5) * 0.1,
-        type: Math.random() > 0.8 ? 'emoji' : 'drop',
+        speed: Math.random() * 3 + 1,
+        opacity: Math.random() * 0.6 + 0.3,
+        type: Math.random() > 0.9 ? 'emoji' : 'circle',
         emoji: fruitEmojis[Math.floor(Math.random() * fruitEmojis.length)]
       });
     }
 
-    // Create splash particles
-    for (let i = 0; i < 50; i++) {
-      particleArray.push({
-        x: Math.random() * particles.width,
-        y: Math.random() * particles.height,
-        size: Math.random() * 15 + 5,
-        color: juiceColors[Math.floor(Math.random() * juiceColors.length)],
-        speed: Math.random() * 3 + 1,
-        opacity: Math.random() * 0.6 + 0.1,
-        vx: (Math.random() - 0.5) * 4,
-        vy: (Math.random() - 0.5) * 4,
-        life: Math.random() * 100 + 50,
-        maxLife: 150,
-        type: 'splash'
-      });
-    }
-
     let animationId;
+    let frameCount = 0;
+
     function animateParticles() {
+      // Throttle animation to 30fps for better performance
+      frameCount++;
+      if (frameCount % 2 !== 0) {
+        animationId = requestAnimationFrame(animateParticles);
+        return;
+      }
+
       ctx.clearRect(0, 0, particles.width, particles.height);
 
-      particleArray.forEach((particle, index) => {
+      particleArray.forEach((particle) => {
         if (particle.type === 'emoji') {
-          ctx.save();
           ctx.globalAlpha = particle.opacity;
           ctx.font = `${particle.size * 2}px Arial`;
           ctx.fillText(particle.emoji, particle.x, particle.y);
-          ctx.restore();
-
-          particle.y += particle.speed;
-          particle.x += Math.sin(particle.y * 0.01) * 2;
-
-          if (particle.y > particles.height + 50) {
-            particle.y = -50;
-            particle.x = Math.random() * particles.width;
-          }
-        } else if (particle.type === 'splash') {
-          ctx.save();
-          ctx.globalAlpha = particle.opacity * (particle.life / particle.maxLife);
-          ctx.fillStyle = particle.color;
-          ctx.beginPath();
-          ctx.arc(particle.x, particle.y, particle.size * (particle.life / particle.maxLife), 0, Math.PI * 2);
-          ctx.fill();
-          ctx.restore();
-
-          particle.x += particle.vx;
-          particle.y += particle.vy;
-          particle.life--;
-
-          if (particle.life <= 0) {
-            particle.x = Math.random() * particles.width;
-            particle.y = Math.random() * particles.height;
-            particle.life = particle.maxLife;
-            particle.vx = (Math.random() - 0.5) * 4;
-            particle.vy = (Math.random() - 0.5) * 4;
-          }
         } else {
-          // Juice drops
-          ctx.save();
+          // Simple circles instead of complex shapes
           ctx.globalAlpha = particle.opacity;
           ctx.fillStyle = particle.color;
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = particle.color;
-          ctx.translate(particle.x, particle.y);
-          ctx.rotate(particle.rotation);
-
-          // Draw teardrop shape
           ctx.beginPath();
-          ctx.moveTo(0, -particle.size);
-          ctx.bezierCurveTo(-particle.size, -particle.size / 2, -particle.size, particle.size / 2, 0, particle.size);
-          ctx.bezierCurveTo(particle.size, particle.size / 2, particle.size, -particle.size / 2, 0, -particle.size);
+          ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
           ctx.fill();
-          ctx.restore();
+        }
 
-          particle.y += particle.speed;
-          particle.x += Math.sin(particle.y * 0.008) * 1.5;
-          particle.rotation += particle.rotationSpeed;
-
-          if (particle.y > particles.height + 20) {
-            particle.y = -20;
-            particle.x = Math.random() * particles.width;
-          }
+        // Simple movement
+        particle.y += particle.speed;
+        if (particle.y > particles.height + 20) {
+          particle.y = -20;
+          particle.x = Math.random() * particles.width;
         }
       });
 
@@ -906,28 +870,7 @@
 
     animateParticles();
 
-    // Create additional dynamic effects
-    setTimeout(() => {
-      // Add extra juice splashes during the animation
-      for (let i = 0; i < 5; i++) {
-        setTimeout(() => {
-          for (let j = 0; j < 20; j++) {
-            particleArray.push({
-              x: particles.width / 2 + (Math.random() - 0.5) * 200,
-              y: particles.height / 2 + (Math.random() - 0.5) * 100,
-              size: Math.random() * 12 + 8,
-              color: juiceColors[Math.floor(Math.random() * juiceColors.length)],
-              vx: (Math.random() - 0.5) * 15,
-              vy: (Math.random() - 0.5) * 15,
-              life: 80,
-              maxLife: 80,
-              type: 'splash'
-            });
-          }
-        }, i * 1000);
-      }
-    }, 2000);
-
+    // Simplified effects - removed extra splash animations
     // End animation and transition
     setTimeout(() => {
       cancelAnimationFrame(animationId);
