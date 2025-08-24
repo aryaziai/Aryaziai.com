@@ -87,7 +87,13 @@
       transform-style: preserve-3d;
     }
 
-    .card:hover .card-inner,
+    /* Separate hover effects for desktop and touch devices */
+    @media (hover: hover) and (pointer: fine) {
+      .card:hover .card-inner {
+        transform: rotateY(180deg);
+      }
+    }
+
     .card.flipped .card-inner {
       transform: rotateY(180deg);
     }
@@ -1020,24 +1026,41 @@
       setTimeout(() => main.classList.add('visible'), 50);
     }, 12000);
 
-    // Mobile touch support for card flipping
+    // Improved mobile touch support for card flipping
     const cards = document.querySelectorAll('.card');
     cards.forEach(card => {
-      card.addEventListener('click', () => {
-        card.classList.toggle('flipped');
+      let touchStartTime = 0;
+
+      // Handle touch events for mobile
+      card.addEventListener('touchstart', (e) => {
+        touchStartTime = Date.now();
+      });
+
+      card.addEventListener('touchend', (e) => {
+        e.preventDefault(); // Prevent click event from firing
+        const touchDuration = Date.now() - touchStartTime;
+
+        // Only trigger flip for quick taps (not long presses or scrolls)
+        if (touchDuration < 500) {
+          card.classList.toggle('flipped');
+        }
+      });
+
+      // Handle click events for desktop (non-touch devices)
+      card.addEventListener('click', (e) => {
+        // Only handle click if this is not a touch device
+        if (!('ontouchstart' in window)) {
+          card.classList.toggle('flipped');
+        }
       });
     });
 
-    // Prevent flip hints from bubbling up to card click handler
-    const flipHints = document.querySelectorAll('.flip-hint');
-    flipHints.forEach(hint => {
-      hint.addEventListener('click', (e) => {
-        e.stopPropagation();
-        // Let the card's click handler run after stopping propagation
-        const card = hint.closest('.card');
-        card.classList.toggle('flipped');
-      });
-    });
+    // Prevent default touch behavior on the entire cards area to avoid scrolling issues
+    document.querySelector('.cards').addEventListener('touchstart', (e) => {
+      if (e.target.closest('.card')) {
+        e.preventDefault();
+      }
+    }, { passive: false });
 
     window.addEventListener('resize', () => {
       particles.width = window.innerWidth;
