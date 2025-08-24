@@ -27,11 +27,15 @@
   <style>
     body {
       margin: 0;
-      font-family: "Comic Sans MS", cursive, sans-serif;
+      font-family: arial;
       background-color: #013220;
       color: #f0fff0;
-      overflow-x: hidden;
+      overflow: hidden;
       text-align: center;
+    }
+
+    i {
+      font-size: 17px;
     }
 
     header {
@@ -57,7 +61,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      padding: 20px;
+      padding: 40px;
       max-width: 1200px;
       margin: auto;
     }
@@ -69,7 +73,9 @@
       padding: 0;
       text-align: left;
       perspective: 1000px;
-      height: 400px;
+      height: 500px;
+      cursor: pointer;
+      position: relative;
     }
 
     .card-inner {
@@ -111,9 +117,10 @@
     }
 
     .card img {
-      width: 100%;
       border-radius: 12px;
       margin-bottom: 10px;
+      /* width: 100%; */
+      height: 160px;
     }
 
     .card h3 {
@@ -123,7 +130,7 @@
 
     .card ul {
       list-style-type: "🍹 ";
-      padding-left: 20px;
+      padding-left: 24px;
       color: #e0ffe0;
       text-align: left;
       font-size: 20px;
@@ -131,6 +138,92 @@
 
     .card li {
       padding-left: 10px;
+    }
+
+    .card-number {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #e9bf13;
+      color: #013220;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      z-index: 5;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .flip-hint {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 204, 0, 0.9);
+      color: #013220;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      animation: flipHintPulse 2s ease-in-out infinite;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .flip-hint.back {
+      background: rgba(144, 238, 144, 0.9);
+    }
+
+    .mobile-instruction {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 204, 0, 0.9);
+      color: #013220;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      animation: instructionFade 3s ease-in-out infinite;
+      z-index: 10;
+    }
+
+    .mobile-instruction.back {
+      background: rgba(144, 238, 144, 0.9);
+    }
+
+    @keyframes flipHintPulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      50% {
+        transform: scale(1.1);
+        box-shadow: 0 4px 16px rgba(255, 204, 0, 0.6);
+      }
+    }
+
+    @keyframes instructionFade {
+
+      0%,
+      70%,
+      100% {
+        opacity: 1;
+      }
+
+      85% {
+        opacity: 0.6;
+      }
     }
 
     .health-benefits {
@@ -185,7 +278,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: titleFadeIn 2s ease-out forwards, rainbowShift 2s ease-in-out infinite 2s, titleBounce 3s ease-in-out infinite 2s;
+      animation: titleFadeIn 2s ease-out forwards, rainbowShift 2s ease-in-out infinite 2s, titleBounce 0s ease-in-out infinite 2s;
       text-shadow: 0 0 30px rgba(255, 204, 0, 0.5);
       filter: drop-shadow(0 0 20px rgba(255, 111, 97, 0.3));
       opacity: 0;
@@ -344,14 +437,16 @@
       }
     }
 
-    0%,
-    100% {
-      background-position: 0% 50%;
-    }
+    @keyframes rainbowShift {
 
-    50% {
-      background-position: 100% 50%;
-    }
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
     }
 
     @keyframes titleBounce {
@@ -460,13 +555,14 @@
       }
     }
 
-    0% {
-      transform: rotate(0deg) translateX(100px) rotate(0deg);
-    }
+    @keyframes fruitSpin {
+      0% {
+        transform: rotate(0deg) translateX(100px) rotate(0deg);
+      }
 
-    100% {
-      transform: rotate(360deg) translateX(100px) rotate(-360deg);
-    }
+      100% {
+        transform: rotate(360deg) translateX(100px) rotate(-360deg);
+      }
     }
 
     @keyframes strawBounce {
@@ -532,6 +628,13 @@
       opacity: 1;
     }
 
+    /* Show flip hints on all devices, but hide "tap" text on desktop */
+    @media (hover: hover) {
+      .mobile-instruction {
+        display: none;
+      }
+    }
+
     @media (max-width: 768px) {
       #splash-title {
         font-size: 3rem;
@@ -544,6 +647,17 @@
 
       .birthday-text {
         font-size: 2rem;
+      }
+
+      .flip-hint {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+      }
+
+      .mobile-instruction {
+        font-size: 0.7rem;
+        padding: 4px 10px;
       }
     }
   </style>
@@ -598,189 +712,234 @@
       <div class="card">
         <div class="card-inner">
           <div class="card-front">
-            <img src="https://images.unsplash.com/photo-1577801592620-3a79f2a85c9a" alt="Carrot Juice">
-            <h3>Carrot Kick</h3>
+            <div class="card-number">1</div>
+            <div class="flip-hint">🔄</div>
+            <div class="mobile-instruction">Tap for benefits!</div>
+            <img src="images/darrell/1.png" alt="Berry Apple Juice">
+            <h3>Berry Bootcamp</h3>
             <ul>
-              <li>Carrots</li>
-              <li>Ginger</li>
-              <li>Oranges</li>
-              <li>Boosts vision & immune system</li>
-            </ul>
-          </div>
-          <div class="card-back">
-            <div class="health-benefits">
-              <h3>🥕 Health Benefits</h3>
-              <div class="benefit">
-                <div class="benefit-title">👁️ Vision Support</div>
-                Rich in beta-carotene for eye health
-              </div>
-              <div class="benefit">
-                <div class="benefit-title">🛡️ Immune Boost</div>
-                Vitamin A strengthens immunity
-              </div>
-              <div class="benefit">
-                <div class="benefit-title">🔥 Anti-Inflammatory</div>
-                Ginger reduces inflammation
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front">
-            <img src="https://images.unsplash.com/photo-1600790065554-7d4bfe63c19e" alt="Green Juice">
-            <h3>Green Machine</h3>
-            <ul>
-              <li>Kale</li>
-              <li>Spinach</li>
-              <li>Apple</li>
-              <li>Flushes toxins & adds energy</li>
-            </ul>
-          </div>
-          <div class="card-back">
-            <div class="health-benefits">
-              <h3>🥬 Health Benefits</h3>
-              <div class="benefit">
-                <div class="benefit-title">🧹 Detoxification</div>
-                Chlorophyll cleanses the body
-              </div>
-              <div class="benefit">
-                <div class="benefit-title">⚡ Energy Boost</div>
-                Iron-rich greens fight fatigue
-              </div>
-              <div class="benefit">
-                <div class="benefit-title">🦴 Bone Health</div>
-                High in calcium and vitamin K
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front">
-            <img src="https://images.unsplash.com/photo-1617196039897-f7ff63f63683" alt="Beet Juice">
-            <h3>Beet Blast</h3>
-            <ul>
-              <li>Beets</li>
-              <li>Carrots</li>
-              <li>Lemon</li>
-              <li>Improves blood flow</li>
-            </ul>
-          </div>
-          <div class="card-back">
-            <div class="health-benefits">
-              <h3>❤️ Health Benefits</h3>
-              <div class="benefit">
-                <div class="benefit-title">💓 Heart Health</div>
-                Nitrates improve circulation
-              </div>
-              <div class="benefit">
-                <div class="benefit-title">💪 Athletic Performance</div>
-                Boosts stamina and endurance
-              </div>
-              <div class="benefit">
-                <div class="benefit-title">🧠 Brain Function</div>
-                Increases blood flow to brain
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front">
-            <img src="https://images.unsplash.com/photo-1572441710534-680c9418b478" alt="Berry Juice">
-            <h3>Berry Burst</h3>
-            <ul>
-              <li>Blueberries</li>
-              <li>Strawberries</li>
               <li>Blackberries</li>
-              <li>Rich in antioxidants</li>
+              <li>Apples</li>
+              <br><i>A refreshing mix of tart blackberries and crisp apples, offering a balanced sweet-tart flavor.
+                Packed with antioxidants, delivering natural energy and supports your immune system with every sip.</i>
             </ul>
           </div>
           <div class="card-back">
+            <div class="flip-hint back">↩️</div>
+            <div class="mobile-instruction back">Tap to flip back</div>
             <div class="health-benefits">
               <h3>🫐 Health Benefits</h3>
               <div class="benefit">
                 <div class="benefit-title">🛡️ Antioxidant Power</div>
-                Fights free radicals and aging
+                Blackberries fight free radicals
               </div>
               <div class="benefit">
-                <div class="benefit-title">🧠 Memory Boost</div>
-                Improves cognitive function
-              </div>
-              <div class="benefit">
-                <div class="benefit-title">❤️ Heart Protection</div>
-                Supports cardiovascular health
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front">
-            <img src="https://images.unsplash.com/photo-1617396900799-7a7b8efc54b6" alt="Citrus Juice">
-            <h3>Citrus Splash</h3>
-            <ul>
-              <li>Oranges</li>
-              <li>Limes</li>
-              <li>Grapefruit</li>
-              <li>Boosts immunity</li>
-            </ul>
-          </div>
-          <div class="card-back">
-            <div class="health-benefits">
-              <h3>🍊 Health Benefits</h3>
-              <div class="benefit">
-                <div class="benefit-title">🛡️ Immune System</div>
-                High vitamin C content
-              </div>
-              <div class="benefit">
-                <div class="benefit-title">✨ Skin Health</div>
-                Collagen production support
-              </div>
-              <div class="benefit">
-                <div class="benefit-title">🍃 Alkalizing</div>
-                Balances body pH levels
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front">
-            <img src="https://images.unsplash.com/photo-1626806862736-872f5f8a2e99" alt="Pineapple Juice">
-            <h3>Tropical Twist</h3>
-            <ul>
-              <li>Pineapple</li>
-              <li>Mango</li>
-              <li>Coconut water</li>
-              <li>Improves digestion</li>
-            </ul>
-          </div>
-          <div class="card-back">
-            <div class="health-benefits">
-              <h3>🍍 Health Benefits</h3>
-              <div class="benefit">
-                <div class="benefit-title">🔥 Digestive Aid</div>
-                Bromelain enzyme breaks down proteins
+                <div class="benefit-title">🧠 Brain Health</div>
+                Supports memory and cognitive function
               </div>
               <div class="benefit">
                 <div class="benefit-title">💧 Hydration</div>
-                Coconut water replenishes electrolytes
+                Natural sugars for sustained energy
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="card-number">2</div>
+            <div class="flip-hint">🔄</div>
+            <div class="mobile-instruction">Tap for benefits!</div>
+            <img src="images/darrell/2.png" alt="Orange Turmeric Juice">
+            <h3>The SF Giant</h3>
+            <ul>
+              <li>Orange</li>
+              <li>Turmeric</li>
+              <br><i>Named after the city's beloved baseball team, this golden blend pairs bright oranges with earthy
+                turmeric for a vibrant, immunity-boosting elixir rich in flavor and anti-inflammatory benefits.</i>
+            </ul>
+          </div>
+          <div class="card-back">
+            <div class="flip-hint back">↩️</div>
+            <div class="mobile-instruction back">Tap to flip back</div>
+            <div class="health-benefits">
+              <h3>🍊 Health Benefits</h3>
+              <div class="benefit">
+                <div class="benefit-title">🔥 Anti-Inflammatory</div>
+                Turmeric reduces inflammation
               </div>
               <div class="benefit">
-                <div class="benefit-title">🌟 Anti-Inflammatory</div>
-                Reduces swelling and joint pain
+                <div class="benefit-title">🛡️ Immune Boost</div>
+                Vitamin C strengthens immunity
+              </div>
+              <div class="benefit">
+                <div class="benefit-title">✨ Antioxidant Rich</div>
+                Curcumin fights oxidative stress
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="card-number">3</div>
+            <div class="flip-hint">🔄</div>
+            <div class="mobile-instruction">Tap for benefits!</div>
+            <img src="images/darrell/3.png" alt="Rainbow Veggie Juice">
+            <h3>Seahawk Touchdown</h3>
+            <ul>
+              <li>Orange</li>
+              <li>Turmeric</li>
+              <li>Kale</li>
+              <li>Cucumber</li>
+              <li>Beet</li>
+              <br>
+              <i>A vibrant blend that combines detoxifying greens with circulation-boosting beets and anti-inflammatory
+                turmeric.</i>
+            </ul>
+          </div>
+          <div class="card-back">
+            <div class="flip-hint back">↩️</div>
+            <div class="mobile-instruction back">Tap to flip back</div>
+            <div class="health-benefits">
+              <h3>🌈 Health Benefits</h3>
+              <div class="benefit">
+                <div class="benefit-title">💓 Heart Health</div>
+                Beet nitrates improve circulation
+              </div>
+              <div class="benefit">
+                <div class="benefit-title">🧹 Detoxification</div>
+                Kale and cucumber cleanse the liver
+              </div>
+              <div class="benefit">
+                <div class="benefit-title">💧 Hydration</div>
+                Cucumber provides natural hydration
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="card-number">4</div>
+            <div class="flip-hint">🔄</div>
+            <div class="mobile-instruction">Tap for benefits!</div>
+            <img src="images/darrell/4.png" alt="Green Garden Juice">
+            <h3>Green Garden</h3>
+            <ul>
+              <li>Cucumber</li>
+              <li>Celery</li>
+              <li>Parsley</li>
+              <li>Kale</li>
+              <li>Green grapes</li>
+              <br>
+              <i>A refreshing medley of hydrating vegetables and leafy greens that naturally cleanses and energizes your
+                body.</i>
+            </ul>
+          </div>
+          <div class="card-back">
+            <div class="flip-hint back">↩️</div>
+            <div class="mobile-instruction back">Tap to flip back</div>
+            <div class="health-benefits">
+              <h3>🥬 Health Benefits</h3>
+              <div class="benefit">
+                <div class="benefit-title">🧹 Natural Detox</div>
+                Parsley supports kidney function
+              </div>
+              <div class="benefit">
+                <div class="benefit-title">⚡ Energy Boost</div>
+                Iron-rich greens combat fatigue
+              </div>
+              <div class="benefit">
+                <div class="benefit-title">💧 Electrolyte Balance</div>
+                Celery provides natural sodium
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="card-number">5</div>
+            <div class="flip-hint">🔄</div>
+            <div class="mobile-instruction">Tap for benefits!</div>
+            <img src="images/darrell/5.png" alt="Ginger Giant Juice">
+            <h3>5AM Winner</h3>
+            <ul>
+              <li>Beet</li>
+              <li>Ginger</li>
+              <li>Celery</li>
+              <li>Carrot</li>
+              <br><i>This bold and invigorating blend harnesses the warming kick of fresh ginger alongside earthy beets
+                and sweet carrots. A winner in both flavor and nutritional power, this juice delivers a spicy zing
+                that awakens your senses while boosting circulation and digestive health.</i>
+            </ul>
+          </div>
+          <div class="card-back">
+            <div class="flip-hint back">↩️</div>
+            <div class="mobile-instruction back">Tap to flip back</div>
+            <div class="health-benefits">
+              <h3>🔥 Health Benefits</h3>
+              <div class="benefit">
+                <div class="benefit-title">🌶️ Digestive Aid</div>
+                Ginger soothes stomach & nausea
+              </div>
+              <div class="benefit">
+                <div class="benefit-title">👁️ Vision Support</div>
+                Beta-carotene from carrots
+              </div>
+              <div class="benefit">
+                <div class="benefit-title">💪 Athletic Performance</div>
+                Beet nitrates boost endurance
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="card-number">6</div>
+            <div class="flip-hint">🔄</div>
+            <div class="mobile-instruction">Tap for benefits!</div>
+            <img src="images/darrell/6.png" alt="Green Goddess Juice">
+            <h3>Chill Namaste</h3>
+            <ul>
+              <li>Celery</li>
+              <li>Parsley</li>
+              <li>Cucumbers</li>
+              <li>Kale</li>
+              <li>Turmeric</li>
+              <br>
+              <i>The ultimate green detox blend featuring powerful anti-inflammatory turmeric and hydrating
+                cucumber-celery combo.</i>
+            </ul>
+          </div>
+          <div class="card-back">
+            <div class="flip-hint back">↩️</div>
+            <div class="mobile-instruction back">Tap to flip back</div>
+            <div class="health-benefits">
+              <h3>💚 Health Benefits</h3>
+              <div class="benefit">
+                <div class="benefit-title">🧘 Anti-Inflammatory</div>
+                Turmeric reduces joint pain
+              </div>
+              <div class="benefit">
+                <div class="benefit-title">🦴 Bone Health</div>
+                Kale provides calcium & vitamin K
+              </div>
+              <div class="benefit">
+                <div class="benefit-title">💧 Ultimate Hydration</div>
+                Cucumber & celery restore fluids
               </div>
             </div>
           </div>
@@ -790,114 +949,65 @@
   </div>
 
   <script>
-    // Epic particle system
+    // Optimized particle system
     const particles = document.getElementById('particles');
     const ctx = particles.getContext('2d');
     particles.width = window.innerWidth;
     particles.height = window.innerHeight;
 
     const particleArray = [];
-    const juiceColors = ['#32cd32', '#228b22', '#00ff7f', '#90ee90', '#98fb98', '#00fa9a', '#20b2aa'];
-    const fruitEmojis = ['🍊', '🍎', '🍌', '🥕', '🥬', '🍓', '🍍', '🫐', '🥝', '🍇'];
+    const juiceColors = ['#32cd32', '#90ee90', '#00fa9a'];
+    const fruitEmojis = ['🍊', '🍎', '🥕', '🍓'];
 
-    // Create juice drop particles
-    for (let i = 0; i < 150; i++) {
+    // Reduced particle count for better performance
+    const particleCount = window.innerWidth < 768 ? 30 : 60;
+
+    // Create fewer, simpler particles
+    for (let i = 0; i < particleCount; i++) {
       particleArray.push({
         x: Math.random() * particles.width,
         y: Math.random() * particles.height - particles.height,
-        size: Math.random() * 8 + 3,
+        size: Math.random() * 6 + 2,
         color: juiceColors[Math.floor(Math.random() * juiceColors.length)],
-        speed: Math.random() * 4 + 2,
-        opacity: Math.random() * 0.8 + 0.2,
-        rotation: Math.random() * 2 * Math.PI,
-        rotationSpeed: (Math.random() - 0.5) * 0.1,
-        type: Math.random() > 0.8 ? 'emoji' : 'drop',
+        speed: Math.random() * 3 + 1,
+        opacity: Math.random() * 0.6 + 0.3,
+        type: Math.random() > 0.9 ? 'emoji' : 'circle',
         emoji: fruitEmojis[Math.floor(Math.random() * fruitEmojis.length)]
       });
     }
 
-    // Create splash particles
-    for (let i = 0; i < 50; i++) {
-      particleArray.push({
-        x: Math.random() * particles.width,
-        y: Math.random() * particles.height,
-        size: Math.random() * 15 + 5,
-        color: juiceColors[Math.floor(Math.random() * juiceColors.length)],
-        speed: Math.random() * 3 + 1,
-        opacity: Math.random() * 0.6 + 0.1,
-        vx: (Math.random() - 0.5) * 4,
-        vy: (Math.random() - 0.5) * 4,
-        life: Math.random() * 100 + 50,
-        maxLife: 150,
-        type: 'splash'
-      });
-    }
-
     let animationId;
+    let frameCount = 0;
+
     function animateParticles() {
+      // Throttle animation to 30fps for better performance
+      frameCount++;
+      if (frameCount % 2 !== 0) {
+        animationId = requestAnimationFrame(animateParticles);
+        return;
+      }
+
       ctx.clearRect(0, 0, particles.width, particles.height);
 
-      particleArray.forEach((particle, index) => {
+      particleArray.forEach((particle) => {
         if (particle.type === 'emoji') {
-          ctx.save();
           ctx.globalAlpha = particle.opacity;
           ctx.font = `${particle.size * 2}px Arial`;
           ctx.fillText(particle.emoji, particle.x, particle.y);
-          ctx.restore();
-
-          particle.y += particle.speed;
-          particle.x += Math.sin(particle.y * 0.01) * 2;
-
-          if (particle.y > particles.height + 50) {
-            particle.y = -50;
-            particle.x = Math.random() * particles.width;
-          }
-        } else if (particle.type === 'splash') {
-          ctx.save();
-          ctx.globalAlpha = particle.opacity * (particle.life / particle.maxLife);
-          ctx.fillStyle = particle.color;
-          ctx.beginPath();
-          ctx.arc(particle.x, particle.y, particle.size * (particle.life / particle.maxLife), 0, Math.PI * 2);
-          ctx.fill();
-          ctx.restore();
-
-          particle.x += particle.vx;
-          particle.y += particle.vy;
-          particle.life--;
-
-          if (particle.life <= 0) {
-            particle.x = Math.random() * particles.width;
-            particle.y = Math.random() * particles.height;
-            particle.life = particle.maxLife;
-            particle.vx = (Math.random() - 0.5) * 4;
-            particle.vy = (Math.random() - 0.5) * 4;
-          }
         } else {
-          // Juice drops
-          ctx.save();
+          // Simple circles instead of complex shapes
           ctx.globalAlpha = particle.opacity;
           ctx.fillStyle = particle.color;
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = particle.color;
-          ctx.translate(particle.x, particle.y);
-          ctx.rotate(particle.rotation);
-
-          // Draw teardrop shape
           ctx.beginPath();
-          ctx.moveTo(0, -particle.size);
-          ctx.bezierCurveTo(-particle.size, -particle.size / 2, -particle.size, particle.size / 2, 0, particle.size);
-          ctx.bezierCurveTo(particle.size, particle.size / 2, particle.size, -particle.size / 2, 0, -particle.size);
+          ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
           ctx.fill();
-          ctx.restore();
+        }
 
-          particle.y += particle.speed;
-          particle.x += Math.sin(particle.y * 0.008) * 1.5;
-          particle.rotation += particle.rotationSpeed;
-
-          if (particle.y > particles.height + 20) {
-            particle.y = -20;
-            particle.x = Math.random() * particles.width;
-          }
+        // Simple movement
+        particle.y += particle.speed;
+        if (particle.y > particles.height + 20) {
+          particle.y = -20;
+          particle.x = Math.random() * particles.width;
         }
       });
 
@@ -906,32 +1016,12 @@
 
     animateParticles();
 
-    // Create additional dynamic effects
-    setTimeout(() => {
-      // Add extra juice splashes during the animation
-      for (let i = 0; i < 5; i++) {
-        setTimeout(() => {
-          for (let j = 0; j < 20; j++) {
-            particleArray.push({
-              x: particles.width / 2 + (Math.random() - 0.5) * 200,
-              y: particles.height / 2 + (Math.random() - 0.5) * 100,
-              size: Math.random() * 12 + 8,
-              color: juiceColors[Math.floor(Math.random() * juiceColors.length)],
-              vx: (Math.random() - 0.5) * 15,
-              vy: (Math.random() - 0.5) * 15,
-              life: 80,
-              maxLife: 80,
-              type: 'splash'
-            });
-          }
-        }, i * 1000);
-      }
-    }, 2000);
-
+    // Simplified effects - removed extra splash animations
     // End animation and transition
     setTimeout(() => {
       cancelAnimationFrame(animationId);
       document.getElementById('splash').style.display = 'none';
+      document.body.style.overflow = 'auto';
       const main = document.getElementById('main-content');
       main.style.display = 'block';
       setTimeout(() => main.classList.add('visible'), 50);
