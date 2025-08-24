@@ -30,8 +30,12 @@
       font-family: arial;
       background-color: #013220;
       color: #f0fff0;
-      overflow-x: hidden;
+      overflow: hidden;
       text-align: center;
+    }
+
+    i {
+      font-size: 17px;
     }
 
     header {
@@ -57,7 +61,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      padding: 20px;
+      padding: 40px;
       max-width: 1200px;
       margin: auto;
     }
@@ -70,6 +74,8 @@
       text-align: left;
       perspective: 1000px;
       height: 500px;
+      cursor: pointer;
+      position: relative;
     }
 
     .card-inner {
@@ -113,8 +119,8 @@
     .card img {
       border-radius: 12px;
       margin-bottom: 10px;
-      width: 100%;
-      height: auto;
+      /* width: 100%; */
+      height: 160px;
     }
 
     .card h3 {
@@ -124,7 +130,7 @@
 
     .card ul {
       list-style-type: "🍹 ";
-      padding-left: 20px;
+      padding-left: 24px;
       color: #e0ffe0;
       text-align: left;
       font-size: 20px;
@@ -132,6 +138,92 @@
 
     .card li {
       padding-left: 10px;
+    }
+
+    .card-number {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #e9bf13;
+      color: #013220;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      z-index: 5;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .flip-hint {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 204, 0, 0.9);
+      color: #013220;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      animation: flipHintPulse 2s ease-in-out infinite;
+      z-index: 10;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .flip-hint.back {
+      background: rgba(144, 238, 144, 0.9);
+    }
+
+    .mobile-instruction {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 204, 0, 0.9);
+      color: #013220;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      animation: instructionFade 3s ease-in-out infinite;
+      z-index: 10;
+    }
+
+    .mobile-instruction.back {
+      background: rgba(144, 238, 144, 0.9);
+    }
+
+    @keyframes flipHintPulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      50% {
+        transform: scale(1.1);
+        box-shadow: 0 4px 16px rgba(255, 204, 0, 0.6);
+      }
+    }
+
+    @keyframes instructionFade {
+
+      0%,
+      70%,
+      100% {
+        opacity: 1;
+      }
+
+      85% {
+        opacity: 0.6;
+      }
     }
 
     .health-benefits {
@@ -186,7 +278,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: titleFadeIn 2s ease-out forwards, rainbowShift 2s ease-in-out infinite 2s, titleBounce 3s ease-in-out infinite 2s;
+      animation: titleFadeIn 2s ease-out forwards, rainbowShift 2s ease-in-out infinite 2s, titleBounce 0s ease-in-out infinite 2s;
       text-shadow: 0 0 30px rgba(255, 204, 0, 0.5);
       filter: drop-shadow(0 0 20px rgba(255, 111, 97, 0.3));
       opacity: 0;
@@ -345,14 +437,16 @@
       }
     }
 
-    0%,
-    100% {
-      background-position: 0% 50%;
-    }
+    @keyframes rainbowShift {
 
-    50% {
-      background-position: 100% 50%;
-    }
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
     }
 
     @keyframes titleBounce {
@@ -461,13 +555,14 @@
       }
     }
 
-    0% {
-      transform: rotate(0deg) translateX(100px) rotate(0deg);
-    }
+    @keyframes fruitSpin {
+      0% {
+        transform: rotate(0deg) translateX(100px) rotate(0deg);
+      }
 
-    100% {
-      transform: rotate(360deg) translateX(100px) rotate(-360deg);
-    }
+      100% {
+        transform: rotate(360deg) translateX(100px) rotate(-360deg);
+      }
     }
 
     @keyframes strawBounce {
@@ -533,6 +628,13 @@
       opacity: 1;
     }
 
+    /* Show flip hints on all devices, but hide "tap" text on desktop */
+    @media (hover: hover) {
+      .mobile-instruction {
+        display: none;
+      }
+    }
+
     @media (max-width: 768px) {
       #splash-title {
         font-size: 3rem;
@@ -545,6 +647,17 @@
 
       .birthday-text {
         font-size: 2rem;
+      }
+
+      .flip-hint {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+      }
+
+      .mobile-instruction {
+        font-size: 0.7rem;
+        padding: 4px 10px;
       }
     }
   </style>
@@ -599,201 +712,234 @@
       <div class="card">
         <div class="card-inner">
           <div class="card-front">
-            <img
-              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.freepik.com%2Fpremium-photo%2Fgreen-smoothie-green-juice_948265-9956.jpg&f=1&nofb=1&ipt=26ba5eec59bd22166cdacdc4f544fda8318eaca852e87ce572880ea60629d8b1"
-              alt="Carrot Juice">
-            <h3>Carrot Kick</h3>
+            <div class="card-number">1</div>
+            <div class="flip-hint">🔄</div>
+            <div class="mobile-instruction">Tap for benefits!</div>
+            <img src="images/darrell/1.png" alt="Berry Apple Juice">
+            <h3>Berry Bootcamp</h3>
             <ul>
-              <li>Carrots</li>
-              <li>Ginger</li>
-              <li>Oranges</li>
-              <li>Boosts vision & immune system</li>
-            </ul>
-          </div>
-          <div class="card-back">
-            <div class="health-benefits">
-              <h3>🥕 Health Benefits</h3>
-              <div class="benefit">
-                <div class="benefit-title">👁️ Vision Support</div>
-                Rich in beta-carotene for eye health
-              </div>
-              <div class="benefit">
-                <div class="benefit-title">🛡️ Immune Boost</div>
-                Vitamin A strengthens immunity
-              </div>
-              <div class="benefit">
-                <div class="benefit-title">🔥 Anti-Inflammatory</div>
-                Ginger reduces inflammation
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front">
-            <img
-              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.freepik.com%2Fpremium-photo%2Fgreen-smoothie-green-juice_948265-9956.jpg&f=1&nofb=1&ipt=26ba5eec59bd22166cdacdc4f544fda8318eaca852e87ce572880ea60629d8b1"
-              alt="Green Juice">
-            <h3>Green Machine</h3>
-            <ul>
-              <li>Kale</li>
-              <li>Spinach</li>
-              <li>Apple</li>
-              <li>Flushes toxins & adds energy</li>
-            </ul>
-          </div>
-          <div class="card-back">
-            <div class="health-benefits">
-              <h3>🥬 Health Benefits</h3>
-              <div class="benefit">
-                <div class="benefit-title">🧹 Detoxification</div>
-                Chlorophyll cleanses the body
-              </div>
-              <div class="benefit">
-                <div class="benefit-title">⚡ Energy Boost</div>
-                Iron-rich greens fight fatigue
-              </div>
-              <div class="benefit">
-                <div class="benefit-title">🦴 Bone Health</div>
-                High in calcium and vitamin K
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front">
-            <img
-              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.freepik.com%2Fpremium-photo%2Fgreen-smoothie-green-juice_948265-9956.jpg&f=1&nofb=1&ipt=26ba5eec59bd22166cdacdc4f544fda8318eaca852e87ce572880ea60629d8b1"
-              alt="Beet Juice">
-            <h3>Beet Blast</h3>
-            <ul>
-              <li>Beets</li>
-              <li>Carrots</li>
-              <li>Lemon</li>
-              <li>Improves blood flow</li>
-            </ul>
-          </div>
-          <div class="card-back">
-            <div class="health-benefits">
-              <h3>❤️ Health Benefits</h3>
-              <div class="benefit">
-                <div class="benefit-title">💓 Heart Health</div>
-                Nitrates improve circulation
-              </div>
-              <div class="benefit">
-                <div class="benefit-title">💪 Athletic Performance</div>
-                Boosts stamina and endurance
-              </div>
-              <div class="benefit">
-                <div class="benefit-title">🧠 Brain Function</div>
-                Increases blood flow to brain
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front">
-            <img
-              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.freepik.com%2Fpremium-photo%2Fgreen-smoothie-green-juice_948265-9956.jpg&f=1&nofb=1&ipt=26ba5eec59bd22166cdacdc4f544fda8318eaca852e87ce572880ea60629d8b1"
-              alt="Berry Juice">
-            <h3>Berry Burst</h3>
-            <ul>
-              <li>Blueberries</li>
-              <li>Strawberries</li>
               <li>Blackberries</li>
-              <li>Rich in antioxidants</li>
+              <li>Apples</li>
+              <br><i>A refreshing mix of tart blackberries and crisp apples, offering a balanced sweet-tart flavor.
+                Packed with antioxidants, delivering natural energy and supports your immune system with every sip.</i>
             </ul>
           </div>
           <div class="card-back">
+            <div class="flip-hint back">↩️</div>
+            <div class="mobile-instruction back">Tap to flip back</div>
             <div class="health-benefits">
               <h3>🫐 Health Benefits</h3>
               <div class="benefit">
                 <div class="benefit-title">🛡️ Antioxidant Power</div>
-                Fights free radicals and aging
+                Blackberries fight free radicals
               </div>
               <div class="benefit">
-                <div class="benefit-title">🧠 Memory Boost</div>
-                Improves cognitive function
-              </div>
-              <div class="benefit">
-                <div class="benefit-title">❤️ Heart Protection</div>
-                Supports cardiovascular health
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front">
-            <img
-              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.freepik.com%2Fpremium-photo%2Fgreen-smoothie-green-juice_948265-9956.jpg&f=1&nofb=1&ipt=26ba5eec59bd22166cdacdc4f544fda8318eaca852e87ce572880ea60629d8b1"
-              alt="Citrus Juice">
-            <h3>Citrus Splash</h3>
-            <ul>
-              <li>Oranges</li>
-              <li>Limes</li>
-              <li>Grapefruit</li>
-              <li>Boosts immunity</li>
-            </ul>
-          </div>
-          <div class="card-back">
-            <div class="health-benefits">
-              <h3>🍊 Health Benefits</h3>
-              <div class="benefit">
-                <div class="benefit-title">🛡️ Immune System</div>
-                High vitamin C content
-              </div>
-              <div class="benefit">
-                <div class="benefit-title">✨ Skin Health</div>
-                Collagen production support
-              </div>
-              <div class="benefit">
-                <div class="benefit-title">🍃 Alkalizing</div>
-                Balances body pH levels
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-inner">
-          <div class="card-front">
-            <img
-              src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.freepik.com%2Fpremium-photo%2Fgreen-smoothie-green-juice_948265-9956.jpg&f=1&nofb=1&ipt=26ba5eec59bd22166cdacdc4f544fda8318eaca852e87ce572880ea60629d8b1"
-              alt="Pineapple Juice">
-            <h3>Tropical Twist</h3>
-            <ul>
-              <li>Pineapple</li>
-              <li>Mango</li>
-              <li>Coconut water</li>
-              <li>Improves digestion</li>
-            </ul>
-          </div>
-          <div class="card-back">
-            <div class="health-benefits">
-              <h3>🍍 Health Benefits</h3>
-              <div class="benefit">
-                <div class="benefit-title">🔥 Digestive Aid</div>
-                Bromelain enzyme breaks down proteins
+                <div class="benefit-title">🧠 Brain Health</div>
+                Supports memory and cognitive function
               </div>
               <div class="benefit">
                 <div class="benefit-title">💧 Hydration</div>
-                Coconut water replenishes electrolytes
+                Natural sugars for sustained energy
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="card-number">2</div>
+            <div class="flip-hint">🔄</div>
+            <div class="mobile-instruction">Tap for benefits!</div>
+            <img src="images/darrell/2.png" alt="Orange Turmeric Juice">
+            <h3>The SF Giant</h3>
+            <ul>
+              <li>Orange</li>
+              <li>Turmeric</li>
+              <br><i>Named after the city's beloved baseball team, this golden blend pairs bright oranges with earthy
+                turmeric for a vibrant, immunity-boosting elixir rich in flavor and anti-inflammatory benefits.</i>
+            </ul>
+          </div>
+          <div class="card-back">
+            <div class="flip-hint back">↩️</div>
+            <div class="mobile-instruction back">Tap to flip back</div>
+            <div class="health-benefits">
+              <h3>🍊 Health Benefits</h3>
+              <div class="benefit">
+                <div class="benefit-title">🔥 Anti-Inflammatory</div>
+                Turmeric reduces inflammation
               </div>
               <div class="benefit">
-                <div class="benefit-title">🌟 Anti-Inflammatory</div>
-                Reduces swelling and joint pain
+                <div class="benefit-title">🛡️ Immune Boost</div>
+                Vitamin C strengthens immunity
+              </div>
+              <div class="benefit">
+                <div class="benefit-title">✨ Antioxidant Rich</div>
+                Curcumin fights oxidative stress
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="card-number">3</div>
+            <div class="flip-hint">🔄</div>
+            <div class="mobile-instruction">Tap for benefits!</div>
+            <img src="images/darrell/3.png" alt="Rainbow Veggie Juice">
+            <h3>Seahawk Touchdown</h3>
+            <ul>
+              <li>Orange</li>
+              <li>Turmeric</li>
+              <li>Kale</li>
+              <li>Cucumber</li>
+              <li>Beet</li>
+              <br>
+              <i>A vibrant blend that combines detoxifying greens with circulation-boosting beets and anti-inflammatory
+                turmeric.</i>
+            </ul>
+          </div>
+          <div class="card-back">
+            <div class="flip-hint back">↩️</div>
+            <div class="mobile-instruction back">Tap to flip back</div>
+            <div class="health-benefits">
+              <h3>🌈 Health Benefits</h3>
+              <div class="benefit">
+                <div class="benefit-title">💓 Heart Health</div>
+                Beet nitrates improve circulation
+              </div>
+              <div class="benefit">
+                <div class="benefit-title">🧹 Detoxification</div>
+                Kale and cucumber cleanse the liver
+              </div>
+              <div class="benefit">
+                <div class="benefit-title">💧 Hydration</div>
+                Cucumber provides natural hydration
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="card-number">4</div>
+            <div class="flip-hint">🔄</div>
+            <div class="mobile-instruction">Tap for benefits!</div>
+            <img src="images/darrell/4.png" alt="Green Garden Juice">
+            <h3>Green Garden</h3>
+            <ul>
+              <li>Cucumber</li>
+              <li>Celery</li>
+              <li>Parsley</li>
+              <li>Kale</li>
+              <li>Green grapes</li>
+              <br>
+              <i>A refreshing medley of hydrating vegetables and leafy greens that naturally cleanses and energizes your
+                body.</i>
+            </ul>
+          </div>
+          <div class="card-back">
+            <div class="flip-hint back">↩️</div>
+            <div class="mobile-instruction back">Tap to flip back</div>
+            <div class="health-benefits">
+              <h3>🥬 Health Benefits</h3>
+              <div class="benefit">
+                <div class="benefit-title">🧹 Natural Detox</div>
+                Parsley supports kidney function
+              </div>
+              <div class="benefit">
+                <div class="benefit-title">⚡ Energy Boost</div>
+                Iron-rich greens combat fatigue
+              </div>
+              <div class="benefit">
+                <div class="benefit-title">💧 Electrolyte Balance</div>
+                Celery provides natural sodium
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="card-number">5</div>
+            <div class="flip-hint">🔄</div>
+            <div class="mobile-instruction">Tap for benefits!</div>
+            <img src="images/darrell/5.png" alt="Ginger Giant Juice">
+            <h3>5AM Winner</h3>
+            <ul>
+              <li>Beet</li>
+              <li>Ginger</li>
+              <li>Celery</li>
+              <li>Carrot</li>
+              <br><i>This bold and invigorating blend harnesses the warming kick of fresh ginger alongside earthy beets
+                and sweet carrots. A winner in both flavor and nutritional power, this juice delivers a spicy zing
+                that awakens your senses while boosting circulation and digestive health.</i>
+            </ul>
+          </div>
+          <div class="card-back">
+            <div class="flip-hint back">↩️</div>
+            <div class="mobile-instruction back">Tap to flip back</div>
+            <div class="health-benefits">
+              <h3>🔥 Health Benefits</h3>
+              <div class="benefit">
+                <div class="benefit-title">🌶️ Digestive Aid</div>
+                Ginger soothes stomach & nausea
+              </div>
+              <div class="benefit">
+                <div class="benefit-title">👁️ Vision Support</div>
+                Beta-carotene from carrots
+              </div>
+              <div class="benefit">
+                <div class="benefit-title">💪 Athletic Performance</div>
+                Beet nitrates boost endurance
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <div class="card-number">6</div>
+            <div class="flip-hint">🔄</div>
+            <div class="mobile-instruction">Tap for benefits!</div>
+            <img src="images/darrell/6.png" alt="Green Goddess Juice">
+            <h3>Chill Namaste</h3>
+            <ul>
+              <li>Celery</li>
+              <li>Parsley</li>
+              <li>Cucumbers</li>
+              <li>Kale</li>
+              <li>Turmeric</li>
+              <br>
+              <i>The ultimate green detox blend featuring powerful anti-inflammatory turmeric and hydrating
+                cucumber-celery combo.</i>
+            </ul>
+          </div>
+          <div class="card-back">
+            <div class="flip-hint back">↩️</div>
+            <div class="mobile-instruction back">Tap to flip back</div>
+            <div class="health-benefits">
+              <h3>💚 Health Benefits</h3>
+              <div class="benefit">
+                <div class="benefit-title">🧘 Anti-Inflammatory</div>
+                Turmeric reduces joint pain
+              </div>
+              <div class="benefit">
+                <div class="benefit-title">🦴 Bone Health</div>
+                Kale provides calcium & vitamin K
+              </div>
+              <div class="benefit">
+                <div class="benefit-title">💧 Ultimate Hydration</div>
+                Cucumber & celery restore fluids
               </div>
             </div>
           </div>
@@ -875,6 +1021,7 @@
     setTimeout(() => {
       cancelAnimationFrame(animationId);
       document.getElementById('splash').style.display = 'none';
+      document.body.style.overflow = 'auto';
       const main = document.getElementById('main-content');
       main.style.display = 'block';
       setTimeout(() => main.classList.add('visible'), 50);
