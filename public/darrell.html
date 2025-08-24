@@ -54,14 +54,14 @@
       color: #ffcc70;
       padding: 15px;
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
+      /* border-radius: 12px; */
     }
 
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      padding: 40px;
+      padding: 50px;
       max-width: 1200px;
       margin: auto;
     }
@@ -96,6 +96,14 @@
 
     .card.flipped .card-inner {
       transform: rotateY(180deg);
+    }
+
+    .flipped .card-number {
+      display: none;
+    }
+
+    .flipped .flip-hint:not(.back) {
+      display: none;
     }
 
     .card-front,
