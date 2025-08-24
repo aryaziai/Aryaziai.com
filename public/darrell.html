@@ -54,14 +54,14 @@
       color: #ffcc70;
       padding: 15px;
       background: rgba(255, 255, 255, 0.05);
-      /* border-radius: 12px; */
+      border-radius: 12px;
     }
 
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      padding: 50px;
+      padding: 40px;
       max-width: 1200px;
       margin: auto;
     }
@@ -96,14 +96,6 @@
 
     .card.flipped .card-inner {
       transform: rotateY(180deg);
-    }
-
-    .flipped .card-number {
-      display: none;
-    }
-
-    .flipped .flip-hint:not(.back) {
-      display: none;
     }
 
     .card-front,
@@ -1034,41 +1026,38 @@
       setTimeout(() => main.classList.add('visible'), 50);
     }, 12000);
 
-    // Improved mobile touch support for card flipping
+    // Card flipping functionality
     const cards = document.querySelectorAll('.card');
+    const flipHints = document.querySelectorAll('.flip-hint');
+
+    // Handle flip button clicks for both desktop and mobile
+    flipHints.forEach(hint => {
+      hint.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent card click
+        e.preventDefault();
+        const card = hint.closest('.card');
+        card.classList.toggle('flipped');
+      });
+
+      // Handle touch events specifically for flip buttons on mobile
+      hint.addEventListener('touchend', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        const card = hint.closest('.card');
+        card.classList.toggle('flipped');
+      });
+    });
+
+    // Desktop hover and click for cards (not on mobile)
     cards.forEach(card => {
-      let touchStartTime = 0;
-
-      // Handle touch events for mobile
-      card.addEventListener('touchstart', (e) => {
-        touchStartTime = Date.now();
-      });
-
-      card.addEventListener('touchend', (e) => {
-        e.preventDefault(); // Prevent click event from firing
-        const touchDuration = Date.now() - touchStartTime;
-
-        // Only trigger flip for quick taps (not long presses or scrolls)
-        if (touchDuration < 500) {
-          card.classList.toggle('flipped');
-        }
-      });
-
-      // Handle click events for desktop (non-touch devices)
+      // Only handle card clicks on non-touch devices
       card.addEventListener('click', (e) => {
-        // Only handle click if this is not a touch device
-        if (!('ontouchstart' in window)) {
+        // Only flip if click wasn't on flip button and this is desktop
+        if (!e.target.closest('.flip-hint') && !('ontouchstart' in window)) {
           card.classList.toggle('flipped');
         }
       });
     });
-
-    // Prevent default touch behavior on the entire cards area to avoid scrolling issues
-    document.querySelector('.cards').addEventListener('touchstart', (e) => {
-      if (e.target.closest('.card')) {
-        e.preventDefault();
-      }
-    }, { passive: false });
 
     window.addEventListener('resize', () => {
       particles.width = window.innerWidth;
