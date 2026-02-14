@@ -37,7 +37,9 @@
       align-items: center;
       background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
       font-family: 'Georgia', serif;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .container {
@@ -233,22 +235,71 @@
       max-width: 100%;
       max-height: 400px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-      animation: fadeInImg 1s ease-in-out;
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
     }
 
-    @keyframes fadeInImg {
+    .volume-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(45deg, #d63384, #ff6b6b);
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.2rem;
+      z-index: 1000;
+      animation: slideDown 0.5s ease-out;
+    }
+
+    .volume-banner.hide {
+      animation: slideUp 0.5s ease-out forwards;
+    }
+
+    @keyframes slideDown {
       from {
-        opacity: 0;
+        transform: translateY(-100%);
       }
 
       to {
-        opacity: 1;
+        transform: translateY(0);
       }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-100%);
+      }
+    }
+
+    .btn-spotify {
+      background-color: white;
+      border: 2px solid #1DB954;
+      color: #1DB954;
+      box-shadow: 0 4px 15px rgba(29, 185, 84, 0.4);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-spotify:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(29, 185, 84, 0.6);
     }
   </style>
 </head>
 
 <body>
+  <div id="volume-banner" class="volume-banner">
+    Turn up volume 🔊
+  </div>
   <div class="container">
     <div id="main-content">
       <img src="images/liv/bobby.png">
@@ -257,6 +308,10 @@
       <div class="buttons">
         <button class="btn btn-yes" onclick="sayYes()">Yes! 💖</button>
         <button class="btn btn-no" onclick="sayNo()">No 😢</button>
+      </div>
+      <div class="buttons">
+        <a href="https://open.spotify.com/playlist/0JSn6b7MuGB7aPydAj11HL?si=95a4f2dc78e34fb1" target="_blank"
+          class="btn btn-spotify">Spotify ↗</a>
       </div>
     </div>
 
@@ -332,10 +387,16 @@
           currentSlide = 1;
         }
         const img = document.getElementById('slideshow-img');
-        img.style.animation = 'none';
-        img.offsetHeight; // Trigger reflow
-        img.src = 'images/liv/' + currentSlide + '.jpg';
-        img.style.animation = 'fadeInImg 1s ease-in-out';
+        // Fade out
+        img.style.opacity = '0';
+        img.style.transform = 'scale(0.95)';
+
+        // After fade out, change image and fade in
+        setTimeout(() => {
+          img.src = 'images/liv/' + currentSlide + '.jpg';
+          img.style.opacity = '1';
+          img.style.transform = 'scale(1)';
+        }, 400);
       }, 10000);
     }
 
@@ -372,8 +433,20 @@
       }, 5000);
     }
 
+    // Hide volume banner after 5 seconds
+    function hideBanner() {
+      const banner = document.getElementById('volume-banner');
+      banner.classList.add('hide');
+      setTimeout(() => {
+        banner.style.display = 'none';
+      }, 500);
+    }
+
     // Initialize floating hearts on page load
-    window.onload = createFloatingHearts;
+    window.onload = function () {
+      createFloatingHearts();
+      setTimeout(hideBanner, 5000);
+    };
   </script>
 </body>
 
