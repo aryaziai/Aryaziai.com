@@ -249,9 +249,14 @@
 
   <div class="celebration" id="celebration"></div>
 
-  <!-- Audio element for yes response - replace src with your audio file -->
-  <audio id="yesAudio" preload="auto">
-    <source src="audio/test.mp3" type="audio/mpeg">
+  <!-- Audio element for yes response -->
+  <audio id="yesAudio" preload="auto" loop>
+    <source src="audio/valentines.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Audio element for no response -->
+  <audio id="noAudio" preload="auto" loop>
+    <source src="audio/weh.mp3" type="audio/mpeg">
   </audio>
 
   <script>
@@ -305,8 +310,16 @@
       document.getElementById('main-content').classList.add('hidden');
       document.getElementById('response-no').style.display = 'block';
 
+      // Play audio
+      const audio = document.getElementById('noAudio');
+      audio.play().catch(e => {
+        console.log('Audio play failed:', e);
+      });
+
       // Go back to main page after 5 seconds
       setTimeout(() => {
+        audio.pause();
+        audio.currentTime = 0;
         document.getElementById('response-no').style.display = 'none';
         document.getElementById('main-content').classList.remove('hidden');
       }, 5000);
