@@ -262,6 +262,7 @@
       from {
         transform: translateY(-100%);
       }
+
       to {
         transform: translateY(0);
       }
@@ -271,14 +272,16 @@
       from {
         transform: translateY(0);
       }
+
       to {
         transform: translateY(-100%);
       }
     }
 
     .btn-spotify {
-      background: linear-gradient(45deg, #1DB954, #1ed760);
-      color: white;
+      background-color: white;
+      border: 2px solid #1DB954;
+      color: #1DB954;
       box-shadow: 0 4px 15px rgba(29, 185, 84, 0.4);
       text-decoration: none;
       display: inline-flex;
@@ -305,7 +308,10 @@
       <div class="buttons">
         <button class="btn btn-yes" onclick="sayYes()">Yes! 💖</button>
         <button class="btn btn-no" onclick="sayNo()">No 😢</button>
-        <a href="https://open.spotify.com" target="_blank" class="btn btn-spotify">Spotify ↗</a>
+      </div>
+      <div class="buttons">
+        <a href="https://open.spotify.com/playlist/0JSn6b7MuGB7aPydAj11HL?si=95a4f2dc78e34fb1" target="_blank"
+          class="btn btn-spotify">Spotify ↗</a>
       </div>
     </div>
 
@@ -384,14 +390,14 @@
         // Fade out
         img.style.opacity = '0';
         img.style.transform = 'scale(0.95)';
-        
+
         // After fade out, change image and fade in
         setTimeout(() => {
           img.src = 'images/liv/' + currentSlide + '.jpg';
           img.style.opacity = '1';
           img.style.transform = 'scale(1)';
         }, 400);
-      }, 5000);
+      }, 10000);
     }
 
     function sayYes() {
@@ -437,7 +443,7 @@
     }
 
     // Initialize floating hearts on page load
-    window.onload = function() {
+    window.onload = function () {
       createFloatingHearts();
       setTimeout(hideBanner, 5000);
     };
