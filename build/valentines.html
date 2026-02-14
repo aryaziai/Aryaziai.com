@@ -206,7 +206,7 @@
     }
 
     .big-heart {
-      font-size: 8rem;
+      font-size: 6rem;
       animation: heartBeat 1s ease-in-out infinite;
     }
 
@@ -219,6 +219,30 @@
 
       50% {
         transform: scale(1.1);
+      }
+    }
+
+    .slideshow-container {
+      margin-top: 30px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .slideshow-container img {
+      max-width: 100%;
+      max-height: 400px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      animation: fadeInImg 1s ease-in-out;
+    }
+
+    @keyframes fadeInImg {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
       }
     }
   </style>
@@ -238,7 +262,11 @@
 
     <div id="response-yes" class="response response-yes">
       <span class="emoji big-heart">💖</span>
-      <p>Yay! I love you! 🥰💕</p>
+      <div class="slideshow-container">
+        <img id="slideshow-img" src="images/liv/1.jpg" alt="Photo slideshow">
+      </div>
+      <br>
+      <p>I love you! 🥰💕</p>
     </div>
 
     <div id="response-no" class="response response-no">
@@ -293,10 +321,29 @@
       }
     }
 
+    let slideshowInterval = null;
+    let currentSlide = 1;
+    const totalSlides = 15;
+
+    function startSlideshow() {
+      slideshowInterval = setInterval(() => {
+        currentSlide++;
+        if (currentSlide > totalSlides) {
+          currentSlide = 1;
+        }
+        const img = document.getElementById('slideshow-img');
+        img.style.animation = 'none';
+        img.offsetHeight; // Trigger reflow
+        img.src = 'images/liv/' + currentSlide + '.jpg';
+        img.style.animation = 'fadeInImg 1s ease-in-out';
+      }, 10000);
+    }
+
     function sayYes() {
       document.getElementById('main-content').classList.add('hidden');
       document.getElementById('response-yes').style.display = 'block';
       createConfetti();
+      startSlideshow();
 
       // Play audio
       const audio = document.getElementById('yesAudio');
